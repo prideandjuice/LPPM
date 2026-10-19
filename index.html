@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - RisetMu | Sistem Informasi Penelitian & Pengabdian</title>
+  <meta name="description" content="Dashboard Sistem Informasi Penelitian dan Pengabdian RisetMu Universitas Muhammadiyah">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER / NAVBAR -->
+  <header class="top-header">
+    <div class="header-container">
+      <!-- Logo RisetMu -->
+      <a href="#" class="brand-logo" id="brand-logo" title="RisetMu Home">
+        <div class="brand-symbol">
+          <svg viewBox="0 0 40 40" class="logo-svg">
+            <path d="M12 28V8h8a6 6 0 0 1 6 6c0 2.5-1.5 4.7-3.8 5.6L27 28h-5l-4.2-7.5H16V28h-4zm4-11.5h4a2.5 2.5 0 0 0 0-5h-4v5z" fill="#1b2b65"/>
+            <!-- Glowing bulb filament accent -->
+            <circle cx="28" cy="11" r="3" fill="#0ea5e9"/>
+            <path d="M28 6v2M28 14v2M23 11h2M31 11h2" stroke="#0ea5e9" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span class="logo-riset">R<span class="logo-bulb-i">i</span>set</span><span class="logo-mu">mu</span>
+        </div>
+      </a>
+
+      <!-- Right Action Items -->
+      <div class="header-actions">
+        <!-- Academic Year Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="pill-btn nav-dropdown-btn" id="yearDropdownBtn" aria-expanded="false" title="Pilih Periode">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span id="selectedYear">2026/2027</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu" id="yearDropdownMenu">
+            <div class="dropdown-item active" data-year="2026/2027"><i class="fa-solid fa-check"></i> 2026/2027 (Aktif)</div>
+            <div class="dropdown-item" data-year="2025/2026">2025/2026</div>
+            <div class="dropdown-item" data-year="2024/2025">2024/2025</div>
+            <div class="dropdown-item" data-year="2023/2024">2023/2024</div>
+          </div>
+        </div>
+
+        <!-- Role Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran">
+            <i class="fa-regular fa-user"></i>
+            <span id="selectedRole">DOSEN</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu" id="roleDropdownMenu">
+            <div class="dropdown-item active" data-role="DOSEN"><i class="fa-solid fa-check"></i> DOSEN</div>
+            <div class="dropdown-item" data-role="REVIEWER">REVIEWER</div>
+            <div class="dropdown-item" data-role="PENGUSUL">PENGUSUL</div>
+            <div class="dropdown-item" data-role="ADMIN LPPM">ADMIN LPPM</div>
+          </div>
+        </div>
+
+        <!-- Notification Bell -->
+        <div class="dropdown-wrapper">
+          <button class="icon-btn notif-btn" id="notifBtn" title="Notifikasi">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notif-badge-dot"></span>
+          </button>
+          <div class="dropdown-menu notif-menu" id="notifMenu">
+            <div class="notif-header">
+              <span>Pemberitahuan</span>
+              <span class="notif-tag">2 Baru</span>
+            </div>
+            <div class="notif-list">
+              <div class="notif-item unread">
+                <div class="notif-icon bg-blue"><i class="fa-solid fa-bullhorn"></i></div>
+                <div class="notif-text">
+                  <strong>Pengumuman Pendanaan 2026</strong>
+                  <p>Administrasi pendanaan proposal penelitian dan PKM telah resmi diumumkan.</p>
+                  <small>Hari ini, 08:30 WIB</small>
+                </div>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-icon bg-green"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="notif-text">
+                  <strong>Proposal Diterima</strong>
+                  <p>Pengabdian Kemitraan Masyarakat Ranting Aisyiyah telah disetujui.</p>
+                  <small>Kemarin, 14:15 WIB</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Profile Pill -->
+        <div class="dropdown-wrapper">
+          <button class="user-profile-btn" id="userProfileBtn" aria-expanded="false">
+            <div class="user-avatar-circle">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <span class="user-name">YOSHIDA SARY</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu user-menu" id="userMenu">
+            <div class="user-menu-header">
+              <strong>Yoshida Sary, M.Kom.</strong>
+              <small>NIDN: 0123456789</small>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a href="#profil" class="dropdown-item" onclick="openProfileModal()"><i class="fa-regular fa-id-card"></i> Profil Lengkap</a>
+            <a href="#" class="dropdown-item" onclick="showToast('Fitur Pengaturan Akun')"><i class="fa-solid fa-sliders"></i> Pengaturan Akun</a>
+            <a href="#" class="dropdown-item" onclick="showToast('Fitur Ganti Sandi')"><i class="fa-solid fa-key"></i> Ganti Password</a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item text-danger" onclick="showToast('Sesi tetap aktif')"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUB NAVIGATION MENU -->
+  <nav class="sub-nav">
+    <div class="sub-nav-container">
+      <ul class="nav-links">
+        <li class="nav-item active">
+          <a href="#" class="nav-link" id="navDashboard">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-flask"></i>
+            <span>Penelitian</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+          <ul class="sub-dropdown">
+            <li><a href="#" onclick="showToast('Menu Usulan Baru Penelitian')">Usulan Baru</a></li>
+            <li><a href="#" onclick="showToast('Menu Riwayat Penelitian')">Riwayat Usulan Penelitian</a></li>
+            <li><a href="#" onclick="showToast('Menu Laporan Kemajuan')">Laporan Kemajuan</a></li>
+            <li><a href="#" onclick="showToast('Menu Laporan Akhir')">Laporan Akhir</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <span>Pengabdian</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+          <ul class="sub-dropdown">
+            <li><a href="#" onclick="showToast('Menu Usulan Baru Pengabdian')">Usulan Baru Pengabdian</a></li>
+            <li><a href="#" onclick="showToast('Menu Riwayat Pengabdian')">Riwayat Usulan Pengabdian</a></li>
+            <li><a href="#" onclick="showToast('Menu Laporan Kemajuan')">Laporan Kemajuan</a></li>
+            <li><a href="#" onclick="showToast('Menu Laporan Akhir')">Laporan Akhir</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-regular fa-file-lines"></i>
+            <span>Pendampingan</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+          <ul class="sub-dropdown">
+            <li><a href="#" onclick="showToast('Menu Pendampingan Artikel Ilmiah')">Pendampingan Artikel</a></li>
+            <li><a href="#" onclick="showToast('Menu Pendampingan Proposal Hibah')">Pendampingan Proposal</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-user-check"></i>
+            <span>Pengajuan Reviewer</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+          <ul class="sub-dropdown">
+            <li><a href="#" onclick="showToast('Pendaftaran Reviewer Nasional')">Formulir Pengajuan Reviewer</a></li>
+            <li><a href="#" onclick="showToast('Status Pengajuan Reviewer')">Status Seleksi Reviewer</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN DASHBOARD CONTENT -->
+  <main class="main-wrapper">
+    <div class="dashboard-grid">
+      
+      <!-- LEFT COLUMN -->
+      <section class="left-column">
+        
+        <!-- HERO BANNER CARD -->
+        <div class="hero-card">
+          <!-- Ambient Glow Background Decoration -->
+          <div class="banner-glow-circle circle-1"></div>
+          <div class="banner-glow-circle circle-2"></div>
+          
+          <div class="hero-content">
+            <!-- Date Pill -->
+            <div class="date-badge" id="currentDateBadge">
+              <i class="fa-regular fa-calendar"></i>
+              <span>19 Oktober 2026</span>
+            </div>
+
+            <!-- Greeting Headlines -->
+            <h1 class="hero-title">Selamat Datang, YOSHIDA SARY!</h1>
+            <h2 class="hero-subtitle">Have a nice Monday!</h2>
+
+            <!-- Announcement Period Text -->
+            <div class="hero-period-box">
+              <p>
+                <strong class="period-highlight">Periode saat ini:</strong>
+                Buka pengajuan pendampingan artikel &amp; Buka pengajuan pendampingan proposal &amp; Pengumuman administrasi pendanaan proposal penelitian dan pengabdian kepada Masyarakat.
+              </p>
+            </div>
+          </div>
+
+          <!-- Hero Character & Sparkles Area -->
+          <div class="hero-avatar-area">
+            <!-- Floating Sparkle Stars -->
+            <div class="sparkle-star star-1">✦</div>
+            <div class="sparkle-star star-2">✦</div>
+            <div class="sparkle-star star-3">✦</div>
+            <div class="sparkle-star star-4">✦</div>
+            <div class="sparkle-star star-5">✦</div>
+            
+            <div class="avatar-image-wrapper">
+              <img src="assets/hero_avatar.png?v=3" alt="Dosen Karakter 3D" class="hero-3d-character" id="heroCharacterImg">
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 STATS SUMMARY CARDS -->
+        <div class="stats-grid">
+          
+          <!-- Card 1: Penelitian (Coral/Pink) -->
+          <div class="stat-card stat-card-coral" onclick="filterChart('penelitian')" title="Klik untuk fokus data Penelitian">
+            <div class="stat-content">
+              <div class="stat-number">4</div>
+              <div class="stat-text-group">
+                <h3 class="stat-title">Penelitian</h3>
+                <p class="stat-desc">Didanai oleh Risetmu</p>
+              </div>
+            </div>
+            <div class="stat-icon-wrapper">
+              <div class="stat-icon-circle">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Pengabdian (Cyan/Teal) -->
+          <div class="stat-card stat-card-cyan" onclick="filterChart('pengabdian')" title="Klik untuk fokus data Pengabdian">
+            <div class="stat-content">
+              <div class="stat-number">4</div>
+              <div class="stat-text-group">
+                <h3 class="stat-title">Pengabdian</h3>
+                <p class="stat-desc">Didanai oleh Risetmu</p>
+              </div>
+            </div>
+            <div class="stat-icon-wrapper">
+              <div class="stat-icon-circle">
+                <i class="fa-regular fa-file-lines"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Pendampingan Artikel (Gold/Amber) -->
+          <div class="stat-card stat-card-gold" onclick="filterChart('artikel')" title="Klik untuk fokus Pendampingan Artikel">
+            <div class="stat-content">
+              <div class="stat-number">0</div>
+              <div class="stat-text-group">
+                <h3 class="stat-title">Pendampingan Artikel</h3>
+                <p class="stat-desc">Didanai oleh Risetmu</p>
+              </div>
+            </div>
+            <div class="stat-icon-wrapper">
+              <div class="stat-icon-circle">
+                <i class="fa-regular fa-file"></i>
+                <i class="fa-solid fa-plus stat-mini-badge"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Pendampingan Proposal (Green/Emerald) -->
+          <div class="stat-card stat-card-green" onclick="filterChart('proposal')" title="Klik untuk fokus Pendampingan Proposal">
+            <div class="stat-content">
+              <div class="stat-number">0</div>
+              <div class="stat-text-group">
+                <h3 class="stat-title">Pendampingan Proposal</h3>
+                <p class="stat-desc">Didanai oleh Risetmu</p>
+              </div>
+            </div>
+            <div class="stat-icon-wrapper">
+              <div class="stat-icon-circle">
+                <i class="fa-regular fa-file"></i>
+                <i class="fa-solid fa-plus stat-mini-badge"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PENELITIAN CHART CARD -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div class="chart-title-group">
+              <h2 class="chart-title">Penelitian</h2>
+              <p class="chart-subtitle">Data riwayat usulan yang sudah Diterima dan pengumuman periode sudah berlalu.</p>
+            </div>
+            <div class="chart-legend-custom">
+              <button class="legend-pill" id="toggleUsulan" onclick="toggleDataset(0)">
+                <span class="legend-dot dot-purple"></span>
+                <span>Usulan</span>
+              </button>
+              <button class="legend-pill" id="toggleDidanai" onclick="toggleDataset(1)">
+                <span class="legend-dot dot-pink"></span>
+                <span>Didanai</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="chart-canvas-container">
+            <canvas id="penelitianChart"></canvas>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN -->
+      <aside class="right-column">
+        
+        <!-- PROFIL SAYA CARD -->
+        <div class="profile-card">
+          <div class="panel-header">
+            <h3 class="panel-title">Profil Saya</h3>
+            <div class="panel-actions">
+              <button class="panel-btn-icon" id="editProfileBtn" onclick="openProfileModal()" title="Edit Profil">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button class="panel-btn-pill" id="syncBtn" onclick="syncData()" title="Sinkronkan dengan Sinta / PDDikti">
+                <i class="fa-solid fa-rotate sync-icon"></i>
+                <span>Sync</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="panel-body profile-body">
+            <!-- User Info Top Row -->
+            <div class="profile-meta">
+              <div class="profile-avatar-large">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="profile-text">
+                <h4 class="lecturer-name">Yoshida Sary</h4>
+                <p class="lecturer-dept">Sistem Informasi</p>
+                <p class="lecturer-univ">Universitas Muhammadiyah Sumatera Utara</p>
+              </div>
+            </div>
+
+            <!-- 3 Stat Metrics Columns -->
+            <div class="profile-metrics-row">
+              <div class="metric-col">
+                <span class="metric-label">Sinta Score overall</span>
+                <span class="metric-value" id="sintaScore">599</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-col">
+                <span class="metric-label">Jenjang Pendidikan</span>
+                <span class="metric-value">S2</span>
+              </div>
+              <div class="metric-divider"></div>
+              <div class="metric-col">
+                <span class="metric-label">Jabatan Akademik</span>
+                <span class="metric-value">Lektor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIWAYAT USULAN CARD -->
+        <div class="history-card">
+          <div class="panel-header">
+            <h3 class="panel-title">Riwayat Usulan</h3>
+          </div>
+          
+          <div class="panel-body history-body">
+            
+            <!-- Section 1: Penelitian -->
+            <div class="history-section">
+              <div class="section-title-bar">
+                <h4 class="history-sec-heading">Penelitian</h4>
+                <a href="#" class="more-link" onclick="showToast('Menampilkan semua riwayat penelitian')">more..</a>
+              </div>
+              <ul class="history-list">
+                <li class="empty-item">
+                  <span class="bullet-circle"></span>
+                  <span>Belum ada penelitian yang didanai.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Section 2: Pengabdian kepada Masyarakat -->
+            <div class="history-section">
+              <div class="section-title-bar">
+                <h4 class="history-sec-heading">Pengabdian kepada Masyarakat</h4>
+                <a href="#" class="more-link" onclick="showToast('Menampilkan semua riwayat pengabdian')">more..</a>
+              </div>
+              <ul class="history-list">
+                <li class="history-item">
+                  <span class="bullet-circle"></span>
+                  <a href="javascript:void(0)" class="proposal-title-link" onclick="openProposalDetailModal(1)">
+                    PEMBERDAYAAN EKONOMI PEREMPUAN MELALUI DIGITAL MARKETING PADA ANGGOTA RANTING AISYIYAH CABANG HELVETIA
+                  </a>
+                </li>
+                <li class="history-item">
+                  <span class="bullet-circle"></span>
+                  <a href="javascript:void(0)" class="proposal-title-link" onclick="openProposalDetailModal(2)">
+                    Pemberdayaan Ekonomi Perempuan Melalui Digital Marketing Pada Anggota Ranting Aisyiyah Cabang Helvetia
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Section 3: Pendampingan Artikel -->
+            <div class="history-section">
+              <div class="section-title-bar">
+                <h4 class="history-sec-heading">Pendampingan Artikel</h4>
+                <a href="#" class="more-link" onclick="showToast('Menampilkan riwayat pendampingan artikel')">more..</a>
+              </div>
+              <ul class="history-list">
+                <li class="empty-item">
+                  <span class="bullet-circle"></span>
+                  <span>Belum ada pendampingan artikel yang didanai.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Section 4: Pendampingan Proposal -->
+            <div class="history-section">
+              <div class="section-title-bar">
+                <h4 class="history-sec-heading">Pendampingan Proposal</h4>
+                <a href="#" class="more-link" onclick="showToast('Menampilkan riwayat pendampingan proposal')">more..</a>
+              </div>
+              <ul class="history-list">
+                <li class="empty-item">
+                  <span class="bullet-circle"></span>
+                  <span>Belum ada pendampingan proposal yang didanai.</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <p>2026 &copy; RisetMu. [v1.0]</p>
+    </div>
+  </footer>
+
+  <!-- PROPOSAL DETAIL MODAL -->
+  <div class="modal-overlay" id="proposalModal" onclick="handleBackdropClick(event, 'proposalModal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <i class="fa-solid fa-file-circle-check"></i>
+          <h3 id="modalProposalTitle">Detail Usulan Pengabdian Masyarakat</h3>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('proposalModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="modalProposalBody">
+        <!-- Dynamic proposal content inserted via JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('proposalModal')">Tutup</button>
+        <button class="btn btn-primary" onclick="showToast('Mengunduh lembar pengesahan & proposal PDF...')">
+          <i class="fa-solid fa-download"></i> Unduh Berkas Usulan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE EDIT MODAL -->
+  <div class="modal-overlay" id="profileModal" onclick="handleBackdropClick(event, 'profileModal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-header-title">
+          <i class="fa-solid fa-user-pen"></i>
+          <h3>Data Profil Dosen</h3>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('profileModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="profileEditForm" onsubmit="saveProfile(event)">
+          <div class="form-group">
+            <label>Nama Lengkap &amp; Gelar</label>
+            <input type="text" class="form-input" id="editName" value="Yoshida Sary, M.Kom." required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Program Studi</label>
+              <input type="text" class="form-input" id="editDept" value="Sistem Informasi" required>
+            </div>
+            <div class="form-group">
+              <label>Perguruan Tinggi</label>
+              <input type="text" class="form-input" id="editUniv" value="Universitas Muhammadiyah Sumatera Utara" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>SINTA ID</label>
+              <input type="text" class="form-input" value="6018245">
+            </div>
+            <div class="form-group">
+              <label>SINTA Score Overall</label>
+              <input type="number" class="form-input" id="editSinta" value="599">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Jenjang Pendidikan</label>
+              <select class="form-input">
+                <option value="S2" selected>S2 (Magister)</option>
+                <option value="S3">S3 (Doktor)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Jabatan Akademik (Fungsional)</label>
+              <select class="form-input">
+                <option value="Lektor" selected>Lektor</option>
+                <option value="Lektor Kepala">Lektor Kepala</option>
+                <option value="Guru Besar">Guru Besar (Profesor)</option>
+                <option value="Asisten Ahli">Asisten Ahli</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-actions-right">
+            <button type="button" class="btn btn-secondary" onclick="closeModal('profileModal')">Batal</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -4,14 +4,14 @@
 
 :root {
   --font-main: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  
+
   /* Primary Theme Palette */
-  --primary-navy: #1e295f;
-  --primary-navy-dark: #151d45;
-  --primary-navy-light: #283778;
+  --primary-navy: #0284c7;
+  --primary-navy-dark: #0369a1;
+  --primary-navy-light: #38bdf8;
   --accent-blue: #0284c7;
   --accent-cyan: #0ea5e9;
-  
+
   /* Stat Card Colors */
   --card-coral: #ff3b68;
   --card-coral-end: #ff5c82;
@@ -21,11 +21,11 @@
   --card-gold-end: #fbbf24;
   --card-green: #059669;
   --card-green-end: #10b981;
-  
+
   /* Chart Colors */
   --chart-purple: #7c3aed;
   --chart-pink: #d946ef;
-  
+
   /* Neutral Palette */
   --bg-page: #f1f3f7;
   --bg-white: #ffffff;
@@ -35,20 +35,22 @@
   --text-muted: #64748b;
   --text-light: #94a3b8;
   --text-blue: #1d4ed8;
-  
+
   /* Elevation Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.06);
   --shadow-card: 0 6px 18px rgba(30, 41, 95, 0.06);
-  
+
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s ease;
 }
 
 /* CSS Reset & Defaults */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -267,6 +269,7 @@ body {
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -469,9 +472,9 @@ body {
 
 .nav-item.active .nav-link {
   color: #ffffff;
-  font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.12);
-  border-bottom: 2px solid #38bdf8;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid #ffffff;
 }
 
 .sub-arrow {
@@ -542,16 +545,16 @@ body {
 }
 
 .hero-card {
-  background: linear-gradient(135deg, #1f2a63 0%, #151d45 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   border-radius: 16px;
-  padding: 30px 32px;
+  padding: 24px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  min-height: 270px;
+  min-height: auto;
 }
 
 /* Decorative Glow Rings */
@@ -638,6 +641,8 @@ body {
   justify-content: center;
   z-index: 2;
   flex-shrink: 0;
+  align-self: flex-end;
+  margin-bottom: -28px;
 }
 
 .avatar-image-wrapper {
@@ -710,10 +715,13 @@ body {
 }
 
 @keyframes sparklePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(0.85) rotate(0deg);
     opacity: 0.7;
   }
+
   50% {
     transform: scale(1.25) rotate(25deg);
     opacity: 1;
@@ -807,6 +815,7 @@ body {
   background: linear-gradient(135deg, var(--card-coral) 0%, var(--card-coral-end) 100%);
   box-shadow: 0 6px 20px rgba(255, 59, 104, 0.28);
 }
+
 .stat-card-coral:hover {
   box-shadow: 0 10px 24px rgba(255, 59, 104, 0.38);
 }
@@ -815,6 +824,7 @@ body {
   background: linear-gradient(135deg, var(--card-cyan) 0%, var(--card-cyan-end) 100%);
   box-shadow: 0 6px 20px rgba(0, 153, 187, 0.28);
 }
+
 .stat-card-cyan:hover {
   box-shadow: 0 10px 24px rgba(0, 153, 187, 0.38);
 }
@@ -823,6 +833,7 @@ body {
   background: linear-gradient(135deg, var(--card-gold) 0%, var(--card-gold-end) 100%);
   box-shadow: 0 6px 20px rgba(245, 158, 11, 0.28);
 }
+
 .stat-card-gold:hover {
   box-shadow: 0 10px 24px rgba(245, 158, 11, 0.38);
 }
@@ -831,6 +842,7 @@ body {
   background: linear-gradient(135deg, var(--card-green) 0%, var(--card-green-end) 100%);
   box-shadow: 0 6px 20px rgba(5, 150, 105, 0.28);
 }
+
 .stat-card-green:hover {
   box-shadow: 0 10px 24px rgba(5, 150, 105, 0.38);
 }
@@ -995,8 +1007,13 @@ body {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Profile Body */
@@ -1207,8 +1224,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-box {
@@ -1226,6 +1248,7 @@ body {
     opacity: 0;
     transform: scale(0.95) translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -1428,6 +1451,7 @@ body {
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -1441,7 +1465,7 @@ body {
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .right-column {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1453,31 +1477,31 @@ body {
   .right-column {
     grid-template-columns: 1fr;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .hero-card {
     flex-direction: column;
     text-align: center;
     padding: 24px 20px;
   }
-  
+
   .hero-content {
     max-width: 100%;
     margin-bottom: 20px;
   }
-  
+
   .hero-period-box {
     margin: 0 auto;
   }
-  
+
   .header-container {
     flex-direction: column;
     gap: 14px;
   }
-  
+
   .header-actions {
     flex-wrap: wrap;
     justify-content: center;

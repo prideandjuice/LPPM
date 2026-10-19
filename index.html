@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - RisetMu | Sistem Informasi Penelitian & Pengabdian</title>
-  <meta name="description" content="Dashboard Sistem Informasi Penelitian dan Pengabdian RisetMu Universitas Muhammadiyah">
-  
+  <meta name="description"
+    content="Dashboard Sistem Informasi Penelitian dan Pengabdian RisetMu Universitas Muhammadiyah">
+
   <!-- Google Fonts: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  
+
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- TOP HEADER / NAVBAR -->
@@ -29,10 +34,12 @@
       <a href="#" class="brand-logo" id="brand-logo" title="RisetMu Home">
         <div class="brand-symbol">
           <svg viewBox="0 0 40 40" class="logo-svg">
-            <path d="M12 28V8h8a6 6 0 0 1 6 6c0 2.5-1.5 4.7-3.8 5.6L27 28h-5l-4.2-7.5H16V28h-4zm4-11.5h4a2.5 2.5 0 0 0 0-5h-4v5z" fill="#1b2b65"/>
+            <path
+              d="M12 28V8h8a6 6 0 0 1 6 6c0 2.5-1.5 4.7-3.8 5.6L27 28h-5l-4.2-7.5H16V28h-4zm4-11.5h4a2.5 2.5 0 0 0 0-5h-4v5z"
+              fill="#0284c7" />
             <!-- Glowing bulb filament accent -->
-            <circle cx="28" cy="11" r="3" fill="#0ea5e9"/>
-            <path d="M28 6v2M28 14v2M23 11h2M31 11h2" stroke="#0ea5e9" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="28" cy="11" r="3" fill="#0284c7" />
+            <path d="M28 6v2M28 14v2M23 11h2M31 11h2" stroke="#0284c7" stroke-width="1.5" stroke-linecap="round" />
           </svg>
         </div>
         <div class="brand-name">
@@ -50,7 +57,8 @@
             <i class="fa-solid fa-chevron-down arrow-icon"></i>
           </button>
           <div class="dropdown-menu" id="yearDropdownMenu">
-            <div class="dropdown-item active" data-year="2026/2027"><i class="fa-solid fa-check"></i> 2026/2027 (Aktif)</div>
+            <div class="dropdown-item active" data-year="2026/2027"><i class="fa-solid fa-check"></i> 2026/2027 (Aktif)
+            </div>
             <div class="dropdown-item" data-year="2025/2026">2025/2026</div>
             <div class="dropdown-item" data-year="2024/2025">2024/2025</div>
             <div class="dropdown-item" data-year="2023/2024">2023/2024</div>
@@ -119,11 +127,15 @@
               <small>NIDN: 0123456789</small>
             </div>
             <div class="dropdown-divider"></div>
-            <a href="#profil" class="dropdown-item" onclick="openProfileModal()"><i class="fa-regular fa-id-card"></i> Profil Lengkap</a>
-            <a href="#" class="dropdown-item" onclick="showToast('Fitur Pengaturan Akun')"><i class="fa-solid fa-sliders"></i> Pengaturan Akun</a>
-            <a href="#" class="dropdown-item" onclick="showToast('Fitur Ganti Sandi')"><i class="fa-solid fa-key"></i> Ganti Password</a>
+            <a href="#profil" class="dropdown-item" onclick="openProfileModal()"><i class="fa-regular fa-id-card"></i>
+              Profil Lengkap</a>
+            <a href="#" class="dropdown-item" onclick="showToast('Fitur Pengaturan Akun')"><i
+                class="fa-solid fa-sliders"></i> Pengaturan Akun</a>
+            <a href="#" class="dropdown-item" onclick="showToast('Fitur Ganti Sandi')"><i class="fa-solid fa-key"></i>
+              Ganti Password</a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item text-danger" onclick="showToast('Sesi tetap aktif')"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
+            <a href="#" class="dropdown-item text-danger" onclick="showToast('Sesi tetap aktif')"><i
+                class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
           </div>
         </div>
       </div>
@@ -195,16 +207,16 @@
   <!-- MAIN DASHBOARD CONTENT -->
   <main class="main-wrapper">
     <div class="dashboard-grid">
-      
+
       <!-- LEFT COLUMN -->
       <section class="left-column">
-        
+
         <!-- HERO BANNER CARD -->
         <div class="hero-card">
           <!-- Ambient Glow Background Decoration -->
           <div class="banner-glow-circle circle-1"></div>
           <div class="banner-glow-circle circle-2"></div>
-          
+
           <div class="hero-content">
             <!-- Date Pill -->
             <div class="date-badge" id="currentDateBadge">
@@ -214,13 +226,12 @@
 
             <!-- Greeting Headlines -->
             <h1 class="hero-title">Selamat Datang, YOSHIDA SARY!</h1>
-            <h2 class="hero-subtitle">Have a nice Monday!</h2>
-
             <!-- Announcement Period Text -->
             <div class="hero-period-box">
               <p>
                 <strong class="period-highlight">Periode saat ini:</strong>
-                Buka pengajuan pendampingan artikel &amp; Buka pengajuan pendampingan proposal &amp; Pengumuman administrasi pendanaan proposal penelitian dan pengabdian kepada Masyarakat.
+                Buka pengajuan pendampingan artikel &amp; Buka pengajuan pendampingan proposal &amp; Pengumuman
+                administrasi pendanaan proposal penelitian dan pengabdian kepada Masyarakat.
               </p>
             </div>
           </div>
@@ -233,18 +244,20 @@
             <div class="sparkle-star star-3">✦</div>
             <div class="sparkle-star star-4">✦</div>
             <div class="sparkle-star star-5">✦</div>
-            
+
             <div class="avatar-image-wrapper">
-              <img src="assets/hero_avatar.png?v=3" alt="Dosen Karakter 3D" class="hero-3d-character" id="heroCharacterImg">
+              <img src="assets/hero_avatar.png?v=3" alt="Dosen Karakter 3D" class="hero-3d-character"
+                id="heroCharacterImg">
             </div>
           </div>
         </div>
 
         <!-- 4 STATS SUMMARY CARDS -->
         <div class="stats-grid">
-          
+
           <!-- Card 1: Penelitian (Coral/Pink) -->
-          <div class="stat-card stat-card-coral" onclick="filterChart('penelitian')" title="Klik untuk fokus data Penelitian">
+          <div class="stat-card stat-card-coral" onclick="filterChart('penelitian')"
+            title="Klik untuk fokus data Penelitian">
             <div class="stat-content">
               <div class="stat-number">4</div>
               <div class="stat-text-group">
@@ -260,7 +273,8 @@
           </div>
 
           <!-- Card 2: Pengabdian (Cyan/Teal) -->
-          <div class="stat-card stat-card-cyan" onclick="filterChart('pengabdian')" title="Klik untuk fokus data Pengabdian">
+          <div class="stat-card stat-card-cyan" onclick="filterChart('pengabdian')"
+            title="Klik untuk fokus data Pengabdian">
             <div class="stat-content">
               <div class="stat-number">4</div>
               <div class="stat-text-group">
@@ -276,7 +290,8 @@
           </div>
 
           <!-- Card 3: Pendampingan Artikel (Gold/Amber) -->
-          <div class="stat-card stat-card-gold" onclick="filterChart('artikel')" title="Klik untuk fokus Pendampingan Artikel">
+          <div class="stat-card stat-card-gold" onclick="filterChart('artikel')"
+            title="Klik untuk fokus Pendampingan Artikel">
             <div class="stat-content">
               <div class="stat-number">0</div>
               <div class="stat-text-group">
@@ -293,7 +308,8 @@
           </div>
 
           <!-- Card 4: Pendampingan Proposal (Green/Emerald) -->
-          <div class="stat-card stat-card-green" onclick="filterChart('proposal')" title="Klik untuk fokus Pendampingan Proposal">
+          <div class="stat-card stat-card-green" onclick="filterChart('proposal')"
+            title="Klik untuk fokus Pendampingan Proposal">
             <div class="stat-content">
               <div class="stat-number">0</div>
               <div class="stat-text-group">
@@ -316,7 +332,8 @@
           <div class="chart-header">
             <div class="chart-title-group">
               <h2 class="chart-title">Penelitian</h2>
-              <p class="chart-subtitle">Data riwayat usulan yang sudah Diterima dan pengumuman periode sudah berlalu.</p>
+              <p class="chart-subtitle">Data riwayat usulan yang sudah Diterima dan pengumuman periode sudah berlalu.
+              </p>
             </div>
             <div class="chart-legend-custom">
               <button class="legend-pill" id="toggleUsulan" onclick="toggleDataset(0)">
@@ -329,7 +346,7 @@
               </button>
             </div>
           </div>
-          
+
           <div class="chart-canvas-container">
             <canvas id="penelitianChart"></canvas>
           </div>
@@ -339,7 +356,7 @@
 
       <!-- RIGHT COLUMN -->
       <aside class="right-column">
-        
+
         <!-- PROFIL SAYA CARD -->
         <div class="profile-card">
           <div class="panel-header">
@@ -348,13 +365,14 @@
               <button class="panel-btn-icon" id="editProfileBtn" onclick="openProfileModal()" title="Edit Profil">
                 <i class="fa-solid fa-pen"></i>
               </button>
-              <button class="panel-btn-pill" id="syncBtn" onclick="syncData()" title="Sinkronkan dengan Sinta / PDDikti">
+              <button class="panel-btn-pill" id="syncBtn" onclick="syncData()"
+                title="Sinkronkan dengan Sinta / PDDikti">
                 <i class="fa-solid fa-rotate sync-icon"></i>
                 <span>Sync</span>
               </button>
             </div>
           </div>
-          
+
           <div class="panel-body profile-body">
             <!-- User Info Top Row -->
             <div class="profile-meta">
@@ -393,9 +411,9 @@
           <div class="panel-header">
             <h3 class="panel-title">Riwayat Usulan</h3>
           </div>
-          
+
           <div class="panel-body history-body">
-            
+
             <!-- Section 1: Penelitian -->
             <div class="history-section">
               <div class="section-title-bar">
@@ -420,13 +438,15 @@
                 <li class="history-item">
                   <span class="bullet-circle"></span>
                   <a href="javascript:void(0)" class="proposal-title-link" onclick="openProposalDetailModal(1)">
-                    PEMBERDAYAAN EKONOMI PEREMPUAN MELALUI DIGITAL MARKETING PADA ANGGOTA RANTING AISYIYAH CABANG HELVETIA
+                    PEMBERDAYAAN EKONOMI PEREMPUAN MELALUI DIGITAL MARKETING PADA ANGGOTA RANTING AISYIYAH CABANG
+                    HELVETIA
                   </a>
                 </li>
                 <li class="history-item">
                   <span class="bullet-circle"></span>
                   <a href="javascript:void(0)" class="proposal-title-link" onclick="openProposalDetailModal(2)">
-                    Pemberdayaan Ekonomi Perempuan Melalui Digital Marketing Pada Anggota Ranting Aisyiyah Cabang Helvetia
+                    Pemberdayaan Ekonomi Perempuan Melalui Digital Marketing Pada Anggota Ranting Aisyiyah Cabang
+                    Helvetia
                   </a>
                 </li>
               </ul>
@@ -450,7 +470,8 @@
             <div class="history-section">
               <div class="section-title-bar">
                 <h4 class="history-sec-heading">Pendampingan Proposal</h4>
-                <a href="#" class="more-link" onclick="showToast('Menampilkan riwayat pendampingan proposal')">more..</a>
+                <a href="#" class="more-link"
+                  onclick="showToast('Menampilkan riwayat pendampingan proposal')">more..</a>
               </div>
               <ul class="history-list">
                 <li class="empty-item">
@@ -520,7 +541,8 @@
             </div>
             <div class="form-group">
               <label>Perguruan Tinggi</label>
-              <input type="text" class="form-input" id="editUniv" value="Universitas Muhammadiyah Sumatera Utara" required>
+              <input type="text" class="form-input" id="editUniv" value="Universitas Muhammadiyah Sumatera Utara"
+                required>
             </div>
           </div>
           <div class="form-row">
@@ -553,7 +575,8 @@
           </div>
           <div class="modal-actions-right">
             <button type="button" class="btn btn-secondary" onclick="closeModal('profileModal')">Batal</button>
-            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Simpan
+              Perubahan</button>
           </div>
         </form>
       </div>
@@ -566,4 +589,5 @@
   <!-- App Script -->
   <script src="app.js"></script>
 </body>
+
 </html>

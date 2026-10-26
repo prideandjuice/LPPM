@@ -214,4 +214,15 @@ function initTableFilters() {
       }
     });
   });
+
+  const yearSelect = document.getElementById('filterTahunPelaksanaan');
+  if (yearSelect) {
+    yearSelect.addEventListener('change', () => {
+      const selectedYear = yearSelect.value;
+      if (typeof showToast === 'function') {
+        showToast('Memfilter Tahun Pelaksanaan: ' + selectedYear);
+      }
+    });
+  }
 }
+

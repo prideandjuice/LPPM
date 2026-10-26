@@ -12,8 +12,8 @@
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css?v=14">
-  <link rel="stylesheet" href="css/usulan-baru.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=20">
+  <link rel="stylesheet" href="css/usulan-baru.css?v=9">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
 </head>
 <body>
@@ -241,7 +241,7 @@
             <span class="step-label">Identitas Usulan</span>
           </div>
         </div>
-        <div class="step-item" data-step="2">
+        <div class="step-item" data-step="2" onclick="window.location.href='subtansi-usulan.html'" style="cursor: pointer;" title="Menuju ke Tahap 2">
           <div class="step-bubble">
             <span class="step-num">2</span>
           </div>
@@ -250,7 +250,7 @@
             <span class="step-label">Substansi Usulan</span>
           </div>
         </div>
-        <div class="step-item" data-step="3">
+        <div class="step-item" data-step="3" onclick="window.location.href='rab.html'" style="cursor: pointer;" title="Menuju ke Tahap 3 (RAB)">
           <div class="step-bubble">
             <span class="step-num">3</span>
           </div>
@@ -259,7 +259,7 @@
             <span class="step-label">RAB</span>
           </div>
         </div>
-        <div class="step-item" data-step="4">
+        <div class="step-item" data-step="4" onclick="window.location.href='dokumen-pendukung.html'" style="cursor: pointer;" title="Menuju ke Tahap 4: Dokumen Pendukung">
           <div class="step-bubble">
             <span class="step-num">4</span>
           </div>
@@ -284,6 +284,51 @@
     <div class="portal-step-page" id="stepPage1">
       <div class="portal-form-container">
       
+      <!-- IDENTITAS PENGUSUL KETUA (SESUAI RISETMU) -->
+      <div class="portal-section ketua-profile-card">
+        <div class="ketua-card-header">
+          <div class="ketua-badge-icon">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <div>
+            <h4 class="portal-section-title" style="margin-bottom: 2px;">Identitas Pengusul Ketua</h4>
+            <span class="text-muted-sm">Data profil ketua pengusul terdaftar di pangkalan data</span>
+          </div>
+          <span class="badge-status-active"><i class="fa-solid fa-circle-check"></i> Terverifikasi</span>
+        </div>
+        
+        <div class="ketua-info-grid">
+          <div class="ketua-info-item">
+            <span class="info-label">Nama Lengkap</span>
+            <strong class="info-value">YOSHIDA SARY</strong>
+          </div>
+          <div class="ketua-info-item">
+            <span class="info-label">NIDN / NIDK</span>
+            <strong class="info-value font-mono">0105067603</strong>
+          </div>
+          <div class="ketua-info-item">
+            <span class="info-label">Perguruan Tinggi</span>
+            <strong class="info-value">Universitas Muhammadiyah Sumatera Utara</strong>
+          </div>
+          <div class="ketua-info-item">
+            <span class="info-label">Program Studi</span>
+            <strong class="info-value">Sistem Informasi</strong>
+          </div>
+          <div class="ketua-info-item">
+            <span class="info-label">ID Sinta</span>
+            <strong class="info-value font-mono">6763588</strong>
+          </div>
+          <div class="ketua-info-item">
+            <span class="info-label">Kualifikasi Pendidikan</span>
+            <strong class="info-value">Magister (S2)</strong>
+          </div>
+          <div class="ketua-info-item full-width">
+            <span class="info-label">Alamat Surel (Email)</span>
+            <strong class="info-value text-blue">yoshidasary@umsu.ac.id</strong>
+          </div>
+        </div>
+      </div>
+
       <!-- 1.1 IDENTITAS USULAN PENELITIAN -->
       <div class="portal-section">
         <div class="portal-section-header-row">
@@ -479,6 +524,63 @@
 
           </div>
 
+          <!-- SDGs & Risalah Islam Berkemajuan (RIB) -->
+          <div class="portal-grid-full" style="grid-column: 1 / -1; margin-top: 8px;">
+            
+            <!-- 13. Sustainable Development Goals (SDGs) -->
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label class="portal-label">13. Sustainable Development Goals (SDGs)</label>
+              <select class="portal-select" id="selectTujuanSdgs">
+                <option value="">Pilih Tujuan SDGs</option>
+                <option value="Tanpa Kemiskinan" selected>1. Tanpa Kemiskinan (No Poverty)</option>
+                <option value="Tanpa Kelaparan">2. Tanpa Kelaparan (Zero Hunger)</option>
+                <option value="Kehidupan Sehat dan Sejahtera">3. Kehidupan Sehat dan Sejahtera (Good Health and Well-being)</option>
+                <option value="Pendidikan Berkualitas">4. Pendidikan Berkualitas (Quality Education)</option>
+                <option value="Kesetaraan Gender">5. Kesetaraan Gender (Gender Equality)</option>
+                <option value="Air Bersih dan Sanitasi Layak">6. Air Bersih dan Sanitasi Layak (Clean Water and Sanitation)</option>
+                <option value="Energi Bersih dan Terjangkau">7. Energi Bersih dan Terjangkau (Affordable and Clean Energy)</option>
+                <option value="Pekerjaan Layak dan Pertumbuhan Ekonomi">8. Pekerjaan Layak dan Pertumbuhan Ekonomi (Decent Work and Economic Growth)</option>
+                <option value="Industri, Inovasi dan Infrastruktur">9. Industri, Inovasi dan Infrastruktur (Industry, Innovation and Infrastructure)</option>
+                <option value="Berkurangnya Kesenjangan">10. Berkurangnya Kesenjangan (Reduced Inequalities)</option>
+                <option value="Kota dan Komunitas Berkelanjutan">11. Kota dan Komunitas Berkelanjutan (Sustainable Cities and Communities)</option>
+                <option value="Konsumsi dan Produksi yang Bertanggung Jawab">12. Konsumsi dan Produksi yang Bertanggung Jawab (Responsible Consumption and Production)</option>
+                <option value="Penanganan Perubahan Iklim">13. Penanganan Perubahan Iklim (Climate Action)</option>
+                <option value="Ekosistem Laut">14. Ekosistem Laut (Life Below Water)</option>
+                <option value="Ekosistem Daratan">15. Ekosistem Daratan (Life on Land)</option>
+                <option value="Perdamaian, Keadilan dan Kelembagaan yang Tangguh">16. Perdamaian, Keadilan dan Kelembagaan yang Tangguh (Peace, Justice and Strong Institutions)</option>
+                <option value="Kemitraan untuk Mencapai Tujuan">17. Kemitraan untuk Mencapai Tujuan (Partnerships for the Goals)</option>
+              </select>
+            </div>
+
+            <!-- 14. Ranah RIB & 15. Perkhidmatan RIB -->
+            <div class="portal-grid-2col" style="gap: 16px;">
+              <div class="form-group">
+                <label class="portal-label">14. Ranah RIB</label>
+                <select class="portal-select" id="selectRanahRib">
+                  <option value="">Pilih Ranah RIB</option>
+                  <option value="Ranah Individu">Ranah Individu</option>
+                  <option value="Ranah Keluarga">Ranah Keluarga</option>
+                  <option value="Ranah Masyarakat" selected>Ranah Masyarakat</option>
+                  <option value="Ranah Bangsa">Ranah Bangsa</option>
+                  <option value="Ranah Kemanusiaan Universal">Ranah Kemanusiaan Universal</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="portal-label">15. Perkhidmatan RIB</label>
+                <select class="portal-select" id="selectPerkhidmatanRib">
+                  <option value="">Pilih Perkhidmatan RIB</option>
+                  <option value="Pengembangan Pemikiran Keislaman">Pengembangan Pemikiran Keislaman</option>
+                  <option value="Pendidikan dan Pembinaan Kader">Pendidikan dan Pembinaan Kader</option>
+                  <option value="Kesehatan dan Kesejahteraan Masyarakat" selected>Kesehatan dan Kesejahteraan Masyarakat</option>
+                  <option value="Pemberdayaan Ekonomi Umat">Pemberdayaan Ekonomi Umat</option>
+                  <option value="Advokasi Hukum dan Kebijakan Publik">Advokasi Hukum dan Kebijakan Publik</option>
+                  <option value="Konservasi Lingkungan Hidup">Konservasi Lingkungan Hidup</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
@@ -574,6 +676,7 @@
         </div>
       </div>
 
+
       <!-- Tombol Aksi Bawah: Simpan Draf & Selanjutnya -->
       <div class="portal-footer-actions">
         <button type="button" class="btn-portal-save" onclick="simpanDrafPortal()">
@@ -603,6 +706,6 @@
   </footer>
 
   <script src="js/app.js"></script>
-  <script src="js/usulan-baru.js?v=10"></script>
+  <script src="js/usulan-baru.js?v=11"></script>
 </body>
 </html>

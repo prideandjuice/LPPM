@@ -426,56 +426,85 @@ function closePortalModal() {
 }
 
 // -----------------------------------------------------------------------------
-// Modul: Info Eligibilitas
+// Modul: Info Eligibilitas (Sesuai Gambar BIMA / SIMLITABMAS Kemdikbud)
 // -----------------------------------------------------------------------------
 function showModalEligibilitas() {
-  const html = `
-    <div style="font-size: 0.85rem; line-height: 1.6; color: #1e293b;">
-      <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 12px 14px; margin-bottom: 14px;">
-        <div style="font-weight: 700; color: #1e40af; margin-bottom: 4px;">
-          <i class="fa-solid fa-circle-check" style="color: #10b981; margin-right: 6px;"></i>Status: ELIGIBLE (Klaster Utama)
+  initPortalModals();
+
+  const titleHtml = `
+    <span style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #1e293b; font-size: 1.05rem;">
+      <i class="fa-solid fa-circle-info" style="color: #1e3a8a; font-size: 1.15rem;"></i>
+      <span>Info Eligibilitas</span>
+    </span>
+  `;
+
+  const bodyHtml = `
+    <div class="eligibilitas-modal-content" style="font-size: 0.88rem; color: #1e293b;">
+      
+      <!-- 1. SKEMA YANG ELIGIBLE -->
+      <div class="elig-group">
+        <div class="elig-header-box elig-header-eligible" onclick="toggleEligSection('eligibleList', 'chevronEligible')" title="Klik untuk ciutkan / bentangkan">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.05rem;"></i>
+            <span style="font-weight: 700; color: #1e293b; font-size: 0.88rem;">Skema yang Eligible</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="elig-counter-badge elig-badge-green">2</span>
+            <i class="fa-solid fa-chevron-up" id="chevronEligible" style="color: #334155; font-size: 0.8rem; transition: transform 0.2s;"></i>
+          </div>
         </div>
-        <div>Pengusul memenuhi seluruh kualifikasi administratif dan akademik untuk menjadi <strong>Ketua Pengusul</strong> pada Skim Penelitian Klaster Utama.</div>
+
+        <div id="eligibleList" class="elig-list-container">
+          <div class="elig-item-card elig-item-blue">
+            Penelitian Kerjasama Luar Negeri - ISPF
+          </div>
+          <div class="elig-item-card elig-item-blue">
+            Penelitian Kerjasama Luar Negeri - NWO
+          </div>
+        </div>
       </div>
 
-      <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 10px;">
-        <tr>
-          <td style="padding: 6px 0; color: #64748b; width: 160px;">Nama Pengusul</td>
-          <td style="font-weight: 600;">Yoshida Sary, M.Kom.</td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 0; color: #64748b;">NIDN / NUPTK</td>
-          <td style="font-weight: 600;">0123456789 / 6937754655230192</td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 0; color: #64748b;">Perguruan Tinggi</td>
-          <td>Universitas Muhammadiyah Sumatera Utara (UMSU)</td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 0; color: #64748b;">Klaster PT</td>
-          <td><span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 4px; font-weight: 700;">Klaster Utama</span></td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 0; color: #64748b;">Jabatan Fungsional</td>
-          <td>Lektor (Memenuhi syarat minimal Asisten Ahli)</td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 0; color: #64748b;">Skor SINTA 3Yr / Overall</td>
-          <td><strong>145</strong> / <strong>380</strong> (Syarat minimal: 50)</td>
-        </tr>
-        <tr>
-          <td style="padding: 6px 0; color: #64748b;">Tanggungan Laporan</td>
-          <td><span style="color: #16a34a; font-weight: 700;">Nihil (Bebas tanggungan)</span></td>
-        </tr>
-      </table>
+      <!-- 2. SKEMA YANG TIDAK ELIGIBLE -->
+      <div class="elig-group">
+        <div class="elig-header-box elig-header-ineligible" onclick="toggleEligSection('ineligibleList', 'chevronIneligible')" title="Klik untuk ciutkan / bentangkan">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-circle-xmark" style="color: #ef4444; font-size: 1.05rem;"></i>
+            <span style="font-weight: 700; color: #1e293b; font-size: 0.88rem;">Skema yang Tidak Eligible</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="elig-counter-badge elig-badge-red">2</span>
+            <i class="fa-solid fa-chevron-up" id="chevronIneligible" style="color: #334155; font-size: 0.8rem; transition: transform 0.2s;"></i>
+          </div>
+        </div>
+
+        <div id="ineligibleList" class="elig-list-container">
+          <!-- Item 1 -->
+          <div class="elig-item-card elig-item-yellow">
+            <span style="color: #1e293b; font-size: 0.86rem; font-weight: 500;">Pusat Unggulan Iptek Perguruan Tinggi</span>
+            <button type="button" class="btn-elig-detail" onclick="showDetailIneligible('pui_pt')">
+              Detail
+            </button>
+          </div>
+          <!-- Item 2 -->
+          <div class="elig-item-card elig-item-yellow">
+            <span style="color: #1e293b; font-size: 0.86rem; font-weight: 500;">Penelitian Terapan - Luaran Model</span>
+            <button type="button" class="btn-elig-detail" onclick="showDetailIneligible('terapan_model')">
+              Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   `;
 
-  openPortalModal(
-    '<i class="fa-solid fa-circle-info" style="color: #0284c7; margin-right: 8px;"></i> Informasi Eligibilitas Pengusul',
-    html,
-    `<button type="button" class="btn-portal-next" style="padding: 6px 18px;" onclick="closePortalModal()">Tutup</button>`
-  );
+  const footerHtml = `
+    <button type="button" class="btn-modal-tutup" onclick="closePortalModal()">
+      Tutup
+    </button>
+  `;
+
+  openPortalModal(titleHtml, bodyHtml, footerHtml, '540px');
 }
 
 // -----------------------------------------------------------------------------
@@ -741,30 +770,222 @@ function selesaiHitungTkt() {
 }
 
 // -----------------------------------------------------------------------------
-// Modul: Tambah Anggota Dosen (1.3)
+// Modul: Tambah Anggota Dosen (1.3) - Searchable Combobox
 // -----------------------------------------------------------------------------
-function updateModalNidn(sel) {
-  const nidnInput = document.getElementById('modalNidnDosen');
-  if (!nidnInput) return;
-  if (sel && sel.value) {
-    const parts = sel.value.split('|');
-    nidnInput.value = parts[1] || '';
-  } else {
-    nidnInput.value = '';
+const DAFTAR_DOSEN_ANGGOTA = [
+  { nama: 'Dr. Al-Khawarizmi, M.Kom.', nidn: '0112348901', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Sistem Informasi', tipe: 'umsu' },
+  { nama: 'Fachruddin, S.T., M.T.', nidn: '0122998877', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Teknik Elektro', tipe: 'umsu' },
+  { nama: 'Dr. Rahmad Syah, M.Kom.', nidn: '0105058801', institusi: 'Universitas Medan Area', prodi: 'Ilmu Komputer', tipe: 'mitra' },
+  { nama: 'Dr. Emilda Sary, S.T., M.Eng.', nidn: '0115088201', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Teknik Sipil', tipe: 'umsu' },
+  { nama: 'Dr. Ade Faisal, S.T., M.Sc.', nidn: '0123047601', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Teknik Sipil', tipe: 'umsu' },
+  { nama: 'Prof. Dr. Agussani, M.AP.', nidn: '0114086201', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Ilmu Administrasi', tipe: 'umsu' },
+  { nama: 'Dr. Muhammad Qorib, M.A.', nidn: '0117097401', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Studi Islam', tipe: 'umsu' },
+  { nama: 'Dr. Rudianto, M.Si.', nidn: '0112057701', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Ilmu Komunikasi', tipe: 'umsu' },
+  { nama: 'Dr. Elviera Zahara, S.E., M.Si.', nidn: '0104037501', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Manajemen', tipe: 'umsu' },
+  { nama: 'Ahmad Syauqi, S.Kom., M.Cs.', nidn: '0127088902', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Teknologi Informasi', tipe: 'umsu' },
+  { nama: 'Dr. Ir. Hj. Siti Mardiana, M.Si.', nidn: '0108096301', institusi: 'Universitas Sumatera Utara', prodi: 'Pertanian', tipe: 'mitra' },
+  { nama: 'Dr. Syahril, M.Hum.', nidn: '0115047802', institusi: 'Universitas Negeri Medan', prodi: 'Pendidikan Bahasa', tipe: 'mitra' },
+  { nama: 'Dr. Rini Astuti, S.E., M.M.', nidn: '0120067901', institusi: 'Universitas Muhammadiyah Sumatera Utara', prodi: 'Akuntansi', tipe: 'umsu' },
+  { nama: 'Dr. Hendra Cipta, M.Si.', nidn: '0106078301', institusi: 'UIN Sumatera Utara', prodi: 'Matematika', tipe: 'mitra' }
+];
+
+let selectedDosenItem = null;
+let currentDosenHighlightIndex = -1;
+
+function renderDosenOptions(filterText = '') {
+  const container = document.getElementById('dosenDropdownList');
+  if (!container) return;
+
+  const q = (filterText || '').toLowerCase().trim();
+  const filtered = DAFTAR_DOSEN_ANGGOTA.filter(d => 
+    !q || 
+    d.nama.toLowerCase().includes(q) || 
+    d.nidn.includes(q) || 
+    d.institusi.toLowerCase().includes(q) || 
+    d.prodi.toLowerCase().includes(q)
+  );
+
+  currentDosenHighlightIndex = -1;
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="dosen-empty-state">
+        <i class="fa-solid fa-user-slash" style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 4px; display: block;"></i>
+        Tidak ada dosen yang cocok dengan kata kunci "<strong>${filterText}</strong>".
+      </div>
+    `;
+    return;
+  }
+
+      container.innerHTML = filtered.map((d, idx) => {
+    const isSelected = selectedDosenItem && selectedDosenItem.nidn === d.nidn;
+    const escapedValue = `${d.nama.toUpperCase()}|${d.nidn}|${d.institusi}`;
+
+    return `
+      <div class="dosen-item-option ${isSelected ? 'selected' : ''}" 
+           data-index="${idx}"
+           onclick="selectDosenOption('${d.nama.replace(/'/g, "\\'")}', '${d.nidn}', '${d.institusi.replace(/'/g, "\\'")}', '${escapedValue}')">
+        <div class="dosen-item-info">
+          <div class="dosen-item-name">${d.nama}</div>
+          <div class="dosen-item-meta">
+            <span>NIDN: ${d.nidn}</span>
+            <span>•</span>
+            <span>${d.prodi}</span>
+          </div>
+        </div>
+        ${isSelected ? '<i class="fa-solid fa-check" style="color: #2563eb; font-size: 0.85rem;"></i>' : ''}
+      </div>
+    `;
+  }).join('');
+} // <--- Tanda kurung kurawal penutup ini yang tadi hilang!
+
+
+
+
+function openDosenDropdown() {
+  const dropdown = document.getElementById('dosenDropdownList');
+  if (dropdown) {
+    const searchInput = document.getElementById('dosenSearchInput');
+    renderDosenOptions(searchInput ? searchInput.value : '');
+    dropdown.style.display = 'block';
   }
 }
 
+function closeDosenDropdown() {
+  const dropdown = document.getElementById('dosenDropdownList');
+  if (dropdown) {
+    dropdown.style.display = 'none';
+  }
+}
+
+function filterDosenList(val) {
+  openDosenDropdown();
+  renderDosenOptions(val);
+  const clearBtn = document.getElementById('dosenClearBtn');
+  if (clearBtn) {
+    clearBtn.style.display = val && val.trim() ? 'flex' : 'none';
+  }
+}
+
+function selectDosenOption(nama, nidn, institusi, valueStr) {
+  selectedDosenItem = { nama, nidn, institusi };
+  
+  const searchInput = document.getElementById('dosenSearchInput');
+  const modalSelectDosen = document.getElementById('modalSelectDosen');
+  const nidnInput = document.getElementById('modalNidnDosen');
+  const clearBtn = document.getElementById('dosenClearBtn');
+
+  if (searchInput) searchInput.value = `${nama} (NIDN: ${nidn})`;
+  if (modalSelectDosen) modalSelectDosen.value = valueStr;
+  if (nidnInput) nidnInput.value = nidn;
+  if (clearBtn) clearBtn.style.display = 'flex';
+
+  closeDosenDropdown();
+}
+
+function clearDosenSelection() {
+  selectedDosenItem = null;
+  const searchInput = document.getElementById('dosenSearchInput');
+  const modalSelectDosen = document.getElementById('modalSelectDosen');
+  const nidnInput = document.getElementById('modalNidnDosen');
+  const clearBtn = document.getElementById('dosenClearBtn');
+
+  if (searchInput) {
+    searchInput.value = '';
+    searchInput.focus();
+  }
+  if (modalSelectDosen) modalSelectDosen.value = '';
+  if (nidnInput) nidnInput.value = '';
+  if (clearBtn) clearBtn.style.display = 'none';
+
+  renderDosenOptions('');
+  openDosenDropdown();
+}
+
+function handleDosenKeyDown(e) {
+  const dropdown = document.getElementById('dosenDropdownList');
+  if (!dropdown || dropdown.style.display === 'none') {
+    if (e.key === 'ArrowDown' || e.key === 'Enter') {
+      openDosenDropdown();
+      e.preventDefault();
+    }
+    return;
+  }
+
+  const items = dropdown.querySelectorAll('.dosen-item-option');
+  if (!items.length) return;
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    currentDosenHighlightIndex = (currentDosenHighlightIndex + 1) % items.length;
+    updateDosenHighlight(items);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    currentDosenHighlightIndex = (currentDosenHighlightIndex - 1 + items.length) % items.length;
+    updateDosenHighlight(items);
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (currentDosenHighlightIndex >= 0 && items[currentDosenHighlightIndex]) {
+      items[currentDosenHighlightIndex].click();
+    }
+  } else if (e.key === 'Escape') {
+    closeDosenDropdown();
+  }
+}
+
+function updateDosenHighlight(items) {
+  items.forEach((item, idx) => {
+    if (idx === currentDosenHighlightIndex) {
+      item.classList.add('highlighted');
+      item.scrollIntoView({ block: 'nearest' });
+    } else {
+      item.classList.remove('highlighted');
+    }
+  });
+}
+
 function showModalTambahDosen() {
+  selectedDosenItem = null;
   const html = `
     <div style="font-size: 0.82rem; line-height: 1.5; color: #1e293b;">
       <div style="margin-bottom: 12px;">
-        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Pilih Dosen Anggota (UMSU / Mitra) <span style="color:red">*</span></label>
-        <select id="modalSelectDosen" class="portal-select" style="width: 100%;" onchange="updateModalNidn(this)">
-          <option value="">-- Pilih Dosen Anggota --</option>
-          <option value="DR. AL-KHAWARIZMI, M.KOM|0112348901|Universitas Muhammadiyah Sumatera Utara">Dr. Al-Khawarizmi, M.Kom. (NIDN: 0112348901 - UMSU)</option>
-          <option value="FACHRUDDIN, S.T., M.T.|0122998877|Universitas Muhammadiyah Sumatera Utara">Fachruddin, S.T., M.T. (NIDN: 0122998877 - UMSU)</option>
-          <option value="DR. RAHMAD SYAH, M.KOM|0105058801|Universitas Medan Area">Dr. Rahmad Syah, M.Kom. (NIDN: 0105058801 - UMA / Mitra)</option>
-        </select>
+        <label style="display: block; font-weight: 600; margin-bottom: 4px;">
+          Pilih Dosen Anggota (UMSU / Mitra) <span style="color:red">*</span>
+        </label>
+        
+        <!-- Searchable Dosen Combobox -->
+        <div class="dosen-combobox-wrapper" id="dosenComboboxWrapper">
+          <div class="dosen-combobox-input-wrap">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" 
+                   id="dosenSearchInput" 
+                   class="dosen-combobox-input" 
+                   placeholder="Cari nama dosen, NIDN, atau prodi..." 
+                   autocomplete="off"
+                   onfocus="openDosenDropdown()"
+                   oninput="filterDosenList(this.value)"
+                   onkeydown="handleDosenKeyDown(event)">
+            <button type="button" 
+                    id="dosenClearBtn" 
+                    class="dosen-combobox-clear" 
+                    onclick="clearDosenSelection()" 
+                    style="display: none;" 
+                    title="Hapus / Reset Pilihan">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Dropdown Options List -->
+          <div id="dosenDropdownList" class="dosen-combobox-dropdown" style="display: none;">
+          </div>
+
+          <!-- Hidden input for backward compatibility with submitTambahDosen() -->
+          <input type="hidden" id="modalSelectDosen" value="">
+        </div>
+        <div style="font-size: 0.73rem; color: #64748b; margin-top: 5px; display: flex; align-items: center; gap: 4px;">
+          <i class="fa-solid fa-circle-info" style="color: #2563eb;"></i> 
+          <span>Ketik nama, NIDN, atau asal institusi/prodi untuk mencari tanpa scroll</span>
+        </div>
       </div>
 
       <div style="margin-bottom: 12px;">
@@ -792,6 +1013,17 @@ function showModalTambahDosen() {
       <button type="button" class="btn-portal-next" onclick="submitTambahDosen()">Simpan Anggota</button>
     `
   );
+
+  // Setup click outside listener to close dropdown smoothly
+  setTimeout(() => {
+    const wrapper = document.getElementById('dosenComboboxWrapper');
+    const onModalClick = (e) => {
+      if (wrapper && !wrapper.contains(e.target)) {
+        closeDosenDropdown();
+      }
+    };
+    document.addEventListener('click', onModalClick);
+  }, 100);
 }
 
 function submitTambahDosen() {
@@ -851,7 +1083,7 @@ function showModalTambahNonDosen() {
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
         <div>
-          <label style="display: block; font-weight: 600; margin-bottom: 4px;">ID Identitas (NIM / NIK / KTP) <span style="color:red">*</span></label>
+          <label style="display: block; font-weight: 600; margin-bottom: 4px;">ID Identitas (NIM) <span style="color:red">*</span></label>
           <input type="text" id="modalIdNonDosen" class="portal-input" placeholder="Contoh: 2109010045">
         </div>
         <div>

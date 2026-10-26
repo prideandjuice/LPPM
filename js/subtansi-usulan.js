@@ -107,21 +107,11 @@ function showModalTambahLuaran() {
         <textarea id="modalDeskripsiLuaran" class="portal-input" style="height: 65px; resize: none; padding: 8px;" placeholder="Contoh: Publikasi artikel pada IEEE Access / Q2 Journal of Applied Computer Science"></textarea>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-        <div>
-          <label style="display: block; font-weight: 600; margin-bottom: 4px;">Status Target <span style="color:red">*</span></label>
-          <select id="modalStatusLuaran" class="portal-select">
-            <option value="Accepted/Published">Accepted / Published</option>
-            <option value="Submitted">Submitted / Under Review</option>
-            <option value="Granted/Registered">Granted / Registered</option>
-            <option value="Terbit">Terbit Ber-ISBN</option>
-          </select>
-        </div>
-        <div>
-          <label style="display: block; font-weight: 600; margin-bottom: 4px;">Keterangan</label>
-          <input type="text" id="modalKetLuaran" class="portal-input" placeholder="Contoh: Target Capaian Tahun 1" value="Target Wajib">
-        </div>
+      <div style="margin-bottom: 10px;">
+        <label style="display: block; font-weight: 600; margin-bottom: 4px;">Keterangan</label>
+        <input type="text" id="modalKetLuaran" class="portal-input" placeholder="Contoh: Target Capaian Tahun 1" value="Target Wajib">
       </div>
+
     </div>
   `;
 
@@ -229,7 +219,7 @@ function showModalTambahBidangStrategis() {
       <div style="margin-bottom: 12px;">
         <label style="display: block; font-weight: 600; margin-bottom: 4px;">Rumusan Masalah Strategis <span style="color:red">*</span></label>
         <select id="modalRumusanMasalah" class="portal-select" style="width: 100%;">
-          <option value="">Select...</option>
+          <option value="" disabled selected hidden style="display: none;">Select...</option>
           <option value="6.1 Ketiadaan Rantai Pasok Semikonduktor Nasional yang Terintegrasi">6.1 Ketiadaan Rantai Pasok Semikonduktor Nasional yang Terintegrasi</option>
           <option value="6.2 Terbatasnya Kapasitas Desain, Manufaktur, dan Pengujian Semikonduktor">6.2 Terbatasnya Kapasitas Desain, Manufaktur, dan Pengujian Semikonduktor</option>
           <option value="6.3 Minimnya Kepemilikan dan Perlindungan IP di Sektor Semikonduktor">6.3 Minimnya Kepemilikan dan Perlindungan IP di Sektor Semikonduktor</option>
@@ -342,6 +332,9 @@ function lanjutTahap3() {
 
   simpanDrafTahap2();
   showToast('Data Substansi Usulan tersimpan. Menuju Tahap 3: Rancangan Anggaran Biaya (RAB)...', 'success');
+  setTimeout(() => {
+    window.location.href = 'rab.html';
+  }, 400);
 }
 
 function kembaliKeTahap1() {

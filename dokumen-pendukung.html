@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tahap 4: Dokumen Pendukung - LPPM UMSU &amp; RisetMu</title>
+  <meta name="description" content="Tahap 4 Dokumen Pendukung Penelitian RisetMu LPPM UMSU">
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/usulan-baru.css?v=6">
+  <link rel="stylesheet" href="css/dokumen-pendukung.css?v=1">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+</head>
+<body>
+
+  <!-- TOP HEADER / NAVBAR -->
+  <header class="top-header">
+    <div class="header-container">
+      <!-- Logo LPPM -->
+      <a href="index.html" class="brand-logo" id="brand-logo" title="LPPM Home">
+        <div class="brand-name">
+          <span class="logo-riset">L<span class="logo-bulb-i">P</span>P</span><span class="logo-mu">M</span>
+        </div>
+      </a>
+
+      <!-- Right Action Items -->
+      <div class="header-actions">
+        <!-- Academic Year Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="pill-btn nav-dropdown-btn" id="yearDropdownBtn" aria-expanded="false" title="Pilih Periode">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span id="selectedYear">2026/2027</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu" id="yearDropdownMenu">
+            <div class="dropdown-item active" data-year="2026/2027"><i class="fa-solid fa-check"></i> 2026/2027 (Aktif)</div>
+            <div class="dropdown-item" data-year="2025/2026">2025/2026</div>
+            <div class="dropdown-item" data-year="2024/2025">2024/2025</div>
+            <div class="dropdown-item" data-year="2023/2024">2023/2024</div>
+          </div>
+        </div>
+
+        <!-- Role Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran">
+            <i class="fa-regular fa-user"></i>
+            <span id="selectedRole">DOSEN</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu" id="roleDropdownMenu">
+            <div class="dropdown-item active" data-role="DOSEN"><i class="fa-solid fa-check"></i> DOSEN</div>
+            <div class="dropdown-item" data-role="REVIEWER">REVIEWER</div>
+            <div class="dropdown-item" data-role="PENGUSUL">PENGUSUL</div>
+            <div class="dropdown-item" data-role="ADMIN LPPM">ADMIN LPPM</div>
+          </div>
+        </div>
+
+        <!-- Notification Bell -->
+        <div class="dropdown-wrapper">
+          <button class="icon-btn notif-btn" id="notifBtn" title="Notifikasi">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notif-badge-dot"></span>
+          </button>
+        </div>
+
+        <!-- User Profile Pill -->
+        <div class="dropdown-wrapper">
+          <button class="user-profile-btn" id="userProfileBtn" aria-expanded="false">
+            <div class="user-avatar-circle">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <span class="user-name">YOSHIDA SARY</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu user-menu" id="userMenu">
+            <div class="user-menu-header">
+              <strong>Yoshida Sary, M.Kom.</strong>
+              <small>NIDN: 0123456789</small>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a href="index.html#profil" class="dropdown-item"><i class="fa-regular fa-id-card"></i> Profil Lengkap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUB NAVIGATION MENU -->
+  <nav class="sub-nav">
+    <div class="sub-nav-container">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link" id="navDashboard">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item has-dropdown active">
+          <a href="penelitian.html" class="nav-link">
+            <i class="fa-solid fa-flask"></i>
+            <span>Penelitian</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+          <ul class="sub-dropdown">
+            <li><a href="penelitian.html">Usulan Baru</a></li>
+            <li><a href="#" onclick="showToast('Menu Laporan Kemajuan')">Laporan Kemajuan</a></li>
+            <li><a href="#" onclick="showToast('Menu Laporan Akhir')">Laporan Akhir</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <span>Pengabdian</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-regular fa-file-lines"></i>
+            <span>Pendampingan</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="app-container">
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item">
+          <a href="index.html" class="breadcrumb-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="breadcrumb-separator">
+          <i class="fa-solid fa-chevron-right"></i>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="penelitian.html" class="breadcrumb-link">
+            <i class="fa-solid fa-flask"></i>
+            <span>Penelitian</span>
+          </a>
+        </li>
+        <li class="breadcrumb-separator">
+          <i class="fa-solid fa-chevron-right"></i>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="usulan-baru.html" class="breadcrumb-link">
+            <span>Usulan Baru</span>
+          </a>
+        </li>
+        <li class="breadcrumb-separator">
+          <i class="fa-solid fa-chevron-right"></i>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Tahap 4: Dokumen Pendukung</span>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- INFO BANNER (TAHAP 4) -->
+    <div class="info-notification-bar">
+      <div class="info-bar-left">
+        <div class="info-icon-badge">
+          <i class="fa-solid fa-folder-open"></i>
+        </div>
+        <div class="info-text-group">
+          <span class="info-badge-tag">INFO: DOKUMEN PENDUKUNG</span>
+          <h4 class="info-title-text">Dokumen Pendukung (Penelitian Fundamental Reguler I)</h4>
+        </div>
+      </div>
+      <div class="info-bar-right">
+        <div class="info-periode-pill">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>Tahun Pelaksanaan <strong>2026/2027</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEPPER 5 TAHAPAN RISETMU (STEP 4 ACTIVE) -->
+    <div class="stepper-progress-container">
+      <div class="stepper-track stepper-track-step4">
+        
+        <div class="step-item completed" data-step="1" onclick="window.location.href='usulan-baru.html'" style="cursor: pointer;" title="Kembali ke Tahap 1: Identitas Usulan">
+          <div class="step-bubble">
+            <i class="fa-solid fa-check" style="font-size: 0.85rem;"></i>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 1</span>
+            <span class="step-label">Identitas Usulan</span>
+          </div>
+        </div>
+
+        <div class="step-item completed" data-step="2" onclick="window.location.href='subtansi-usulan.html'" style="cursor: pointer;" title="Kembali ke Tahap 2: Substansi Usulan">
+          <div class="step-bubble">
+            <i class="fa-solid fa-check" style="font-size: 0.85rem;"></i>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 2</span>
+            <span class="step-label">Substansi Usulan</span>
+          </div>
+        </div>
+
+        <div class="step-item completed" data-step="3" onclick="window.location.href='rab.html'" style="cursor: pointer;" title="Kembali ke Tahap 3: RAB">
+          <div class="step-bubble">
+            <i class="fa-solid fa-check" style="font-size: 0.85rem;"></i>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 3</span>
+            <span class="step-label">RAB</span>
+          </div>
+        </div>
+
+        <div class="step-item active" data-step="4">
+          <div class="step-bubble">
+            <span class="step-num">4</span>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 4</span>
+            <span class="step-label">Dokumen Pendukung</span>
+          </div>
+        </div>
+
+        <div class="step-item" data-step="5">
+          <div class="step-bubble">
+            <span class="step-num">5</span>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 5</span>
+            <span class="step-label">Kirim Usulan</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==================== CARD DOKUMEN PENDUKUNG ==================== -->
+    <div class="doc-card-container">
+      
+      <!-- Collapsible Header -->
+      <div class="doc-collapse-header" onclick="toggleDocCollapse()" title="Klik untuk ciutkan/bentangkan">
+        <div class="doc-header-title-wrap">
+          <div class="doc-header-badge">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <div class="doc-header-text">
+            <h3>Dokumen Pendukung <span style="font-size: 0.82rem; font-weight: 500; color: #64748b;">(Penelitian Fundamental Reguler I)</span></h3>
+            <p>Kelola mitra kerjasama, surat pernyataan kesediaan, LoI/MoA pendukung penelitian</p>
+          </div>
+        </div>
+        <div class="doc-chevron-icon" id="docChevron">
+          <i class="fa-solid fa-chevron-up"></i>
+        </div>
+      </div>
+
+      <!-- Card Body Content -->
+      <div class="doc-card-body" id="docCardBody">
+
+        <!-- Toolbar / Action Row -->
+        <div class="doc-toolbar">
+          <button type="button" class="btn-add-mitra" onclick="openModalMitra()">
+            <i class="fa-solid fa-plus"></i>
+            <span>Data Baru</span>
+          </button>
+          
+          <div class="doc-toolbar-info">
+            <i class="fa-solid fa-circle-info" style="color: #2563eb;"></i>
+            <span>Total Mitra / Dokumen Terdaftar: <strong id="mitraCountBadge" style="color: #0f172a;">0</strong></span>
+          </div>
+        </div>
+
+        <!-- State 1: Empty State (Sesuai foto mentor: Belum ada mitra...) -->
+        <div class="mitra-empty-state" id="mitraEmptyState">
+          <div class="empty-state-icon">
+            <i class="fa-solid fa-handshake-angle"></i>
+          </div>
+          <h4 class="empty-state-title">Belum ada mitra yang ditambahkan</h4>
+          <p class="empty-state-desc">
+            Tambahkan mitra kerjasama penelitian (industri, sekolah, instansi pemerintah, atau kelompok sasaran) beserta surat pernyataan kesediaan mitra.
+          </p>
+          <button type="button" class="btn-add-mitra" onclick="openModalMitra()" style="margin: 0 auto;">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ Tambah Mitra Baru</span>
+          </button>
+        </div>
+
+        <!-- State 2: Table Data Mitra -->
+        <div class="mitra-table-wrap" id="mitraTableWrap" style="display: none;">
+          <table class="mitra-table">
+            <thead>
+              <tr>
+                <th style="width: 50px; text-align: center;">No</th>
+                <th style="width: 170px;">Jenis Mitra</th>
+                <th>Nama &amp; Institusi Mitra</th>
+                <th style="width: 180px;">Bentuk &amp; Nilai Kontribusi</th>
+                <th style="width: 220px;">Dokumen Dukungan</th>
+                <th style="width: 100px; text-align: center;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="mitraTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="portal-footer-actions" style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #f1f5f9; padding-top: 1.25rem;">
+          <a href="rab.html" class="btn-portal-back" style="text-decoration: none;">
+            <span>&larr; Kembali ke Tahap 3 (RAB)</span>
+          </a>
+          
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn-portal-save" onclick="simpanDrafDokumen()">
+              <i class="fa-regular fa-floppy-disk"></i>
+              <span>Simpan Draf</span>
+            </button>
+            <button type="button" class="btn-portal-next" onclick="lanjutTahap5()">
+              <span>Selanjutnya &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================== MODAL TAMBAH MITRA / DOKUMEN ==================== -->
+  <div class="modal-backdrop" id="modalMitra" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-icon-badge">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <div>
+            <h4 id="modalMitraTitle">Tambah Mitra / Dokumen Pendukung</h4>
+            <span>Masukkan rincian mitra kerjasama dan berkas kesediaan</span>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeModalMitra()" title="Tutup">&times;</button>
+      </div>
+
+      <form id="formMitra" onsubmit="saveMitraForm(event)">
+        <div class="modal-body">
+          
+          <div class="modal-grid-2">
+            <div class="form-field-group">
+              <label for="modalJenisMitra">Jenis Mitra <span class="req-star">*</span></label>
+              <select id="modalJenisMitra" class="form-control-select" required>
+                <option value="Mitra Kerjasama Penelitian" selected>Mitra Kerjasama Penelitian</option>
+                <option value="Mitra Industri / DUDI">Mitra Industri / DUDI</option>
+                <option value="Mitra Kelompok Sasaran / Masyarakat">Mitra Kelompok Sasaran / Masyarakat</option>
+                <option value="Mitra Instansi Pemerintah">Mitra Instansi Pemerintah</option>
+                <option value="Mitra UMKM / Koperasi">Mitra UMKM / Koperasi</option>
+              </select>
+            </div>
+
+            <div class="form-field-group">
+              <label for="modalBentukKontribusi">Bentuk Kontribusi <span class="req-star">*</span></label>
+              <select id="modalBentukKontribusi" class="form-control-select" required>
+                <option value="In-Kind (Fasilitas &amp; Peralatan)" selected>In-Kind (Fasilitas &amp; Peralatan)</option>
+                <option value="In-Cash (Pendanaan Tunai)">In-Cash (Pendanaan Tunai)</option>
+                <option value="In-Kind &amp; In-Cash">In-Kind &amp; In-Cash</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-grid-2">
+            <div class="form-field-group">
+              <label for="modalNamaMitra">Nama Pimpinan / Perwakilan Mitra <span class="req-star">*</span></label>
+              <input type="text" id="modalNamaMitra" class="form-control-input" placeholder="Contoh: Ir. Budi Santoso, M.T." required>
+            </div>
+
+            <div class="form-field-group">
+              <label for="modalInstitusiMitra">Institusi / Lembaga / Perusahaan <span class="req-star">*</span></label>
+              <input type="text" id="modalInstitusiMitra" class="form-control-input" placeholder="Contoh: PT Surya Solusi Teknologi" required>
+            </div>
+          </div>
+
+          <div class="form-field-group">
+            <label for="modalNilaiKontribusi">Estimasi Nilai Kontribusi (Rp)</label>
+            <input type="number" id="modalNilaiKontribusi" class="form-control-input" placeholder="Contoh: 10000000" min="0" step="50000">
+            <small style="color: #64748b; font-size: 0.78rem;">Taksiran nilai ekuivalen fasilitas/dana dari mitra</small>
+          </div>
+
+          <div class="form-field-group">
+            <label>Unggah Surat Kesediaan / LoI / MoA (PDF) <span class="req-star">*</span></label>
+            <label class="file-upload-box" for="modalFileInput">
+              <i class="fa-solid fa-cloud-arrow-up" style="font-size: 1.8rem; color: #2563eb; margin-bottom: 6px; display: block;"></i>
+              <strong style="color: #1e293b; font-size: 0.85rem;" id="fileUploadLabel">Pilih file PDF (maks. 5MB)</strong>
+              <div style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">Klik untuk telusuri berkas dari komputer</div>
+              <input type="file" id="modalFileInput" accept="application/pdf">
+            </label>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="closeModalMitra()">Batal</button>
+          <button type="submit" class="btn-primary-save">
+            <i class="fa-regular fa-floppy-disk"></i>
+            <span>Simpan Data Mitra</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" style="margin-top: 3rem;">
+    <div>&copy; 2026 LPPM UMSU. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="javascript:void(0)">Kebijakan Privasi</a>
+      <span>|</span>
+      <a href="javascript:void(0)">Syarat Penggunaan</a>
+      <span>|</span>
+      <a href="javascript:void(0)">Bantuan BIMA</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js?v=2"></script>
+  <script src="js/dokumen-pendukung.js?v=1"></script>
+</body>
+</html>

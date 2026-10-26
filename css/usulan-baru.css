@@ -2158,3 +2158,564 @@ span[class*="fa-"],
   }
 }
 
+/* ==========================================================================
+   SEARCHABLE DOSEN COMBOBOX MODAL
+   ========================================================================== */
+.dosen-combobox-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dosen-combobox-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dosen-combobox-input-wrap .search-icon {
+  position: absolute;
+  left: 11px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.dosen-combobox-input {
+  width: 100%;
+  height: 38px;
+  padding: 6px 36px 6px 34px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: #1e293b;
+  background-color: #ffffff;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.dosen-combobox-input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.dosen-combobox-clear {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.15s ease;
+}
+
+.dosen-combobox-clear:hover {
+  color: #ef4444;
+  background-color: #fee2e2;
+}
+
+.dosen-combobox-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1050;
+  animation: dropdownFadeIn 0.15s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dosen-item-option {
+  padding: 6px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.12s ease;
+}
+
+.dosen-item-option:last-child {
+  border-bottom: none;
+}
+
+.dosen-item-option:hover,
+.dosen-item-option.highlighted {
+  background-color: #eff6ff;
+}
+
+.dosen-item-option.selected {
+  background-color: #dbeafe;
+}
+
+.dosen-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.dosen-item-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dosen-item-meta {
+  font-size: 0.69rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dosen-badge-tag {
+  display: inline-block;
+  padding: 0px 5px;
+  border-radius: 3px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.dosen-badge-tag.umsu {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.dosen-badge-tag.mitra {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.dosen-empty-state {
+  padding: 18px 12px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   STYLING ELEMEN TAMBAHAN (SESUAI FOTO MENTOR 1 & 2)
+   ========================================================================== */
+.ketua-profile-card {
+  border: 2px solid #cbd5e1 !important;
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 20px 24px !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+}
+
+.ketua-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.ketua-badge-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 2px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.badge-status-active {
+  margin-left: auto;
+  background: #dcfce7;
+  color: #15803d;
+  border: 1.5px solid #86efac;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ketua-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 20px;
+}
+
+@media (max-width: 768px) {
+  .ketua-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ketua-info-item {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ketua-info-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.info-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.info-value {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+.text-blue {
+  color: #1d4ed8 !important;
+}
+
+.text-muted-sm {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* SDGs & RIB */
+.badge-sdgs-tag {
+  font-size: 0.7rem;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 6px;
+  font-weight: 800;
+}
+
+.rib-container-box {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.rib-header-title {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.rib-header-title i {
+  color: #059669;
+}
+
+/* Periode & Proposal List (Foto 1 & 2) */
+.periode-info-card {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.periode-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.periode-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #dcfce7;
+  color: #166534;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.periode-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.periode-dates {
+  font-size: 0.82rem;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.date-sep, .meta-sep {
+  color: #94a3b8;
+}
+
+.text-emerald {
+  color: #059669 !important;
+}
+
+.text-rose {
+  color: #e11d48 !important;
+}
+
+.badge-batch-active {
+  background: #166534;
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 9999px;
+}
+
+.usulan-riwayat-container {
+  margin-top: 14px;
+}
+
+.usulan-riwayat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.usulan-riwayat-header h5 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.usulan-count-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.proposal-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.proposal-mini-card {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.15s ease;
+}
+
+.proposal-mini-card:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.proposal-card-body {
+  flex: 1;
+}
+
+.proposal-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.badge-skema {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.badge-batch {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.badge-status-sub {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #1e3a8a;
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.badge-penetapan-lppm {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #ffedd5;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.badge-status-draft {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #64748b;
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.badge-alert-incomplete {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: #ffe4e6;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+  padding: 3px 10px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.proposal-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.proposal-meta-row {
+  font-size: 0.78rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.proposal-card-action {
+  flex-shrink: 0;
+}
+
+.btn-pdf-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #ffffff;
+  border: 1.5px solid #f87171;
+  color: #dc2626;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.btn-pdf-download:hover {
+  background: #fee2e2;
+}
+
+.btn-continue-proposal {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #ea580c;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.btn-continue-proposal:hover {
+  background: #c2410c;
+}
+
+.anggota-empty-box {
+  margin-top: 14px;
+  background: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  font-size: 0.84rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+

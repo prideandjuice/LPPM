@@ -361,14 +361,24 @@ body, button, input, select, textarea, table, th, td {
 
 .modal-dialog {
   background: #ffffff;
-  border: 2px solid #cbd5e1;
-  border-radius: 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
   width: 100%;
-  max-width: 680px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-width: 660px;
+  max-height: 94vh;
+  overflow: hidden; /* Menghilangkan scrollbar ganda di level dialog */
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   animation: modalScaleUp 0.2s ease-out;
+}
+
+#formMitra {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  margin: 0;
 }
 
 @keyframes modalScaleUp {
@@ -383,11 +393,14 @@ body, button, input, select, textarea, table, th, td {
 }
 
 .modal-header {
-  padding: 18px 24px;
-  border-bottom: 2px solid #e2e8f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  background: #ffffff !important;
+  padding: 16px 22px !important;
+  border-bottom: 1.5px solid #e2e8f0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-shrink: 0 !important;
+  border-radius: 12px 12px 0 0 !important;
 }
 
 .modal-title-wrap {
@@ -399,51 +412,83 @@ body, button, input, select, textarea, table, th, td {
 .modal-icon-badge {
   width: 38px;
   height: 38px;
-  background: #eff6ff;
-  border: 2px solid #bfdbfe;
-  color: #2563eb;
-  border-radius: 8px;
+  background: #eff6ff !important;
+  border: 1.5px solid #bfdbfe !important;
+  color: #2563eb !important;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.1);
 }
 
 .modal-title-wrap h4 {
   margin: 0;
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #0f172a;
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  letter-spacing: -0.2px;
 }
 
 .modal-title-wrap span {
-  font-size: 0.8rem;
-  color: #64748b;
+  font-size: 0.78rem !important;
+  color: #64748b !important;
+  display: block;
+  margin-top: 2px;
 }
 
 .modal-close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #64748b;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #64748b !important;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   line-height: 1;
-  padding: 0 4px;
+  padding: 0;
+  transition: all 0.15s ease;
 }
 
 .modal-close-btn:hover {
-  color: #0f172a;
+  background: #fee2e2 !important;
+  border-color: #fca5a5 !important;
+  color: #ef4444 !important;
 }
 
 .modal-body {
-  padding: 24px;
+  padding: 14px 20px;
+  overflow-y: auto;
+  max-height: calc(94vh - 125px);
+  flex: 1;
+}
+
+/* Custom Sleek Scrollbar (Hanya muncul jika viewport layar benar-benar sempit) */
+.modal-body::-webkit-scrollbar {
+  width: 5px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 .modal-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 10px 14px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 600px) {
@@ -453,15 +498,15 @@ body, button, input, select, textarea, table, th, td {
 }
 
 .form-field-group {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .form-field-group label {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: #1e293b;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .form-field-group .req-star {
@@ -471,10 +516,10 @@ body, button, input, select, textarea, table, th, td {
 .form-control-input,
 .form-control-select {
   width: 100%;
-  padding: 10px 14px;
-  border: 2px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 0.88rem;
+  padding: 8px 12px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.84rem;
   color: #0f172a;
   outline: none;
   transition: all 0.15s ease;
@@ -489,9 +534,9 @@ body, button, input, select, textarea, table, th, td {
 }
 
 .file-upload-box {
-  border: 2px dashed #cbd5e1;
+  border: 1.5px dashed #93c5fd;
   border-radius: 8px;
-  padding: 16px;
+  padding: 10px 14px;
   text-align: center;
   background: #f8fafc;
   cursor: pointer;
@@ -508,13 +553,14 @@ body, button, input, select, textarea, table, th, td {
 }
 
 .modal-footer {
-  padding: 16px 24px;
-  border-top: 2px solid #e2e8f0;
+  padding: 12px 20px;
+  border-top: 1.5px solid #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
   background: #f8fafc;
+  flex-shrink: 0;
 }
 
 .btn-secondary {

@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css?v=14">
-  <link rel="stylesheet" href="css/subtansi-usulan.css?v=3">
+  <link rel="stylesheet" href="css/subtansi-usulan.css?v=5">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
 </head>
 <body>
@@ -301,9 +301,8 @@
 
       <!-- 2.2 LUARAN TARGET CAPAIAN -->
       <div class="portal-section">
-        <h4 class="portal-section-title">2.2 Luaran Target Capaian</h4>
-        
-        <div class="portal-btn-row">
+        <div class="portal-section-header-row">
+          <h4 class="portal-section-title">2.2 Luaran Target Capaian</h4>
           <button type="button" class="btn-portal-add" onclick="showModalTambahLuaran()">
             <i class="fa-solid fa-plus"></i>
             <span>Tambah Luaran</span>
@@ -343,17 +342,18 @@
 
       <!-- 2.3 8 BIDANG STRATEGIS -->
       <div class="portal-section">
-        <h4 class="portal-section-title">2.3 8 Bidang Strategis</h4>
-        
-        <div class="portal-btn-row-dual">
-          <button type="button" class="btn-info-detail-rumusan" onclick="showModalInfoRumusanMasalah()">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>Informasi Detail Rumusan Masalah</span>
-          </button>
-          <button type="button" class="btn-portal-add" onclick="showModalTambahBidangStrategis()">
-            <i class="fa-solid fa-plus"></i>
-            <span>Tambah</span>
-          </button>
+        <div class="portal-section-header-row">
+          <h4 class="portal-section-title">2.3 8 Bidang Strategis</h4>
+          <div class="portal-header-actions-right">
+            <button type="button" class="btn-info-detail-rumusan" onclick="showModalInfoRumusanMasalah()">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Informasi Detail Rumusan Masalah</span>
+            </button>
+            <button type="button" class="btn-portal-add" onclick="showModalTambahBidangStrategis()">
+              <i class="fa-solid fa-plus"></i>
+              <span>Tambah</span>
+            </button>
+          </div>
         </div>
 
         <div class="portal-table-wrapper">

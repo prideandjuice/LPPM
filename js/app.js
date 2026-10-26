@@ -237,6 +237,16 @@ function initDropdowns() {
       document.getElementById('selectedRole').textContent = val;
       closeAllDropdowns();
       showToast('Peran dialihkan ke: ' + val, 'success');
+
+      if (val === 'REVIEWER' && !window.location.pathname.includes('reviewer.html')) {
+        setTimeout(() => {
+          window.location.href = 'reviewer.html';
+        }, 400);
+      } else if ((val === 'DOSEN' || val === 'PENGUSUL') && window.location.pathname.includes('reviewer.html')) {
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 400);
+      }
     });
   });
 

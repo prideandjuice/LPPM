@@ -237,6 +237,24 @@ function initDropdowns() {
       document.getElementById('selectedRole').textContent = val;
       closeAllDropdowns();
       showToast('Peran dialihkan ke: ' + val, 'success');
+
+      if (val === 'REVIEWER' && !window.location.pathname.includes('reviewer.html')) {
+        setTimeout(() => {
+          window.location.href = 'reviewer.html';
+        }, 400);
+      } else if (val === 'ADMIN LPPM' && !window.location.pathname.includes('admin-lppm.html')) {
+        setTimeout(() => {
+          window.location.href = 'admin-lppm.html';
+        }, 400);
+      } else if (val === 'PIMPINAN' && !window.location.pathname.includes('pimpinan.html')) {
+        setTimeout(() => {
+          window.location.href = 'pimpinan.html';
+        }, 400);
+      } else if (val === 'DOSEN' && !window.location.pathname.includes('index.html')) {
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 400);
+      }
     });
   });
 
@@ -388,17 +406,104 @@ function openProfileModal() {
 
 function saveProfile(e) {
   e.preventDefault();
-  const name = document.getElementById('editName').value;
-  const dept = document.getElementById('editDept').value;
-  
-  const userNameEl = document.querySelector('.user-name');
-  if (userNameEl) userNameEl.textContent = name;
-  
-  const userDeptEl = document.querySelector('.user-role');
-  if (userDeptEl) userDeptEl.textContent = dept;
+  const email = document.getElementById('contactEmail')?.value || 'yoshidasary@umsu.ac.id';
+  const hp = document.getElementById('contactHp')?.value || '082167302000';
+  const phone = document.getElementById('contactPhone')?.value || '-';
 
   closeModal('profileModal');
-  showToast('Profil dosen berhasil diperbarui!', 'success');
+  showToast('Data profil dan kontak dosen berhasil disimpan!', 'success');
+}
+
+function reSyncPddikti() {
+  const btn = document.getElementById('btnSyncPddikti');
+  const timeEl = document.getElementById('pddiktiSyncTime');
+
+  if (btn) {
+    btn.classList.add('syncing');
+    btn.disabled = true;
+  }
+
+  showToast('Menghubungkan ke API PDDIKTI Kemdikbud...', 'info');
+
+  setTimeout(() => {
+    if (btn) {
+      btn.classList.remove('syncing');
+      btn.disabled = false;
+    }
+    const now = new Date();
+    const formatted = now.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' +
+      now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    if (timeEl) timeEl.innerHTML = `<i class="fa-regular fa-clock"></i> Terakhir Sinkronisasi: ${formatted}`;
+    showToast('Data PDDIKTI berhasil diperbarui secara real-time!', 'success');
+  }, 1200);
+}
+
+function reSyncSinta() {
+  const btn = document.getElementById('btnSyncSinta');
+  const timeEl = document.getElementById('sintaSyncTime');
+
+  if (btn) {
+    btn.classList.add('syncing');
+    btn.disabled = true;
+  }
+
+  showToast('Menghubungkan ke API SINTA Dikti & Scopus...', 'info');
+
+  setTimeout(() => {
+    if (btn) {
+      btn.classList.remove('syncing');
+      btn.disabled = false;
+    }
+    const now = new Date();
+    const formatted = now.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' +
+      now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    if (timeEl) timeEl.innerHTML = `<i class="fa-regular fa-clock"></i> Terakhir Sinkronisasi: ${formatted}`;
+    showToast('Data SINTA, Scopus & WOS berhasil disinkronkan!', 'success');
+  }, 1200);
+}
+
+/**
+ * Sinkronisasi Data SINTA & PDDikti Kemdikbudristek
+ */
+function syncData() {
+  const syncBtn = document.getElementById('syncBtn');
+  const syncIcon = syncBtn ? syncBtn.querySelector('.sync-icon') : null;
+
+  if (syncBtn && syncBtn.disabled) return;
+
+  if (syncIcon) syncIcon.classList.add('rotating');
+  if (syncBtn) {
+    syncBtn.disabled = true;
+    syncBtn.style.opacity = '0.75';
+    syncBtn.style.cursor = 'wait';
+  }
+
+  showToast('Menghubungkan ke SINTA & PDDikti...', 'info');
+
+  setTimeout(() => {
+    if (syncIcon) syncIcon.classList.remove('rotating');
+    if (syncBtn) {
+      syncBtn.disabled = false;
+      syncBtn.style.opacity = '';
+      syncBtn.style.cursor = '';
+    }
+
+    const sintaEl = document.getElementById('sintaScore');
+    if (sintaEl) {
+      const prev = parseInt(sintaEl.textContent) || 599;
+      const updated = prev + 13;
+      sintaEl.textContent = updated;
+      sintaEl.style.transition = 'all 0.3s ease';
+      sintaEl.style.color = '#10b981';
+      sintaEl.style.transform = 'scale(1.15)';
+      setTimeout(() => {
+        sintaEl.style.color = '';
+        sintaEl.style.transform = '';
+      }, 1200);
+    }
+
+    showToast('Sinkronisasi SINTA & PDDikti selesai! Data terbarui.', 'success');
+  }, 1200);
 }
 
 // Mock Database Proposal Pengabdian
@@ -519,7 +624,233 @@ function setupKeyboardShortcuts() {
       closeModal('proposalModal');
       closeModal('profileModal');
       closeModal('usulanPenelitianModal');
+      if (typeof closePortalModal === 'function') closePortalModal();
       closeAllDropdowns();
     }
   });
 }
+
+// -----------------------------------------------------------------------------
+// Portal Modal Base Engine (Universal Across All Pages)
+// -----------------------------------------------------------------------------
+function initPortalModals() {
+  let modalContainer = document.getElementById('portalModalContainer');
+  if (!modalContainer) {
+    modalContainer = document.createElement('div');
+    modalContainer.id = 'portalModalContainer';
+    modalContainer.className = 'portal-modal-backdrop';
+    modalContainer.style.display = 'none';
+    document.body.appendChild(modalContainer);
+
+    modalContainer.addEventListener('click', (e) => {
+      if (e.target === modalContainer) {
+        closePortalModal();
+      }
+    });
+  }
+}
+
+function openPortalModal(titleHtml, bodyHtml, footerButtonsHtml = '', customMaxWidth = '560px') {
+  initPortalModals();
+  const container = document.getElementById('portalModalContainer');
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="portal-modal-card" style="max-width: ${customMaxWidth}; width: 100%;">
+      <div class="portal-modal-header">
+        <h4 class="portal-modal-title">${titleHtml}</h4>
+        <button type="button" class="portal-modal-close" onclick="closePortalModal()" aria-label="Tutup">&times;</button>
+      </div>
+      <div class="portal-modal-body">
+        ${bodyHtml}
+      </div>
+      ${footerButtonsHtml ? `<div class="portal-modal-footer">${footerButtonsHtml}</div>` : ''}
+    </div>
+  `;
+
+  container.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePortalModal() {
+  const container = document.getElementById('portalModalContainer');
+  if (container) {
+    container.style.display = 'none';
+    container.innerHTML = '';
+  }
+  document.body.style.overflow = '';
+}
+
+// -----------------------------------------------------------------------------
+// Modul: Info Eligibilitas (Sesuai Gambar BIMA / SIMLITABMAS Kemdikbud)
+// -----------------------------------------------------------------------------
+function showModalEligibilitas() {
+  initPortalModals();
+
+  const titleHtml = `
+    <span style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #1e293b; font-size: 1.05rem;">
+      <i class="fa-solid fa-circle-info" style="color: #1e3a8a; font-size: 1.15rem;"></i>
+      <span>Info Eligibilitas</span>
+    </span>
+  `;
+
+  const bodyHtml = `
+    <div class="eligibilitas-modal-content" style="font-size: 0.88rem; color: #1e293b;">
+      
+      <!-- 1. SKEMA YANG ELIGIBLE -->
+      <div class="elig-group">
+        <div class="elig-header-box elig-header-eligible" onclick="toggleEligSection('eligibleList', 'chevronEligible')" title="Klik untuk ciutkan / bentangkan">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-circle-check" style="color: #10b981; font-size: 1.05rem;"></i>
+            <span style="font-weight: 700; color: #1e293b; font-size: 0.88rem;">Skema yang Eligible</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="elig-counter-badge elig-badge-green">2</span>
+            <i class="fa-solid fa-chevron-up" id="chevronEligible" style="color: #334155; font-size: 0.8rem; transition: transform 0.2s;"></i>
+          </div>
+        </div>
+
+        <div id="eligibleList" class="elig-list-container">
+          <div class="elig-item-card elig-item-blue">
+            Penelitian Kerjasama Luar Negeri - ISPF
+          </div>
+          <div class="elig-item-card elig-item-blue">
+            Penelitian Kerjasama Luar Negeri - NWO
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. SKEMA YANG TIDAK ELIGIBLE -->
+      <div class="elig-group">
+        <div class="elig-header-box elig-header-ineligible" onclick="toggleEligSection('ineligibleList', 'chevronIneligible')" title="Klik untuk ciutkan / bentangkan">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-circle-xmark" style="color: #ef4444; font-size: 1.05rem;"></i>
+            <span style="font-weight: 700; color: #1e293b; font-size: 0.88rem;">Skema yang Tidak Eligible</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="elig-counter-badge elig-badge-red">2</span>
+            <i class="fa-solid fa-chevron-up" id="chevronIneligible" style="color: #334155; font-size: 0.8rem; transition: transform 0.2s;"></i>
+          </div>
+        </div>
+
+        <div id="ineligibleList" class="elig-list-container">
+          <!-- Item 1 -->
+          <div class="elig-item-card elig-item-yellow">
+            <span style="color: #1e293b; font-size: 0.86rem; font-weight: 500;">Pusat Unggulan Iptek Perguruan Tinggi</span>
+            <button type="button" class="btn-elig-detail" onclick="showDetailIneligible('pui_pt')">
+              Detail
+            </button>
+          </div>
+          <!-- Item 2 -->
+          <div class="elig-item-card elig-item-yellow">
+            <span style="color: #1e293b; font-size: 0.86rem; font-weight: 500;">Penelitian Terapan - Luaran Model</span>
+            <button type="button" class="btn-elig-detail" onclick="showDetailIneligible('terapan_model')">
+              Detail
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  `;
+
+  const footerHtml = `
+    <button type="button" class="btn-modal-tutup" onclick="closePortalModal()">
+      Tutup
+    </button>
+  `;
+
+  openPortalModal(titleHtml, bodyHtml, footerHtml, '540px');
+}
+
+// Toggle accordion collapsible
+function toggleEligSection(listId, chevronId) {
+  const list = document.getElementById(listId);
+  const chevron = document.getElementById(chevronId);
+  if (!list) return;
+
+  if (list.style.display === 'none') {
+    list.style.display = 'flex';
+    if (chevron) chevron.style.transform = 'rotate(0deg)';
+  } else {
+    list.style.display = 'none';
+    if (chevron) chevron.style.transform = 'rotate(180deg)';
+  }
+}
+
+// Rincian Detail Ketidaksesuaian Skema
+function showDetailIneligible(schemeKey) {
+  const details = {
+    'pui_pt': {
+      title: 'Pusat Unggulan Iptek Perguruan Tinggi',
+      reasons: [
+        { label: 'Status Kelembagaan PUI-PT', status: 'Tidak Memenuhi', desc: 'Perguruan Tinggi belum memiliki SK Penetapan Lembaga Pusat Unggulan Iptek (PUI-PT) aktif dari Kemendikbudristek.', ok: false },
+        { label: 'Kualifikasi Pendidikan Ketua Pengusul', status: 'Tidak Memenuhi', desc: 'Disyaratkan berpendidikan Doktor (S3). Kualifikasi Anda saat ini: Magister (S2).', ok: false },
+        { label: 'Jabatan Fungsional Ketua Pengusul', status: 'Tidak Memenuhi', desc: 'Disyaratkan minimal Lektor Kepala atau Guru Besar. Jabatan Anda saat ini: Lektor.', ok: false },
+        { label: 'Rekam Jejak Publikasi Bereputasi', status: 'Memenuhi', desc: 'Memenuhi persyaratan memiliki artikel di jurnal internasional bereputasi.', ok: true }
+      ]
+    },
+    'terapan_model': {
+      title: 'Penelitian Terapan - Luaran Model',
+      reasons: [
+        { label: 'Tingkat Kesiapterapan Teknologi (TKT)', status: 'Tidak Memenuhi', desc: 'Target skema mensyaratkan TKT awal usulan minimal level 4. Pengukuran TKT saat ini: level 2.', ok: false },
+        { label: 'SINTA Score 3 Years', status: 'Tidak Memenuhi', desc: 'Minimal SINTA Score 3 Tahun adalah 150 poin untuk skema ini. Skor Anda saat ini: 145 poin.', ok: false },
+        { label: 'Bebas Tanggungan Laporan', status: 'Memenuhi', desc: 'Tidak memiliki tanggungan laporan kemajuan/akhir pada tahun pendanaan sebelumnya.', ok: true },
+        { label: 'Kualifikasi Dosen Pengusul', status: 'Memenuhi', desc: 'Memenuhi syarat minimal Asisten Ahli dengan pendidikan S2.', ok: true }
+      ]
+    }
+  };
+
+  const item = details[schemeKey];
+  if (!item) return;
+
+  const html = `
+    <div style="font-size: 0.85rem; color: #1e293b; line-height: 1.55;">
+      <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 10px 14px; margin-bottom: 14px;">
+        <div style="font-weight: 700; color: #991b1b; font-size: 0.88rem; margin-bottom: 2px;">
+          <i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 6px;"></i>Status: Tidak Eligible
+        </div>
+        <div style="color: #7f1d1d; font-size: 0.82rem;">Usulan Anda tidak memenuhi kualifikasi administratif atau substantif untuk skema <strong>${item.title}</strong>.</div>
+      </div>
+
+      <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px;">Rincian Kriteria & Ketidaksesuaian:</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;">
+        ${item.reasons.map(r => `
+          <div style="border: 1px solid ${r.ok ? '#bbf7d0' : '#fecaca'}; background: ${r.ok ? '#f0fdf4' : '#fff5f5'}; border-radius: 6px; padding: 9px 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+              <span style="font-weight: 600; color: ${r.ok ? '#166534' : '#991b1b'}; font-size: 0.84rem;">
+                <i class="fa-solid ${r.ok ? 'fa-check' : 'fa-xmark'}" style="margin-right: 6px; color: ${r.ok ? '#16a34a' : '#ef4444'};"></i>${r.label}
+              </span>
+              <span style="font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: ${r.ok ? '#dcfce7' : '#fee2e2'}; color: ${r.ok ? '#15803d' : '#b91c1c'};">
+                ${r.status}
+              </span>
+            </div>
+            <div style="font-size: 0.79rem; color: #475569; padding-left: 20px;">${r.desc}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  openPortalModal(
+    `<span style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #1e293b; font-size: 1rem;"><i class="fa-solid fa-circle-info" style="color: #1e3a8a;"></i> Detail Ketidaksesuaian: ${item.title}</span>`,
+    html,
+    `
+      <button type="button" onclick="showModalEligibilitas()" style="background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; border-radius: 6px; padding: 7px 16px; font-size: 0.84rem; font-weight: 600; cursor: pointer; margin-right: auto; transition: background 0.15s;">
+        <i class="fa-solid fa-arrow-left" style="margin-right: 4px;"></i> Kembali
+      </button>
+      <button type="button" class="btn-modal-tutup" onclick="closePortalModal()">
+        Tutup
+      </button>
+    `,
+    '540px'
+  );
+}
+
+// Toggle Accordion Dropdown for Riwayat Usulan on Dashboard
+function toggleProposalAccordion(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  item.classList.toggle('active');
+}
+

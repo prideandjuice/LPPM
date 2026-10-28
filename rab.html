@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tahap 3: Rencana Anggaran Belanja (RAB) - LPPM UMSU &amp; RisetMu</title>
+  <meta name="description" content="Tahap 3 Rencana Anggaran Belanja Penelitian RisetMu LPPM UMSU">
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/rab.css?v=4">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+</head>
+<body>
+
+  <!-- TOP HEADER / NAVBAR -->
+  <header class="top-header">
+    <div class="header-container">
+      <!-- Logo LPPM -->
+      <a href="index.html" class="brand-logo" id="brand-logo" title="LPPM Home">
+        <div class="brand-name">
+          <span class="logo-riset">L<span class="logo-bulb-i">P</span>P</span><span class="logo-mu">M</span>
+        </div>
+      </a>
+
+      <!-- Right Action Items -->
+      <div class="header-actions">
+        <!-- Academic Year Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="pill-btn nav-dropdown-btn" id="yearDropdownBtn" aria-expanded="false" title="Pilih Periode">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span id="selectedYear">2026/2027</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu" id="yearDropdownMenu">
+            <div class="dropdown-item active" data-year="2026/2027"><i class="fa-solid fa-check"></i> 2026/2027 (Aktif)</div>
+            <div class="dropdown-item" data-year="2025/2026">2025/2026</div>
+            <div class="dropdown-item" data-year="2024/2025">2024/2025</div>
+            <div class="dropdown-item" data-year="2023/2024">2023/2024</div>
+          </div>
+        </div>
+
+        <!-- Role Dropdown -->
+        <div class="dropdown-wrapper">
+          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran">
+            <i class="fa-regular fa-user"></i>
+            <span id="selectedRole">DOSEN</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu" id="roleDropdownMenu">
+            <div class="dropdown-item active" data-role="DOSEN"><i class="fa-solid fa-check"></i> DOSEN</div>
+            <div class="dropdown-item" data-role="REVIEWER">REVIEWER</div>
+            <div class="dropdown-item" data-role="PIMPINAN">PIMPINAN</div>
+            <div class="dropdown-item" data-role="ADMIN LPPM">ADMIN LPPM</div>
+          </div>
+        </div>
+
+        <!-- Notification Bell -->
+        <div class="dropdown-wrapper">
+          <button class="icon-btn notif-btn" id="notifBtn" title="Notifikasi">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notif-badge-dot"></span>
+          </button>
+          <div class="dropdown-menu notif-menu" id="notifMenu">
+            <div class="notif-header">
+              <span>Pemberitahuan</span>
+              <span class="notif-tag">2 Baru</span>
+            </div>
+            <div class="notif-list">
+              <div class="notif-item unread">
+                <div class="notif-icon bg-blue"><i class="fa-solid fa-bullhorn"></i></div>
+                <div class="notif-text">
+                  <strong>Pengumuman Pendanaan 2026</strong>
+                  <p>Administrasi pendanaan proposal penelitian telah resmi diumumkan.</p>
+                  <small>Hari ini, 08:30 WIB</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Profile Pill -->
+        <div class="dropdown-wrapper">
+          <button class="user-profile-btn" id="userProfileBtn" aria-expanded="false">
+            <div class="user-avatar-circle">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <span class="user-name">YOSHIDA SARY</span>
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </button>
+          <div class="dropdown-menu user-menu" id="userMenu">
+            <div class="user-menu-header">
+              <strong>Yoshida Sary, M.Kom.</strong>
+              <small>NIDN: 0123456789</small>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a href="index.html#profil" class="dropdown-item"><i class="fa-regular fa-id-card"></i> Profil Lengkap</a>
+            <div class="dropdown-divider"></div>
+            <a href="javascript:void(0)" class="dropdown-item text-danger" onclick="showToast('Sesi tetap aktif')"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUB NAVIGATION MENU -->
+  <nav class="sub-nav">
+    <div class="sub-nav-container">
+      <ul class="nav-links">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link" id="navDashboard">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item has-dropdown active">
+          <a href="penelitian.html" class="nav-link">
+            <i class="fa-solid fa-flask"></i>
+            <span>Penelitian</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+          <ul class="sub-dropdown">
+            <li><a href="penelitian.html">Usulan Baru</a></li>
+            <li><a href="#" onclick="showToast('Menu Laporan Kemajuan')">Laporan Kemajuan</a></li>
+            <li><a href="#" onclick="showToast('Menu Laporan Akhir')">Laporan Akhir</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <span>Pengabdian</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-regular fa-file-lines"></i>
+            <span>Pendampingan</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            <i class="fa-solid fa-user-check"></i>
+            <span>Pengajuan Reviewer</span>
+            <i class="fa-solid fa-chevron-down sub-arrow"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="app-container">
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item">
+          <a href="index.html" class="breadcrumb-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="breadcrumb-separator">
+          <i class="fa-solid fa-chevron-right"></i>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="penelitian.html" class="breadcrumb-link">
+            <i class="fa-solid fa-flask"></i>
+            <span>Penelitian</span>
+          </a>
+        </li>
+        <li class="breadcrumb-separator">
+          <i class="fa-solid fa-chevron-right"></i>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="usulan-baru.html" class="breadcrumb-link">
+            <span>Usulan Baru</span>
+          </a>
+        </li>
+        <li class="breadcrumb-separator">
+          <i class="fa-solid fa-chevron-right"></i>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          <span>Tahap 3: RAB</span>
+        </li>
+      </ol>
+    </nav>
+
+    <!-- INFO BANNER (TAHAP 3) -->
+    <div class="info-notification-bar">
+      <div class="info-bar-left">
+        <div class="info-icon-badge">
+          <i class="fa-solid fa-circle-info"></i>
+        </div>
+        <div class="info-text-group">
+          <span class="info-badge-tag">PANDUAN PENGAJUAN</span>
+          <h4 class="info-title-text">Rencana Anggaran Belanja (RAB) - Tahap 3</h4>
+        </div>
+      </div>
+      <div class="info-bar-right">
+        <div class="info-periode-pill">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>Tahun Pelaksanaan <strong>2026/2027</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEPPER 5 TAHAPAN RISETMU (STEP 3 ACTIVE) -->
+    <div class="stepper-progress-container">
+      <div class="stepper-track stepper-track-step3">
+        <div class="step-item completed" data-step="1" onclick="window.location.href='usulan-baru.html'" style="cursor: pointer;" title="Kembali ke Tahap 1">
+          <div class="step-bubble">
+            <i class="fa-solid fa-check" style="font-size: 0.85rem;"></i>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 1</span>
+            <span class="step-label">Identitas Usulan</span>
+          </div>
+        </div>
+        <div class="step-item completed" data-step="2" onclick="window.location.href='subtansi-usulan.html'" style="cursor: pointer;" title="Kembali ke Tahap 2">
+          <div class="step-bubble">
+            <i class="fa-solid fa-check" style="font-size: 0.85rem;"></i>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 2</span>
+            <span class="step-label">Substansi Usulan</span>
+          </div>
+        </div>
+        <div class="step-item active" data-step="3">
+          <div class="step-bubble">
+            <span class="step-num">3</span>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 3</span>
+            <span class="step-label">RAB</span>
+          </div>
+        </div>
+        <div class="step-item" data-step="4" onclick="window.location.href='dokumen-pendukung.html'" style="cursor: pointer;" title="Menuju ke Tahap 4: Dokumen Pendukung">
+          <div class="step-bubble">
+            <span class="step-num">4</span>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 4</span>
+            <span class="step-label">Dokumen Pendukung</span>
+          </div>
+        </div>
+        <div class="step-item" data-step="5">
+          <div class="step-bubble">
+            <span class="step-num">5</span>
+          </div>
+          <div class="step-meta">
+            <span class="step-sub">Tahap 5</span>
+            <span class="step-label">Kirim Usulan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== RENCANA ANGGARAN BELANJA CARD ==================== -->
+    <div class="rab-card-container">
+      
+      <!-- Collapsible Header -->
+      <div class="rab-collapse-header" onclick="toggleRabCollapse()" title="Klik untuk ciutkan/bentangkan">
+        <div class="rab-header-title-wrap">
+          <div class="rab-header-badge">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <div>
+            <h3>Rencana Anggaran Belanja (RAB)</h3>
+            <span class="rab-header-subtitle">Penyusunan alokasi dana dan pos belanja penelitian per tahun kegiatan</span>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-up collapse-icon" id="rabCollapseIcon"></i>
+      </div>
+
+      <!-- Card Body Content -->
+      <div class="rab-card-body" id="rabCardBody">
+        
+        <!-- Ringkasan Anggaran (Summary Cards) -->
+        <div class="rab-budget-summary">
+          <!-- Card 1: Plafon Skema Hibah -->
+          <div class="budget-stat-card card-scheme">
+            <div class="budget-stat-top">
+              <div class="budget-stat-icon-wrap icon-blue">
+                <i class="fa-solid fa-award"></i>
+              </div>
+              <span class="budget-pill-subtle">Skema Fundamental</span>
+            </div>
+            <div class="budget-stat-main">
+              <span class="budget-stat-label">Plafon Maksimal Hibah / Tahun</span>
+              <div class="budget-stat-number">
+                <span class="budget-val-main">Rp 10.000.000</span>
+                <span class="budget-val-period">/ tahun</span>
+              </div>
+              <span class="budget-stat-desc">Sesuai pedoman <strong>Penelitian Fundamental Reguler I</strong></span>
+            </div>
+          </div>
+
+          <!-- Card 2: Total Dana Direncanakan & Progress -->
+          <div class="budget-stat-card card-planned">
+            <div class="budget-stat-top">
+              <div class="budget-stat-icon-wrap icon-emerald">
+                <i class="fa-solid fa-wallet"></i>
+              </div>
+              <span class="budget-badge badge-safe" id="budgetStatusBadge">Sesuai Plafon</span>
+            </div>
+            <div class="budget-stat-main">
+              <span class="budget-stat-label">Total Dana Direncanakan</span>
+              <div class="budget-stat-number">
+                <span class="budget-val-main font-emerald" id="alertTotalDirencanakan">Rp 0</span>
+                <span class="budget-val-period">/ Rp 10.000.000</span>
+              </div>
+              <div class="budget-progress-track" title="Persentase alokasi dana">
+                <div class="budget-progress-bar" id="budgetProgressBar" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toolbar: Pilihan Tahun & Aksi -->
+        <div class="rab-toolbar">
+          <div class="rab-year-tabs">
+            <div class="rab-year-tab active">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>RAB Tahun ke-1</span>
+            </div>
+            <span class="rab-year-info">Tahun Anggaran Berjalan (2026/2027)</span>
+          </div>
+
+          <div class="rab-toolbar-actions">
+            <button type="button" class="btn-rab-secondary" onclick="cetakRabUsulan()" title="Cetak atau Unduh Dokumen RAB">
+              <i class="fa-solid fa-print"></i>
+              <span>Cetak RAB Usulan</span>
+            </button>
+            
+            <button type="button" class="btn-rab-primary" onclick="openModalTambahRab()">
+              <i class="fa-solid fa-plus"></i>
+              <span>Tambah Item Anggaran</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Data Table RAB -->
+        <div class="rab-table-container">
+          <table class="rab-table">
+            <thead>
+              <tr>
+                <th style="min-width: 160px;">Komponen</th>
+                <th>Uraian Item</th>
+                <th style="text-align: center; width: 110px;">Satuan</th>
+                <th style="text-align: center; width: 85px;">Volume</th>
+                <th style="text-align: right; width: 135px;">Harga Satuan</th>
+                <th style="text-align: right; width: 145px;">Total</th>
+                <th style="text-align: center; width: 90px;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="rabTableBody">
+              <!-- Rendered via js/rab.js -->
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4" class="tfoot-label">
+                  <span>Total Anggaran Tahun ke-1</span>
+                </td>
+                <td style="text-align: right; font-size: 0.82rem; color: #64748b; font-weight: 500;">Total:</td>
+                <td style="text-align: right; font-weight: 800; font-size: 0.98rem; color: #0f172a;" id="tableTotalHarga">Rp 0</td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <!-- Form Navigation Actions -->
+        <div class="portal-footer-actions" style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+          <button type="button" class="btn-portal-back" onclick="kembaliKeTahap2()">
+            <span>&larr; Kembali ke Tahap 2</span>
+          </button>
+          
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn-portal-save" onclick="simpanDrafRab()">
+              <i class="fa-regular fa-floppy-disk"></i>
+              <span>Simpan Draf</span>
+            </button>
+            <button type="button" class="btn-portal-next" onclick="lanjutTahap4()">
+              <span>Selanjutnya &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================== MODAL TAMBAH & EDIT RAB (MODERN FORM) ==================== -->
+  <div class="modal-rab-backdrop" id="modalTambahRab" style="display: none;">
+    <div class="modal-rab-dialog">
+      
+      <!-- Modal Header -->
+      <div class="modal-rab-header">
+        <div class="modal-rab-title-wrap">
+          <div class="modal-rab-icon">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </div>
+          <div>
+            <h4 id="modalRabTitle">Tambah RAB</h4>
+            <span class="modal-rab-subtitle">Isi rincian pos belanja dan estimasi biaya kegiatan</span>
+          </div>
+        </div>
+        <button type="button" class="modal-rab-close" onclick="closeModalRab()" title="Tutup Modal">&times;</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-rab-body">
+        
+        <!-- Row 1: Tahun & Kelompok (2 Kolom) -->
+        <div class="modal-form-grid-2">
+          <div class="modal-field-group">
+            <label for="modalRabTahun" class="modal-field-label">
+              <i class="fa-regular fa-calendar"></i> Tahun Anggaran <span class="req-star">*</span>
+            </label>
+            <select id="modalRabTahun" class="modal-input-select">
+              <option value="1" selected>Tahun ke-1</option>
+              <option value="2">Tahun ke-2</option>
+              <option value="3">Tahun ke-3</option>
+            </select>
+          </div>
+
+          <div class="modal-field-group">
+            <label for="modalRabKelompok" class="modal-field-label">
+              <i class="fa-solid fa-layer-group"></i> Kelompok Anggaran <span class="req-star">*</span>
+            </label>
+            <select id="modalRabKelompok" class="modal-input-select" onchange="onKelompokChange()">
+              <option value="Sewa Peralatan" selected>Sewa Peralatan</option>
+              <option value="Bahan">Bahan</option>
+              <option value="Pelaporan">Pelaporan</option>
+              <option value="Analisis Data">Analisis Data</option>
+              <option value="Pengumpulan Data">Pengumpulan Data</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 2: Komponen & Satuan (2 Kolom) -->
+        <div class="modal-form-grid-2">
+          <div class="modal-field-group">
+            <label for="modalRabKomponen" class="modal-field-label">
+              <i class="fa-solid fa-tags"></i> Komponen Belanja <span class="req-star">*</span>
+            </label>
+            <select id="modalRabKomponen" class="modal-input-select">
+              <option value="">-Pilih-</option>
+              <option value="Transport Penelitian">Transport Penelitian</option>
+              <option value="Ruang Penunjang Penelitian">Ruang Penunjang Penelitian</option>
+              <option value="Peralaran Penelitian" selected>Peralaran Penelitian</option>
+              <option value="Kebun Percobaan">Kebun Percobaan</option>
+              <option value="Obyek Penelitian">Obyek Penelitian</option>
+            </select>
+          </div>
+
+          <div class="modal-field-group">
+            <label for="modalRabSatuan" class="modal-field-label">
+              <i class="fa-solid fa-ruler-combined"></i> Satuan <span class="req-star">*</span>
+            </label>
+            <select id="modalRabSatuan" class="modal-input-select">
+              <option value="">-Pilih Satuan-</option>
+              <option value="Paket">Paket</option>
+              <option value="Unit">Unit</option>
+              <option value="Bulan">Bulan</option>
+              <option value="Hari">Hari</option>
+              <option value="Orang/Hari">Orang/Hari</option>
+              <option value="Orang/Bulan">Orang/Bulan</option>
+              <option value="Kegiatan">Kegiatan</option>
+              <option value="Orang/Kegiatan">Orang/Kegiatan</option>
+              <option value="Sampel">Sampel</option>
+              <option value="Rim">Rim</option>
+              <option value="Pcs">Pcs</option>
+              <option value="Set">Set</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 3: Item Belanja (Dropdown Pilihan) -->
+        <div class="modal-field-group">
+          <label for="modalRabItem" class="modal-field-label">
+            <i class="fa-solid fa-list-check"></i> Item Belanja <span class="req-star">*</span>
+          </label>
+          <select id="modalRabItem" class="modal-input-select">
+            <option value="">-Pilih-</option>
+            <option value="Penginapan">Penginapan</option>
+            <option value="Biaya Konsumsi">Biaya Konsumsi</option>
+            <option value="HR Sekretariat/Administrasi Peneliti">HR Sekretariat/Administrasi Peneliti</option>
+            <option value="Tiket">Tiket</option>
+            <option value="Uang Harian Rapat di dalam Kantor">Uang Harian Rapat di dalam Kantor</option>
+            <option value="HR Petugas Survei">HR Petugas Survei</option>
+            <option value="FGD Persiapan Penelitian">FGD Persiapan Penelitian</option>
+            <option value="HR Pembantu Lapangan">HR Pembantu Lapangan</option>
+            <option value="Transport">Transport</option>
+            <option value="HR Pembantu Peneliti">HR Pembantu Peneliti</option>
+            <option value="Uang Harian Rapat di luar Kantor">Uang Harian Rapat di luar Kantor</option>
+            <option value="Uang Harian">Uang Harian</option>
+          </select>
+        </div>
+
+        <!-- Row 4: Kalkulasi Keuangan (Volume x Harga Satuan = Total) -->
+        <div class="modal-calc-card">
+          <div class="modal-calc-header">
+            <i class="fa-solid fa-calculator"></i>
+            <span>Perhitungan Biaya (Volume &times; Harga Satuan)</span>
+          </div>
+          
+          <div class="modal-calc-grid">
+            <!-- Volume -->
+            <div class="modal-calc-col">
+              <label for="modalRabVolume" class="modal-field-label">Volume</label>
+              <input type="number" id="modalRabVolume" class="modal-input-text font-bold text-center" min="1" value="1" oninput="hitungModalRabTotal()">
+            </div>
+
+            <!-- Operator Kali -->
+            <div class="calc-symbol">&times;</div>
+
+            <!-- Harga Satuan -->
+            <div class="modal-calc-col flex-1">
+              <label for="modalRabHarga" class="modal-field-label">Harga Satuan (Rp)</label>
+              <div class="input-prefix-box">
+                <span class="input-prefix-label">Rp</span>
+                <input type="number" id="modalRabHarga" class="modal-input-text input-with-prefix" min="0" placeholder="0" oninput="hitungModalRabTotal()">
+              </div>
+            </div>
+
+            <!-- Operator Sama Dengan -->
+            <div class="calc-symbol">=</div>
+
+            <!-- Total Biaya (Card Highlight) -->
+            <div class="modal-calc-col flex-1">
+              <label for="modalRabTotal" class="modal-field-label">Total Biaya</label>
+              <input type="text" id="modalRabTotal" class="modal-input-text calc-total-display" readonly value="Rp 0">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-rab-footer">
+        <button type="button" class="btn-modal-cancel" onclick="closeModalRab()">
+          <i class="fa-solid fa-xmark"></i> Batal
+        </button>
+        <button type="button" class="btn-modal-save" onclick="simpanRabItem()">
+          <i class="fa-solid fa-check"></i> Simpan
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>&copy; 2026 LPPM UMSU. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="javascript:void(0)">Kebijakan Privasi</a>
+      <span>|</span>
+      <a href="javascript:void(0)">Syarat Penggunaan</a>
+      <span>|</span>
+      <a href="javascript:void(0)">Kontak</a>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/rab.js?v=3"></script>
+</body>
+</html>

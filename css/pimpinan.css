@@ -1,0 +1,517 @@
+/* ==========================================================================
+   DASHBOARD PIMPINAN - LPPM UMSU & RISETMU
+   Theme: Executive Blue & Crisp High-Level Decision Cards
+   ========================================================================== */
+
+/* Page container */
+.pimpinan-container {
+  max-width: 1400px;
+  margin: 24px auto 60px;
+  padding: 0 24px;
+}
+
+/* Sub Navigation Bar for Pimpinan */
+.pimpinan-subnav-bar {
+  background-color: #0284c7;
+  color: #ffffff;
+  position: sticky;
+  top: 60px;
+  z-index: 950;
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.15);
+}
+
+.pimpinan-subnav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pimpinan-subnav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.pimpinan-subnav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+}
+
+.pimpinan-subnav-tab:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.pimpinan-subnav-tab.active {
+  background: #ffffff;
+  color: #0284c7;
+  font-weight: 700;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Top Section Header */
+.pimpinan-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.pimpinan-header-left h1 {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.02em;
+}
+
+.pimpinan-header-left p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.pimpinan-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* HERO / ACTION CARD (MENUNGGU PENGESAHAN ANDA) */
+.pimpinan-hero-card {
+  background: #ffffff;
+  border: 1.5px solid #0284c7;
+  border-radius: 12px;
+  padding: 22px 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.pimpinan-hero-left {
+  flex: 1;
+  min-width: 320px;
+}
+
+.hero-main-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.hero-main-subtitle {
+  font-size: 12.5px;
+  color: #64748b;
+  margin: 0 0 16px 0;
+}
+
+.hero-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.hero-stat-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-stat-num {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hero-stat-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.pimpinan-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 4-METRIC CARDS GRID */
+.pimpinan-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pimpinan-metric-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pimpinan-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.metric-card-title {
+  font-size: 12.5px;
+  color: #475569;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.metric-card-value {
+  font-size: 1.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+}
+
+.metric-delta-tag {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metric-delta-tag i {
+  color: #0284c7;
+  font-size: 10px;
+}
+
+/* TWO-COLUMN GRIDS */
+.pimpinan-grid-60-40 {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pimpinan-grid-40-60 {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* CARDS & PANELS */
+.pimpinan-card-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.panel-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.panel-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 3px 0;
+  letter-spacing: -0.01em;
+}
+
+.panel-subtitle {
+  font-size: 12.5px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.panel-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.legend-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.legend-box.primary { background: #0284c7; }
+.legend-box.secondary { background: #bae6fd; border: 1px solid #7dd3fc; }
+
+/* Custom Trend Bar Chart */
+.trend-chart-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 170px;
+  padding: 10px 10px 0;
+  border-bottom: 1.5px solid #e2e8f0;
+  gap: 20px;
+}
+
+.trend-year-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.trend-bars-pair {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 140px;
+  width: 100%;
+  justify-content: center;
+}
+
+.trend-bar {
+  width: 28px;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.trend-bar.usulan {
+  background: #0284c7;
+}
+
+.trend-bar.didanai {
+  background: #bae6fd;
+  border: 1px solid #7dd3fc;
+  border-bottom: none;
+}
+
+.trend-bar:hover {
+  opacity: 0.85;
+  transform: scaleY(1.03);
+  transform-origin: bottom;
+}
+
+.trend-year-label {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+/* Sebaran Fakultas List */
+.faculty-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.faculty-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.faculty-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+}
+
+.faculty-name {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.faculty-count {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.faculty-bar-track {
+  width: 100%;
+  height: 7px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.faculty-bar-fill {
+  height: 100%;
+  background: #0284c7;
+  border-radius: 999px;
+}
+
+/* Bottom Section: Capaian Luaran */
+.output-target-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.output-target-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.output-target-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+}
+
+.output-target-name {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.output-target-val {
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.output-target-bar-track {
+  width: 100%;
+  height: 7px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.output-target-bar-fill {
+  height: 100%;
+  background: #0284c7;
+  border-radius: 999px;
+}
+
+/* Table Tingkat Lolos per Skema */
+.schema-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.schema-table th {
+  text-align: left;
+  padding: 8px 10px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #64748b;
+  border-bottom: 1.5px solid #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.schema-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.schema-table tr:hover td {
+  background: #f8fafc;
+}
+
+.td-schema-title {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.td-num {
+  font-weight: 600;
+  color: #475569;
+}
+
+.td-rate-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rate-bar-track {
+  flex: 1;
+  max-width: 120px;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.rate-bar-fill {
+  height: 100%;
+  background: #0284c7;
+  border-radius: 999px;
+}
+
+.rate-percent-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  min-width: 32px;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .pimpinan-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pimpinan-grid-60-40,
+  .pimpinan-grid-40-60 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .pimpinan-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-stats-row {
+    gap: 18px;
+  }
+}

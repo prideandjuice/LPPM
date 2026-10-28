@@ -175,7 +175,7 @@ function showModalInfoRumusanMasalah() {
   const html = `
     <div style="font-size: 0.82rem; line-height: 1.6; color: #1e293b;">
       <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 10px 14px; margin-bottom: 12px;">
-        <strong style="color: #1e40af;"><i class="fa-solid fa-circle-info" style="margin-right: 6px;"></i>Panduan 8 Bidang Strategis Nasional (BIMA & RisetMu)</strong>
+        <strong style="color: #1e40af;"><i class="fa-solid fa-circle-info" style="margin-right: 6px;"></i>Panduan 8 Bidang Strategis Nasional</strong>
         <p style="margin: 4px 0 0 0;">Usulan penelitian wajib menyelaraskan rumusan masalah dan uraian kegiatan dengan prioritas bidang strategis nasional untuk meningkatkan dampak riset perguruan tinggi.</p>
       </div>
 

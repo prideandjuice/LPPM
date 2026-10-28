@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Reviewer - LPPM UMSU &amp; RisetMu</title>
+  <title>Portal Reviewer - LPPM UMSU &amp; RisetMu</title>
   <meta name="description" content="Portal Penilaian Proposal &amp; Evaluasi Laporan RisetMu LPPM UMSU">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css?v=26">
-  <link rel="stylesheet" href="css/reviewer.css?v=2">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  <!-- Base & Reviewer Minimalist Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=28">
+  <link rel="stylesheet" href="css/reviewer.css?v=7">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
 </head>
 <body>
 
-  <!-- TOP HEADER / NAVBAR (KONSISTEN PORTAL LPPM) -->
+  <!-- TOP HEADER / NAVBAR -->
   <header class="top-header">
     <div class="header-container">
       <!-- Logo LPPM -->
@@ -49,15 +49,15 @@
 
         <!-- Role Dropdown with Active Reviewer Role -->
         <div class="dropdown-wrapper">
-          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran">
-            <i class="fa-regular fa-user"></i>
+          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran" style="border-color: #c7d2fe; color: #4f46e5; background: #eef2ff;">
+            <i class="fa-solid fa-scale-balanced"></i>
             <span id="selectedRole">REVIEWER</span>
             <i class="fa-solid fa-chevron-down arrow-icon"></i>
           </button>
           <div class="dropdown-menu" id="roleDropdownMenu">
             <div class="dropdown-item" data-role="DOSEN">DOSEN</div>
             <div class="dropdown-item active" data-role="REVIEWER"><i class="fa-solid fa-check"></i> REVIEWER</div>
-            <div class="dropdown-item" data-role="PENGUSUL">PENGUSUL</div>
+            <div class="dropdown-item" data-role="PIMPINAN">PIMPINAN</div>
             <div class="dropdown-item" data-role="ADMIN LPPM">ADMIN LPPM</div>
           </div>
         </div>
@@ -75,19 +75,19 @@
             </div>
             <div class="notif-list">
               <div class="notif-item unread">
-                <div class="notif-icon bg-orange"><i class="fa-solid fa-clock"></i></div>
+                <div class="notif-icon" style="background: #fffbeb; color: #b45309;"><i class="fa-solid fa-clock"></i></div>
                 <div class="notif-text">
-                  <strong>Peringatan Tenggat Review (H-3)</strong>
-                  <p>Usulan "Implementasi Deep Learning Padi" batas penilaian 15 Nov 2026.</p>
+                  <strong>Tenggat Review H-3</strong>
+                  <p>Usulan "Deep Learning Padi" batas penilaian 15 Nov 2026.</p>
                   <small>1 jam lalu</small>
                 </div>
               </div>
               <div class="notif-item unread">
-                <div class="notif-icon bg-blue"><i class="fa-solid fa-file-signature"></i></div>
+                <div class="notif-icon" style="background: #eef2ff; color: #4f46e5;"><i class="fa-solid fa-file-signature"></i></div>
                 <div class="notif-text">
-                  <strong>Penugasan Review Usulan Baru</strong>
-                  <p>LPPM menugaskan Anda sebagai Reviewer 1 untuk skema Riset Terapan.</p>
-                  <small>Kemarin, 09:00 WIB</small>
+                  <strong>Penugasan Reviewer 1</strong>
+                  <p>LPPM menugaskan Anda untuk skema Riset Terapan.</p>
+                  <small>Kemarin</small>
                 </div>
               </div>
             </div>
@@ -97,8 +97,8 @@
         <!-- User Profile Pill -->
         <div class="dropdown-wrapper">
           <button class="user-profile-btn" id="userProfileBtn" aria-expanded="false">
-            <div class="user-avatar-circle">
-              <i class="fa-solid fa-user"></i>
+            <div class="user-avatar-circle" style="background: #4f46e5; color: #ffffff;">
+              <i class="fa-solid fa-user-check"></i>
             </div>
             <span class="user-name">YOSHIDA SARY</span>
             <i class="fa-solid fa-chevron-down arrow-icon"></i>
@@ -106,14 +106,13 @@
           <div class="dropdown-menu user-menu" id="userMenu">
             <div class="user-menu-header">
               <strong>Yoshida Sary, M.Kom.</strong>
-              <small>NIDN: 0123456789</small>
+              <small>NIDN: 0123456789 &bull; Reviewer RisetMu</small>
             </div>
             <div class="dropdown-divider"></div>
             <a href="index.html" class="dropdown-item"><i class="fa-solid fa-house"></i> Portal Dosen</a>
-            <a href="#" class="dropdown-item" onclick="showToast('Fitur Pengaturan Akun')"><i class="fa-solid fa-sliders"></i> Pengaturan Akun</a>
-            <a href="#" class="dropdown-item" onclick="showToast('Fitur Ganti Sandi')"><i class="fa-solid fa-key"></i> Ganti Password</a>
+            <a href="penelitian.html" class="dropdown-item"><i class="fa-solid fa-flask"></i> Riwayat Riset Saya</a>
             <div class="dropdown-divider"></div>
-            <a href="index.html" class="dropdown-item text-danger" onclick="showToast('Sesi tetap aktif')"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
+            <a href="index.html" class="dropdown-item text-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
           </div>
         </div>
       </div>
@@ -124,966 +123,852 @@
   <nav class="reviewer-subnav-bar">
     <div class="reviewer-subnav-container">
       <div class="reviewer-subnav-tabs">
-        <a href="reviewer.html" class="subnav-tab-link active">
+        <a href="reviewer.html" class="subnav-tab-link active" id="subnavDashboard" onclick="setActiveSubnavTab(this)">
           <i class="fa-solid fa-house"></i>
           <span>Dashboard</span>
         </a>
-        <a href="#tugasReviewSection" class="subnav-tab-link" onclick="document.querySelector('[data-filter=usulan]').click()">
+        <a href="#tugasReviewSection" class="subnav-tab-link" id="subnavTugas" onclick="setActiveSubnavTab(this); switchFilter('usulan')">
           <i class="fa-solid fa-list-check"></i>
           <span>Tugas Review</span>
           <span class="subnav-tab-badge">4</span>
         </a>
-        <a href="#tugasReviewSection" class="subnav-tab-link" onclick="document.querySelector('[data-filter=laporan]').click()">
+        <a href="#tugasReviewSection" class="subnav-tab-link" id="subnavLaporan" onclick="setActiveSubnavTab(this); switchFilter('laporan')">
           <i class="fa-regular fa-clipboard"></i>
           <span>Evaluasi Laporan</span>
           <span class="subnav-tab-badge">2</span>
         </a>
-        <a href="#riwayatReviewSection" class="subnav-tab-link">
+        <a href="#riwayatReviewSection" class="subnav-tab-link" id="subnavRiwayat" onclick="setActiveSubnavTab(this)">
           <i class="fa-solid fa-clock-rotate-left"></i>
-          <span>Riwayat Review</span>
+          <span>Riwayat Penilaian</span>
         </a>
         <a href="javascript:void(0)" class="subnav-tab-link" onclick="openModalPanduanRubrik()">
           <i class="fa-solid fa-book-bookmark"></i>
-          <span>Panduan &amp; Rubrik</span>
+          <span>Rubrik &amp; Panduan</span>
         </a>
       </div>
 
       <div class="reviewer-subnav-actions">
-        <button type="button" class="btn-subnav-action" onclick="showToast('Mengunduh lembar rekap penilaian (Excel)...', 'success')">
+        <button type="button" class="btn-subnav-action" onclick="showToast('Mengunduh rekap lembar nilai Excel...', 'success')">
           <i class="fa-solid fa-file-excel" style="color: #16a34a;"></i>
           <span>Rekap Nilai</span>
         </button>
-        <a href="index.html" class="btn-subnav-action" title="Kembali ke Dashboard Dosen">
-          <i class="fa-solid fa-right-left" style="color: #0284c7;"></i>
+        <a href="index.html" class="btn-subnav-action" title="Beralih ke tampilan Dosen">
+          <i class="fa-solid fa-right-left" style="color: #4f46e5;"></i>
           <span>Mode Dosen</span>
         </a>
       </div>
     </div>
   </nav>
 
-  <!-- MAIN DASHBOARD CONTENT -->
-  <main class="app-container" style="margin-top: 1.5rem;">
+  <!-- MAIN CONTAINER -->
+  <main class="app-container" style="max-width: 1280px; margin: 24px auto; padding: 0 24px;">
 
-    <!-- HERO WELCOME BANNER -->
-    <section class="reviewer-hero-banner">
-      <div>
-        <h1 class="reviewer-hero-title">
-          <i class="fa-solid fa-user-check" style="color: #38bdf8;"></i>
-          Dashboard Reviewer RisetMu
+    <!-- RICH CONTRAST HERO BANNER (MIDNIGHT INDIGO) -->
+    <div class="reviewer-hero-card">
+      <div class="reviewer-hero-left">
+        <h1>
+          <i class="fa-solid fa-scale-balanced" style="color: #a5b4fc; font-size: 1.4rem;"></i>
+          Portal Reviewer LPPM UMSU
         </h1>
-        <p class="reviewer-hero-sub">
-          Penilaian substansi proposal dan evaluasi laporan kemajuan secara objektif, independen, dan terukur.
-        </p>
+        <p>Evaluasi objektif dan penilaian komprehensif substansi proposal penelitian &amp; pengabdian masyarakat LPPM UMSU.</p>
       </div>
 
-      <div class="reviewer-hero-badges">
-        <div class="hero-pill-info">
-          <i class="fa-solid fa-shield-halved" style="color: #38bdf8;"></i>
-          <span>Double-Blind Review Aktif</span>
-        </div>
-        <div class="hero-pill-urgent">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-          <span>Tenggat Terdekat: 15 Nov (H-3)</span>
-        </div>
+      <div class="hero-pill-badge">
+        <i class="fa-solid fa-shield-halved" style="color: #a5b4fc;"></i>
+        <span>Double-Blind Review Aktif</span>
       </div>
-    </section>
+    </div>
 
-    <!-- 4-STAT METRIC CARDS GRID -->
+    <!-- 4-STAT TINTED METRICS GRID (NOT ALL WHITE) -->
     <section class="reviewer-metrics-grid">
-      <!-- Card 1: Belum Dinilai -->
-      <div class="reviewer-metric-card orange">
+      <!-- Card 1 -->
+      <div class="reviewer-metric-card card-amber">
         <div class="metric-top-row">
-          <div class="metric-icon-box orange">
-            <i class="fa-regular fa-clock"></i>
-          </div>
-          <span class="metric-badge-tag orange">Perlu Tindakan</span>
+          <span class="metric-label-text">Perlu Tindakan</span>
+          <span class="metric-pill-tag amber">Tenggat H-3</span>
         </div>
-        <div>
-          <div class="metric-main-value">04</div>
-          <h4 class="metric-main-label">Belum Dinilai</h4>
-          <span class="metric-sub-desc">1 usulan mendekati tenggat</span>
-        </div>
+        <div class="metric-value-number">04</div>
+        <span class="metric-sub-note">1 usulan mendekati batas waktu</span>
       </div>
 
-      <!-- Card 2: Draf Tersimpan -->
-      <div class="reviewer-metric-card blue">
+      <!-- Card 2 -->
+      <div class="reviewer-metric-card card-indigo">
         <div class="metric-top-row">
-          <div class="metric-icon-box blue">
-            <i class="fa-regular fa-floppy-disk"></i>
-          </div>
-          <span class="metric-badge-tag blue">Auto-Saved</span>
+          <span class="metric-label-text">Draf Tersimpan</span>
+          <span class="metric-pill-tag indigo">Auto-saved</span>
         </div>
-        <div>
-          <div class="metric-main-value">02</div>
-          <h4 class="metric-main-label">Draf Tersimpan</h4>
-          <span class="metric-sub-desc">Nilai sementara tersimpan aman</span>
-        </div>
+        <div class="metric-value-number">02</div>
+        <span class="metric-sub-note">Nilai sementara tersimpan aman</span>
       </div>
 
-      <!-- Card 3: Sudah Terkirim -->
-      <div class="reviewer-metric-card green">
+      <!-- Card 3 -->
+      <div class="reviewer-metric-card card-emerald">
         <div class="metric-top-row">
-          <div class="metric-icon-box green">
-            <i class="fa-regular fa-circle-check"></i>
-          </div>
-          <span class="metric-badge-tag green">Terkirim ke LPPM</span>
+          <span class="metric-label-text">Selesai Dinilai</span>
+          <span class="metric-pill-tag emerald">Terkirim</span>
         </div>
-        <div>
-          <div class="metric-main-value">12</div>
-          <h4 class="metric-main-label">Sudah Terkirim</h4>
-          <span class="metric-sub-desc">Proposal periode 2026/2027</span>
-        </div>
+        <div class="metric-value-number">12</div>
+        <span class="metric-sub-note">Proposal periode 2026/2027</span>
       </div>
 
-      <!-- Card 4: Lewat Batas Waktu -->
-      <div class="reviewer-metric-card purple">
+      <!-- Card 4 -->
+      <div class="reviewer-metric-card card-violet">
         <div class="metric-top-row">
-          <div class="metric-icon-box purple">
-            <i class="fa-solid fa-shield-check"></i>
-          </div>
-          <span class="metric-badge-tag purple">Status Aman</span>
+          <span class="metric-label-text">Kepatuhan Waktu</span>
+          <span class="metric-pill-tag slate">Tepat Waktu</span>
         </div>
-        <div>
-          <div class="metric-main-value">00</div>
-          <h4 class="metric-main-label">Lewat Batas Waktu</h4>
-          <span class="metric-sub-desc">Kepatuhan waktu review 100%</span>
-        </div>
+        <div class="metric-value-number">100%</div>
+        <span class="metric-sub-note">0 tugas terlewat tenggat</span>
       </div>
     </section>
 
-    <!-- 2-COLUMN MAIN CONTENT GRID -->
-    <div class="reviewer-content-grid" id="tugasReviewSection">
-
-      <!-- LEFT COLUMN (8.5/12): TUGAS REVIEW SAYA -->
-      <div class="reviewer-main-column">
-        
-        <div class="review-panel-card">
-          <!-- Panel Header with Tab Filter Toggle -->
-          <div class="review-panel-header">
-            <div class="review-panel-title-group">
-              <h3>
-                <i class="fa-solid fa-list-check" style="color: #0284c7;"></i>
-                Tugas Review Saya
-              </h3>
-              <p>Penilaian otomatis tersimpan sebagai draf setiap kali Anda mengisi rubrik nilai.</p>
-            </div>
-
-            <!-- Toggle Filter: Review Usulan vs Evaluasi Laporan -->
-            <div class="review-filter-pills">
-              <button type="button" class="filter-pill-btn active" data-filter="usulan">
-                <i class="fa-solid fa-file-lines"></i> Review Usulan (4)
-              </button>
-              <button type="button" class="filter-pill-btn" data-filter="laporan">
-                <i class="fa-solid fa-clipboard-check"></i> Evaluasi Laporan (2)
-              </button>
-            </div>
-          </div>
-
-          <!-- LIST USULAN PENELITIAN & PENGABDIAN -->
-          <div class="review-items-container" id="reviewUsulanList">
-            
-            <!-- PROPOSAL ITEM 1: Belum Dinilai (Urgent / H-3) -->
-            <div class="proposal-review-box urgent">
-              <div class="prop-review-top-bar">
-                <div class="prop-badges-left">
-                  <span class="badge-scheme-tag">Penelitian Fundamental Reguler</span>
-                  <span class="badge-status-pill-rev pending">
-                    <i class="fa-solid fa-clock"></i> Belum Dinilai
-                  </span>
-                  <span class="badge-blind-review">
-                    <i class="fa-solid fa-user-secret"></i> Blind Review (Pengusul Disamarkan)
-                  </span>
-                </div>
-                <div class="prop-deadline-badge urgent">
-                  <i class="fa-solid fa-triangle-exclamation"></i>
-                  <span>Batas: 15 Nov 2026 &bull; H-3</span>
-                </div>
-              </div>
-
-              <h4 class="prop-review-title">
-                Implementasi Deep Learning Multi-Modal untuk Deteksi Dini Penyakit Tanaman Padi Berbasis Citra Multispektral Drone
-              </h4>
-
-              <div class="prop-review-meta">
-                <span>Pengusul: <strong>Disamarkan (Sistem Blind Review)</strong></span>
-                <span>&bull;</span>
-                <span>Usulan Dana: <strong>Rp 48.500.000</strong></span>
-                <span>&bull;</span>
-                <span>Target Luaran: <strong>Jurnal Internasional Bereputasi (Scopus Q2)</strong></span>
-              </div>
-
-              <!-- Progress Bar Kriteria -->
-              <div class="prop-criteria-progress">
-                <div class="criteria-progress-label">
-                  <span>Progres Penilaian Kriteria</span>
-                  <span><strong>0 / 4</strong> Kriteria Terisi (0%)</span>
-                </div>
-                <div class="criteria-progress-track">
-                  <div class="criteria-progress-fill orange" style="width: 0%;"></div>
-                </div>
-              </div>
-
-              <!-- Footer Actions -->
-              <div class="prop-review-footer">
-                <button type="button" class="btn-rev-pdf" onclick="showToast('Mengunduh Berkas Proposal Lengkap (PDF)...', 'success')">
-                  <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-                  <span>Unduh PDF</span>
-                </button>
-                <button type="button" class="btn-rev-primary" onclick="openModalPenilaian(1)">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <span>Mulai Menilai</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- PROPOSAL ITEM 2: Draf Tersimpan (In Progress 75%) -->
-            <div class="proposal-review-box in-progress">
-              <div class="prop-review-top-bar">
-                <div class="prop-badges-left">
-                  <span class="badge-scheme-tag">Pengabdian Kemitraan Masyarakat</span>
-                  <span class="badge-status-pill-rev draft">
-                    <i class="fa-solid fa-floppy-disk"></i> Draf Tersimpan
-                  </span>
-                  <span class="badge-blind-review">
-                    <i class="fa-solid fa-user-secret"></i> Blind Review
-                  </span>
-                </div>
-                <div class="prop-deadline-badge">
-                  <i class="fa-regular fa-clock"></i>
-                  <span>Batas: 20 Nov 2026 &bull; H-8</span>
-                </div>
-              </div>
-
-              <h4 class="prop-review-title">
-                Pemberdayaan Kelompok Tani Mandiri melalui Penerapan Smart Irrigation System dan Manajemen Rantai Pasok Berkelanjutan
-              </h4>
-
-              <div class="prop-review-meta">
-                <span>Pengusul: <strong>Disamarkan</strong></span>
-                <span>&bull;</span>
-                <span>Usulan Dana: <strong>Rp 35.000.000</strong></span>
-                <span>&bull;</span>
-                <span>Skor Sementara: <strong style="color: #0284c7;">85.0 (Baik)</strong></span>
-              </div>
-
-              <div class="prop-criteria-progress">
-                <div class="criteria-progress-label">
-                  <span>Progres Penilaian Kriteria</span>
-                  <span><strong>3 / 4</strong> Kriteria Terisi (75%)</span>
-                </div>
-                <div class="criteria-progress-track">
-                  <div class="criteria-progress-fill blue" style="width: 75%;"></div>
-                </div>
-              </div>
-
-              <div class="prop-review-footer">
-                <button type="button" class="btn-rev-pdf" onclick="showToast('Mengunduh Berkas Proposal Lengkap (PDF)...', 'success')">
-                  <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-                  <span>Unduh PDF</span>
-                </button>
-                <button type="button" class="btn-rev-primary" onclick="openModalPenilaian(2)">
-                  <i class="fa-solid fa-pen"></i>
-                  <span>Lanjutkan Penilaian</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- PROPOSAL ITEM 3: Draf Tersimpan (In Progress 50%) -->
-            <div class="proposal-review-box in-progress">
-              <div class="prop-review-top-bar">
-                <div class="prop-badges-left">
-                  <span class="badge-scheme-tag">Penelitian Terapan Unggulan</span>
-                  <span class="badge-status-pill-rev draft">
-                    <i class="fa-solid fa-floppy-disk"></i> Draf Tersimpan
-                  </span>
-                  <span class="badge-blind-review">
-                    <i class="fa-solid fa-user-secret"></i> Blind Review
-                  </span>
-                </div>
-                <div class="prop-deadline-badge">
-                  <i class="fa-regular fa-clock"></i>
-                  <span>Batas: 25 Nov 2026 &bull; H-13</span>
-                </div>
-              </div>
-
-              <h4 class="prop-review-title">
-                Pengembangan Sistem Telemedicine Syariah Berbasis Enkripsi Kuantum untuk Kerahasiaan Rekam Medis Rumah Sakit Muhammadiyah
-              </h4>
-
-              <div class="prop-review-meta">
-                <span>Pengusul: <strong>Disamarkan</strong></span>
-                <span>&bull;</span>
-                <span>Usulan Dana: <strong>Rp 65.000.000</strong></span>
-                <span>&bull;</span>
-                <span>Skor Sementara: <strong style="color: #0284c7;">79.0</strong></span>
-              </div>
-
-              <div class="prop-criteria-progress">
-                <div class="criteria-progress-label">
-                  <span>Progres Penilaian Kriteria</span>
-                  <span><strong>2 / 4</strong> Kriteria Terisi (50%)</span>
-                </div>
-                <div class="criteria-progress-track">
-                  <div class="criteria-progress-fill blue" style="width: 50%;"></div>
-                </div>
-              </div>
-
-              <div class="prop-review-footer">
-                <button type="button" class="btn-rev-pdf" onclick="showToast('Mengunduh Berkas Proposal Lengkap (PDF)...', 'success')">
-                  <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-                  <span>Unduh PDF</span>
-                </button>
-                <button type="button" class="btn-rev-primary" onclick="openModalPenilaian(3)">
-                  <i class="fa-solid fa-pen"></i>
-                  <span>Lanjutkan Penilaian</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- PROPOSAL ITEM 4: Sudah Terkirim (Done 100%) -->
-            <div class="proposal-review-box completed">
-              <div class="prop-review-top-bar">
-                <div class="prop-badges-left">
-                  <span class="badge-scheme-tag">Pengabdian Persyarikatan</span>
-                  <span class="badge-status-pill-rev done">
-                    <i class="fa-solid fa-circle-check"></i> Sudah Terkirim
-                  </span>
-                  <span class="badge-blind-review">
-                    <i class="fa-solid fa-lock"></i> Finalisasi Selesai
-                  </span>
-                </div>
-                <div class="prop-deadline-badge" style="color: #059669;">
-                  <i class="fa-solid fa-check"></i>
-                  <span>Dikirim: 24 Okt 2026</span>
-                </div>
-              </div>
-
-              <h4 class="prop-review-title">
-                Pelatihan Literasi Keuangan Digital dan Kurasi Produk Halal bagi Pelaku UMKM Aisyiyah Cabang Medan Denai
-              </h4>
-
-              <div class="prop-review-meta">
-                <span>Pengusul: <strong>Disamarkan</strong></span>
-                <span>&bull;</span>
-                <span>Usulan Dana: <strong>Rp 25.000.000</strong></span>
-                <span>&bull;</span>
-                <span>Skor Final Anda: <strong style="color: #10b981;">89.5 (Direkomendasikan Lolos)</strong></span>
-              </div>
-
-              <div class="prop-criteria-progress">
-                <div class="criteria-progress-label">
-                  <span>Progres Penilaian Kriteria</span>
-                  <span><strong>4 / 4</strong> Kriteria Selesai (100%)</span>
-                </div>
-                <div class="criteria-progress-track">
-                  <div class="criteria-progress-fill green" style="width: 100%;"></div>
-                </div>
-              </div>
-
-              <div class="prop-review-footer">
-                <button type="button" class="btn-rev-pdf" onclick="showToast('Mengunduh Berkas Proposal Lengkap (PDF)...', 'success')">
-                  <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-                  <span>Unduh PDF</span>
-                </button>
-                <button type="button" class="btn-rev-success" onclick="openModalPenilaian(4)">
-                  <i class="fa-solid fa-eye"></i>
-                  <span>Lihat Penilaian</span>
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- LIST EVALUASI LAPORAN KEMAJUAN (Tersembunyi Awal) -->
-          <div class="review-items-container" id="evaluasiLaporanList" style="display: none;">
-            
-            <!-- Laporan Item 1 -->
-            <div class="proposal-review-box in-progress">
-              <div class="prop-review-top-bar">
-                <div class="prop-badges-left">
-                  <span class="badge-scheme-tag">Laporan Kemajuan Penelitian 2026</span>
-                  <span class="badge-status-pill-rev draft">
-                    <i class="fa-solid fa-floppy-disk"></i> Draf Evaluasi
-                  </span>
-                </div>
-                <div class="prop-deadline-badge">
-                  <i class="fa-regular fa-clock"></i>
-                  <span>Batas: 28 Nov 2026</span>
-                </div>
-              </div>
-
-              <h4 class="prop-review-title">
-                Laporan Kemajuan: Model Prediksi Ketahanan Pangan Sumatera Utara dengan Pendekatan Spatial Econometrics
-              </h4>
-
-              <div class="prop-review-meta">
-                <span>Ketua: <strong>Prof. Dr. Ir. M. Nasution, M.Sc</strong></span>
-                <span>&bull;</span>
-                <span>Serapan Anggaran 70%: <strong>Rp 35.000.000</strong></span>
-                <span>&bull;</span>
-                <span>Capaian Luaran: <strong>Draft Artikel SINTA 2</strong></span>
-              </div>
-
-              <div class="prop-review-footer">
-                <button type="button" class="btn-rev-pdf" onclick="showToast('Mengunduh Berkas Laporan Kemajuan (PDF)...', 'success')">
-                  <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-                  <span>Unduh Laporan</span>
-                </button>
-                <button type="button" class="btn-rev-primary" onclick="showToast('Membuka formulir evaluasi laporan kemajuan...')">
-                  <i class="fa-solid fa-pen"></i>
-                  <span>Lanjutkan Evaluasi</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Laporan Item 2 -->
-            <div class="proposal-review-box urgent">
-              <div class="prop-review-top-bar">
-                <div class="prop-badges-left">
-                  <span class="badge-scheme-tag">Laporan Akhir Pengabdian 2026</span>
-                  <span class="badge-status-pill-rev pending">
-                    <i class="fa-solid fa-clock"></i> Belum Dievaluasi
-                  </span>
-                </div>
-                <div class="prop-deadline-badge urgent">
-                  <i class="fa-solid fa-triangle-exclamation"></i>
-                  <span>Batas: 30 Nov 2026</span>
-                </div>
-              </div>
-
-              <h4 class="prop-review-title">
-                Laporan Akhir: Penerapan Mesin Pengering Gabah Tenaga Surya pada Gapoktan Sinar Tani Langkat
-              </h4>
-
-              <div class="prop-review-meta">
-                <span>Ketua: <strong>Dr. Hendra Cipta, S.T., M.T.</strong></span>
-                <span>&bull;</span>
-                <span>Realisasi Dana: <strong>Rp 40.000.000 (100%)</strong></span>
-                <span>&bull;</span>
-                <span>Luaran: <strong>Video Dokumenter &amp; Publikasi Media Massa</strong></span>
-              </div>
-
-              <div class="prop-review-footer">
-                <button type="button" class="btn-rev-pdf" onclick="showToast('Mengunduh Berkas Laporan Akhir (PDF)...', 'success')">
-                  <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
-                  <span>Unduh Laporan</span>
-                </button>
-                <button type="button" class="btn-rev-primary" onclick="showToast('Membuka formulir evaluasi laporan akhir...')">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  <span>Mulai Evaluasi</span>
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
+    <!-- TASK FILTER BAR & SEARCH -->
+    <div class="reviewer-filter-bar" id="tugasReviewSection">
+      <div class="reviewer-segmented-control">
+        <button type="button" class="segmented-btn active" data-filter="usulan" onclick="switchFilter('usulan')">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>Usulan Penelitian &amp; PkM</span>
+          <span class="segmented-badge">4</span>
+        </button>
+        <button type="button" class="segmented-btn" data-filter="laporan" onclick="switchFilter('laporan')">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>Laporan Kemajuan</span>
+          <span class="segmented-badge">2</span>
+        </button>
       </div>
 
-      <!-- RIGHT COLUMN (3.5/12): SIDEBAR WIDGETS -->
-      <aside class="reviewer-sidebar">
+      <div class="reviewer-search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchTaskInput" placeholder="Cari judul proposal / skema..." oninput="handleTaskSearch(this.value)">
+      </div>
+    </div>
 
-        <!-- WIDGET 1: RUBRIK PENILAIAN & BOBOT -->
-        <div class="reviewer-sidebar-card">
-          <h4 class="sidebar-card-title">
-            <i class="fa-solid fa-scale-balanced" style="color: #0284c7;"></i>
-            Rubrik Penilaian &amp; Bobot
-          </h4>
-          <p class="sidebar-card-desc">Standar pembobotan kriteria evaluasi substansi RisetMu.</p>
-
-          <div class="rubrik-weights-list">
-            <div class="rubrik-weight-item">
-              <span>1. Kebaruan &amp; Orisinalitas</span>
-              <span class="weight-pill">Bobot 25%</span>
-            </div>
-            <div class="rubrik-weight-item">
-              <span>2. Metodologi &amp; Kelayakan</span>
-              <span class="weight-pill">Bobot 30%</span>
-            </div>
-            <div class="rubrik-weight-item">
-              <span>3. Kesesuaian Anggaran &amp; Tim</span>
-              <span class="weight-pill">Bobot 20%</span>
-            </div>
-            <div class="rubrik-weight-item">
-              <span>4. Potensi Luaran &amp; Dampak</span>
-              <span class="weight-pill">Bobot 25%</span>
-            </div>
+    <!-- LIST OF PROPOSALS (MINIMALIST & CLEAN) -->
+    <div class="review-items-container" id="reviewUsulanList">
+      
+      <!-- PROPOSAL 1: Belum Dinilai (Urgent H-3) -->
+      <div class="proposal-clean-card urgent">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Penelitian Fundamental Reguler</span>
+            <span class="pill-status pending"><i class="fa-regular fa-clock"></i> Belum Dinilai</span>
+            <span class="pill-blind"><i class="fa-solid fa-user-secret"></i> Blind Review</span>
           </div>
-
-          <a href="javascript:void(0)" class="link-rubrik-full" onclick="openModalPanduanRubrik()">
-            <span>Baca panduan lengkap rubrik &rarr;</span>
-          </a>
+          <span class="card-deadline-text urgent">
+            <i class="fa-solid fa-triangle-exclamation"></i> Batas: 15 Nov 2026 &bull; H-3
+          </span>
         </div>
 
-        <!-- WIDGET 2: BEBAS KONFLIK KEPENTINGAN -->
-        <div class="reviewer-sidebar-card">
-          <h4 class="sidebar-card-title">
-            <i class="fa-solid fa-shield-halved" style="color: #d97706;"></i>
-            Bebas Konflik Kepentingan
-          </h4>
-          <p class="sidebar-card-desc">Integritas penilaian blind review LPPM UMSU.</p>
+        <h3 class="proposal-title-heading">
+          Implementasi Deep Learning Multi-Modal untuk Deteksi Dini Penyakit Tanaman Padi Berbasis Citra Multispektral Drone
+        </h3>
 
-          <div class="conflict-box">
-            <i class="fa-solid fa-circle-exclamation" style="margin-right: 4px;"></i>
-            Kenal dekat dengan pengusul, satu tim riset, atau satu prodi? Nyatakan sebelum menilai agar usulan dialihkan ke reviewer lain.
+        <div class="proposal-specs-row">
+          <div class="spec-item">
+            <i class="fa-solid fa-wheat-awn" style="color: #64748b;"></i>
+            <span>Fokus: <strong>Pangan &amp; Pertanian</strong></span>
           </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-coins" style="color: #64748b;"></i>
+            <span>Usulan Dana: <strong style="color: #4f46e5;">Rp 48.500.000</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-award" style="color: #64748b;"></i>
+            <span>Target Luaran: <strong>Scopus Q2 &bull; HKI Program Komputer</strong></span>
+          </div>
+        </div>
 
-          <button type="button" class="btn-declare-conflict" onclick="openModalKonflik()">
-            <i class="fa-solid fa-handshake-slash"></i>
-            <span>Nyatakan Konflik Kepentingan</span>
+        <div class="compact-progress-row">
+          <span class="compact-progress-label">Progres Nilai: 0/4 Kriteria Terisi</span>
+          <div class="compact-progress-bar">
+            <div class="compact-progress-fill amber" style="width: 0%;"></div>
+          </div>
+          <span style="font-size: 11px; font-weight: 700; color: #b45309;">0%</span>
+        </div>
+
+        <div class="card-action-footer">
+          <div class="action-left-btns">
+            <button type="button" class="btn-ghost-rev" onclick="showToast('Mengunduh Berkas Proposal PDF...', 'success')">
+              <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+              <span>Unduh PDF</span>
+            </button>
+            <button type="button" class="btn-ghost-rev" onclick="openModalPenilaian(1, 'dossier')">
+              <i class="fa-solid fa-file-lines" style="color: #4f46e5;"></i>
+              <span>Lihat Berkas Usulan</span>
+            </button>
+          </div>
+          <button type="button" class="btn-primary-rev" onclick="openModalPenilaian(1, 'scoring')">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Mulai Menilai</span>
           </button>
         </div>
+      </div>
 
-        <!-- WIDGET 3: TIMELINE AGENDA REVIEWER -->
-        <div class="reviewer-sidebar-card">
-          <h4 class="sidebar-card-title">
-            <i class="fa-regular fa-calendar-check" style="color: #10b981;"></i>
-            Jadwal Tahapan Reviewer
-          </h4>
-          <p class="sidebar-card-desc">Periode Batch 10 Tahun Anggaran 2026/2027.</p>
+      <!-- PROPOSAL 2: Draf Tersimpan (75%) -->
+      <div class="proposal-clean-card in-progress">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Pengabdian Kemitraan Masyarakat</span>
+            <span class="pill-status draft"><i class="fa-solid fa-floppy-disk"></i> Draf Tersimpan</span>
+            <span class="pill-blind"><i class="fa-solid fa-user-secret"></i> Blind Review</span>
+          </div>
+          <span class="card-deadline-text">
+            <i class="fa-regular fa-clock"></i> Batas: 20 Nov 2026 &bull; H-8
+          </span>
+        </div>
 
-          <div class="reviewer-timeline-list">
-            <div class="rev-timeline-step active">
-              <span class="rev-timeline-dot"></span>
-              <div class="rev-timeline-title">Review Substansi Usulan</div>
-              <div class="rev-timeline-date">10 Okt &ndash; 25 Nov 2026 &bull; <strong style="color: #0284c7;">Sedang Berlangsung</strong></div>
-            </div>
-            <div class="rev-timeline-step">
-              <span class="rev-timeline-dot"></span>
-              <div class="rev-timeline-title">Rapat Pleno &amp; Penyelarasan</div>
-              <div class="rev-timeline-date">26 Nov &ndash; 30 Nov 2026</div>
-            </div>
-            <div class="rev-timeline-step">
-              <span class="rev-timeline-dot"></span>
-              <div class="rev-timeline-title">Penetapan Proposal Didanai</div>
-              <div class="rev-timeline-date">05 Des 2026</div>
-            </div>
+        <h3 class="proposal-title-heading">
+          Pemberdayaan Kelompok Tani Mandiri melalui Penerapan Smart Irrigation System dan Manajemen Rantai Pasok Berkelanjutan
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">
+            <i class="fa-solid fa-users-gear" style="color: #64748b;"></i>
+            <span>Fokus: <strong>Sosial Humaniora &amp; PkM</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-coins" style="color: #64748b;"></i>
+            <span>Usulan Dana: <strong style="color: #4f46e5;">Rp 35.000.000</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-star" style="color: #4f46e5;"></i>
+            <span>Skor Sementara: <strong>85.0 (Baik)</strong></span>
           </div>
         </div>
 
-      </aside>
+        <div class="compact-progress-row">
+          <span class="compact-progress-label">Progres Nilai: 3/4 Kriteria Terisi</span>
+          <div class="compact-progress-bar">
+            <div class="compact-progress-fill indigo" style="width: 75%;"></div>
+          </div>
+          <span style="font-size: 11px; font-weight: 700; color: #4f46e5;">75%</span>
+        </div>
+
+        <div class="card-action-footer">
+          <div class="action-left-btns">
+            <button type="button" class="btn-ghost-rev" onclick="showToast('Mengunduh Berkas Proposal PDF...', 'success')">
+              <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+              <span>Unduh PDF</span>
+            </button>
+            <button type="button" class="btn-ghost-rev" onclick="openModalPenilaian(2, 'dossier')">
+              <i class="fa-solid fa-file-lines" style="color: #4f46e5;"></i>
+              <span>Lihat Berkas Usulan</span>
+            </button>
+          </div>
+          <button type="button" class="btn-primary-rev" onclick="openModalPenilaian(2, 'scoring')">
+            <i class="fa-solid fa-pen"></i>
+            <span>Lanjutkan Penilaian</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PROPOSAL 3: Draf Tersimpan (50%) -->
+      <div class="proposal-clean-card in-progress">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Penelitian Terapan Unggulan</span>
+            <span class="pill-status draft"><i class="fa-solid fa-floppy-disk"></i> Draf Tersimpan</span>
+            <span class="pill-blind"><i class="fa-solid fa-user-secret"></i> Blind Review</span>
+          </div>
+          <span class="card-deadline-text">
+            <i class="fa-regular fa-clock"></i> Batas: 25 Nov 2026 &bull; H-13
+          </span>
+        </div>
+
+        <h3 class="proposal-title-heading">
+          Pengembangan Sistem Telemedicine Syariah Berbasis Enkripsi Kuantum untuk Kerahasiaan Rekam Medis Rumah Sakit Muhammadiyah
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">
+            <i class="fa-solid fa-shield-virus" style="color: #64748b;"></i>
+            <span>Fokus: <strong>Kesehatan &amp; Ketahanan Siber</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-coins" style="color: #64748b;"></i>
+            <span>Usulan Dana: <strong style="color: #4f46e5;">Rp 65.000.000</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-star" style="color: #4f46e5;"></i>
+            <span>Skor Sementara: <strong>79.0</strong></span>
+          </div>
+        </div>
+
+        <div class="compact-progress-row">
+          <span class="compact-progress-label">Progres Nilai: 2/4 Kriteria Terisi</span>
+          <div class="compact-progress-bar">
+            <div class="compact-progress-fill indigo" style="width: 50%;"></div>
+          </div>
+          <span style="font-size: 11px; font-weight: 700; color: #4f46e5;">50%</span>
+        </div>
+
+        <div class="card-action-footer">
+          <div class="action-left-btns">
+            <button type="button" class="btn-ghost-rev" onclick="showToast('Mengunduh Berkas Proposal PDF...', 'success')">
+              <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+              <span>Unduh PDF</span>
+            </button>
+            <button type="button" class="btn-ghost-rev" onclick="openModalPenilaian(3, 'dossier')">
+              <i class="fa-solid fa-file-lines" style="color: #4f46e5;"></i>
+              <span>Lihat Berkas Usulan</span>
+            </button>
+          </div>
+          <button type="button" class="btn-primary-rev" onclick="openModalPenilaian(3, 'scoring')">
+            <i class="fa-solid fa-pen"></i>
+            <span>Lanjutkan Penilaian</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PROPOSAL 4: Selesai Dinilai (100%) -->
+      <div class="proposal-clean-card completed">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Pengabdian Persyarikatan</span>
+            <span class="pill-status done"><i class="fa-solid fa-circle-check"></i> Selesai Dinilai</span>
+            <span class="pill-blind"><i class="fa-solid fa-user-secret"></i> Blind Review</span>
+          </div>
+          <span class="card-deadline-text" style="color: #047857;">
+            <i class="fa-solid fa-check"></i> Penilaian Final Terkirim
+          </span>
+        </div>
+
+        <h3 class="proposal-title-heading">
+          Pelatihan Literasi Keuangan Digital dan Kurasi Produk Halal bagi Pelaku UMKM Aisyiyah Cabang Medan Denai
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">
+            <i class="fa-solid fa-mosque" style="color: #64748b;"></i>
+            <span>Fokus: <strong>Ekonomi Syariah &amp; Industri Halal</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-coins" style="color: #64748b;"></i>
+            <span>Usulan Dana: <strong>Rp 25.000.000</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-trophy" style="color: #10b981;"></i>
+            <span>Skor Akhir: <strong style="color: #047857;">89.5 (Direkomendasikan Lolos)</strong></span>
+          </div>
+        </div>
+
+        <div class="compact-progress-row">
+          <span class="compact-progress-label">Progres Nilai: 4/4 Kriteria Selesai</span>
+          <div class="compact-progress-bar">
+            <div class="compact-progress-fill emerald" style="width: 100%;"></div>
+          </div>
+          <span style="font-size: 11px; font-weight: 700; color: #047857;">100%</span>
+        </div>
+
+        <div class="card-action-footer">
+          <div class="action-left-btns">
+            <button type="button" class="btn-ghost-rev" onclick="showToast('Mengunduh Berkas Proposal PDF...', 'success')">
+              <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+              <span>Unduh PDF</span>
+            </button>
+            <button type="button" class="btn-ghost-rev" onclick="openModalPenilaian(4, 'dossier')">
+              <i class="fa-solid fa-file-lines" style="color: #4f46e5;"></i>
+              <span>Lihat Berkas Usulan</span>
+            </button>
+          </div>
+          <button type="button" class="btn-ghost-rev" onclick="openModalPenilaian(4, 'scoring')" style="border-color: #10b981; color: #047857;">
+            <i class="fa-solid fa-eye"></i>
+            <span>Lihat Lembar Nilai</span>
+          </button>
+        </div>
+      </div>
 
     </div>
 
-    <!-- SECTION RIWAYAT REVIEW SAYA (KALIBRASI PENILAIAN) -->
-    <section class="review-panel-card" id="riwayatReviewSection">
-      <div class="review-panel-header">
-        <div class="review-panel-title-group">
-          <h3>
-            <i class="fa-solid fa-clock-rotate-left" style="color: #0284c7;"></i>
-            Riwayat Review Saya
-          </h3>
-          <p>Lihat hasil akhir usulan yang pernah Anda nilai, supaya standar penilaian makin terkalibrasi.</p>
+    <!-- LIST EVALUASI LAPORAN KEMAJUAN (Tersembunyi Awal) -->
+    <div class="review-items-container" id="evaluasiLaporanList" style="display: none;">
+      
+      <!-- Laporan Item 1 -->
+      <div class="proposal-clean-card in-progress">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Laporan Kemajuan Penelitian 2026</span>
+            <span class="pill-status draft"><i class="fa-solid fa-floppy-disk"></i> Draf Evaluasi</span>
+          </div>
+          <span class="card-deadline-text">Batas: 28 Nov 2026</span>
         </div>
 
-        <div class="rev-history-header-actions">
-          <div class="rev-search-input-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchReviewHistory" placeholder="Cari judul usulan / skema...">
-          </div>
-          <button type="button" class="btn-subnav-action" onclick="showToast('Menampilkan seluruh riwayat penilaian...')">
-            <span>Buka Semua Riwayat &rarr;</span>
+        <h3 class="proposal-title-heading">
+          Laporan Kemajuan: Model Prediksi Ketahanan Pangan Sumatera Utara dengan Pendekatan Spatial Econometrics
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">Ketua: <strong>Prof. Dr. Ir. M. Nasution, M.Sc</strong></div>
+          <div class="spec-item">Realisasi Anggaran: <strong>Rp 35.000.000 (70%)</strong></div>
+          <div class="spec-item">Capaian: <strong>Draf Jurnal SINTA 2</strong></div>
+        </div>
+
+        <div class="card-action-footer">
+          <button type="button" class="btn-ghost-rev" onclick="showToast('Mengunduh Laporan Kemajuan PDF...', 'success')">
+            <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i> Unduh Laporan
+          </button>
+          <button type="button" class="btn-primary-rev" onclick="showToast('Membuka formulir evaluasi laporan kemajuan...')">
+            <i class="fa-solid fa-pen"></i> Lanjutkan Evaluasi
           </button>
         </div>
       </div>
 
-      <div style="padding: 16px 22px;">
-        <div class="portal-table-wrapper">
-          <table class="portal-table" id="tabelRiwayatReview">
-            <thead>
-              <tr>
-                <th style="width: 45px; text-align: center;">No</th>
-                <th>Judul Usulan</th>
-                <th style="width: 220px;">Skema</th>
-                <th style="width: 110px; text-align: center;">Skor Saya</th>
-                <th style="width: 130px; text-align: center;">Tanggal</th>
-                <th style="width: 140px; text-align: center;">Hasil Akhir</th>
-                <th style="width: 90px; text-align: center;">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align: center;">1</td>
-                <td>
-                  <strong style="color: #0f172a; font-size: 0.84rem;">Sistem Klasifikasi Kualitas Biji Kopi Berbasis Visi Komputer dan IoT</strong>
-                  <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Pengusul: Dosen Fakultas Teknik UMSU</div>
-                </td>
-                <td>
-                  <span class="badge-scheme-tag">Penelitian Fundamental</span>
-                </td>
-                <td style="text-align: center; font-weight: 800; color: #0f172a; font-size: 0.95rem;">
-                  88.5
-                </td>
-                <td style="text-align: center; color: #64748b; font-size: 0.78rem;">
-                  12 Okt 2026
-                </td>
-                <td style="text-align: center;">
-                  <span class="badge-portal-status status-menyetujui" style="background: #10b981; color: white; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: 0.74rem;">
-                    Didanai
-                  </span>
-                </td>
-                <td style="text-align: center;">
-                  <button type="button" class="btn-portal-edit" onclick="openModalPenilaian(4)" title="Lihat Rekap Nilai">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="text-align: center;">2</td>
-                <td>
-                  <strong style="color: #0f172a; font-size: 0.84rem;">Pemberdayaan Kelompok Tani Aren di Tapanuli Selatan melalui Pengolahan Gula Semut Higienis</strong>
-                  <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Pengusul: Dosen Fakultas Pertanian UMSU</div>
-                </td>
-                <td>
-                  <span class="badge-scheme-tag">Pengabdian Kemitraan</span>
-                </td>
-                <td style="text-align: center; font-weight: 800; color: #0f172a; font-size: 0.95rem;">
-                  85.0
-                </td>
-                <td style="text-align: center; color: #64748b; font-size: 0.78rem;">
-                  18 Sep 2026
-                </td>
-                <td style="text-align: center;">
-                  <span class="badge-portal-status status-menyetujui" style="background: #10b981; color: white; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: 0.74rem;">
-                    Didanai
-                  </span>
-                </td>
-                <td style="text-align: center;">
-                  <button type="button" class="btn-portal-edit" onclick="showToast('Membuka lembar penilaian...')">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="text-align: center;">3</td>
-                <td>
-                  <strong style="color: #0f172a; font-size: 0.84rem;">Fabrikasi Membran Nanofiltrasi Air Gambut Berbasis Zeolit Alam Sumatera</strong>
-                  <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Pengusul: Dosen Program Studi Teknik Kimia</div>
-                </td>
-                <td>
-                  <span class="badge-scheme-tag">Penelitian Terapan</span>
-                </td>
-                <td style="text-align: center; font-weight: 800; color: #dc2626; font-size: 0.95rem;">
-                  68.0
-                </td>
-                <td style="text-align: center; color: #64748b; font-size: 0.78rem;">
-                  15 Agu 2025
-                </td>
-                <td style="text-align: center;">
-                  <span class="badge-portal-status" style="background: #fee2e2; color: #991b1b; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: 0.74rem; border: 1px solid #fecaca;">
-                    Tidak Didanai
-                  </span>
-                </td>
-                <td style="text-align: center;">
-                  <button type="button" class="btn-portal-edit" onclick="showToast('Membuka lembar penilaian...')">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td style="text-align: center;">4</td>
-                <td>
-                  <strong style="color: #0f172a; font-size: 0.84rem;">Digitalisasi Arsip Bersejarah Madrasah Diniyah UMSU Berbasis Repositori Cloud Terdistribusi</strong>
-                  <div style="font-size: 0.74rem; color: #64748b; margin-top: 2px;">Pengusul: Tim FAI &amp; FIKTI UMSU</div>
-                </td>
-                <td>
-                  <span class="badge-scheme-tag">Pengabdian Persyarikatan</span>
-                </td>
-                <td style="text-align: center; font-weight: 800; color: #0284c7; font-size: 0.95rem;">
-                  92.0
-                </td>
-                <td style="text-align: center; color: #64748b; font-size: 0.78rem;">
-                  10 Jul 2025
-                </td>
-                <td style="text-align: center;">
-                  <span class="badge-portal-status" style="background: #e0f2fe; color: #0369a1; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: 0.74rem; border: 1px solid #bae6fd;">
-                    Selesai 100%
-                  </span>
-                </td>
-                <td style="text-align: center;">
-                  <button type="button" class="btn-portal-edit" onclick="showToast('Membuka arsip evaluasi...')">
-                    <i class="fa-solid fa-eye"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- Laporan Item 2 -->
+      <div class="proposal-clean-card urgent">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Laporan Akhir Pengabdian 2026</span>
+            <span class="pill-status pending"><i class="fa-regular fa-clock"></i> Belum Dievaluasi</span>
+          </div>
+          <span class="card-deadline-text urgent">Batas: 30 Nov 2026</span>
         </div>
+
+        <h3 class="proposal-title-heading">
+          Laporan Akhir: Penerapan Mesin Pengering Gabah Tenaga Surya pada Gapoktan Sinar Tani Langkat
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">Ketua: <strong>Dr. Hendra Cipta, S.T., M.T.</strong></div>
+          <div class="spec-item">Realisasi Dana: <strong>Rp 40.000.000 (100%)</strong></div>
+          <div class="spec-item">Luaran: <strong>Video Dokumenter &amp; Media Cetak</strong></div>
+        </div>
+
+        <div class="card-action-footer">
+          <button type="button" class="btn-ghost-rev" onclick="showToast('Mengunduh Laporan Akhir PDF...', 'success')">
+            <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i> Unduh Laporan
+          </button>
+          <button type="button" class="btn-primary-rev" onclick="showToast('Membuka evaluasi laporan akhir...')">
+            <i class="fa-solid fa-pen-to-square"></i> Mulai Evaluasi
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIWAYAT PENILAIAN PANEL (MINIMAL DATA TABLE) -->
+    <section class="riwayat-section-panel" id="riwayatReviewSection">
+      <div class="riwayat-header">
+        <h3>
+          <i class="fa-solid fa-clock-rotate-left" style="color: #4f46e5;"></i>
+          Riwayat Penilaian Saya
+        </h3>
+        <span style="font-size: 12px; color: #64748b;">Arsip proposal yang pernah Anda nilai untuk kalibrasi objektivitas</span>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="clean-table" id="tabelRiwayatReview">
+          <thead>
+            <tr>
+              <th style="width: 40px; text-align: center;">No</th>
+              <th>Judul Usulan Penelitian</th>
+              <th style="width: 200px;">Skema</th>
+              <th style="width: 100px; text-align: center;">Skor Anda</th>
+              <th style="width: 120px; text-align: center;">Tanggal</th>
+              <th style="width: 120px; text-align: center;">Status LPPM</th>
+              <th style="width: 80px; text-align: center;">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center;">1</td>
+              <td>
+                <strong style="color: #0f172a;">Sistem Klasifikasi Kualitas Biji Kopi Berbasis Visi Komputer dan IoT</strong>
+                <div style="font-size: 11.5px; color: #64748b; margin-top: 2px;">Fakultas Teknik UMSU</div>
+              </td>
+              <td><span class="pill-scheme">Penelitian Fundamental</span></td>
+              <td style="text-align: center; font-weight: 800; color: #0f172a;">88.5</td>
+              <td style="text-align: center; color: #64748b; font-size: 12px;">12 Okt 2026</td>
+              <td style="text-align: center;"><span class="pill-status done">Didanai</span></td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-ghost-rev" onclick="openModalPenilaian(4, 'scoring')" style="padding: 4px 8px;">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">2</td>
+              <td>
+                <strong style="color: #0f172a;">Pemberdayaan Kelompok Tani Aren melalui Pengolahan Gula Semut Higienis</strong>
+                <div style="font-size: 11.5px; color: #64748b; margin-top: 2px;">Fakultas Pertanian UMSU</div>
+              </td>
+              <td><span class="pill-scheme">Pengabdian Kemitraan</span></td>
+              <td style="text-align: center; font-weight: 800; color: #0f172a;">85.0</td>
+              <td style="text-align: center; color: #64748b; font-size: 12px;">18 Sep 2026</td>
+              <td style="text-align: center;"><span class="pill-status done">Didanai</span></td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-ghost-rev" onclick="showToast('Membuka lembar arsip nilai...')" style="padding: 4px 8px;">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">3</td>
+              <td>
+                <strong style="color: #0f172a;">Fabrikasi Membran Nanofiltrasi Air Gambut Berbasis Zeolit Alam Sumatera</strong>
+                <div style="font-size: 11.5px; color: #64748b; margin-top: 2px;">Teknik Kimia UMSU</div>
+              </td>
+              <td><span class="pill-scheme">Penelitian Terapan</span></td>
+              <td style="text-align: center; font-weight: 800; color: #dc2626;">68.0</td>
+              <td style="text-align: center; color: #64748b; font-size: 12px;">15 Agu 2025</td>
+              <td style="text-align: center;"><span class="pill-status" style="background: #fef2f2; color: #dc2626;">Tidak Didanai</span></td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-ghost-rev" onclick="showToast('Membuka lembar arsip nilai...')" style="padding: 4px 8px;">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
   </main>
 
-  <!-- MODAL 1: FORM RUBRIK PENILAIAN USULAN (INTERACTIVE SCORING) -->
+  <!-- ================================================================= -->
+  <!-- MODAL 1: TABBED DOSSIER & SCORING MODAL (MINIMALIST & USER-FRIENDLY) -->
+  <!-- ================================================================= -->
   <div class="modal-backdrop" id="modalPenilaian" style="display: none;">
-    <div class="modal-dialog" style="max-width: 780px;">
+    <div class="modal-dialog-clean">
       
-      <div class="modal-header">
-        <div class="modal-title-wrap">
-          <div class="modal-icon-badge">
+      <!-- Modal Header -->
+      <div class="modal-header-clean">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 32px; height: 32px; border-radius: 6px; background: #eef2ff; color: #4f46e5; display: flex; align-items: center; justify-content: center; font-size: 15px;">
             <i class="fa-solid fa-scale-balanced"></i>
           </div>
           <div>
-            <h4 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0f172a;">Lembar Penilaian Substansi Proposal</h4>
-            <span id="modalPenilaianTagStatus" style="font-size: 0.78rem; color: #0284c7; font-weight: 700;">Status: PENILAIAN DRAF AKTIF</span>
+            <h4 class="modal-title-clean">Penilaian Usulan RisetMu LPPM</h4>
+            <span id="modalPenilaianTagStatus" style="font-size: 11.5px; color: #4f46e5; font-weight: 600;">Status: Penilaian Aktif</span>
           </div>
         </div>
-        <button type="button" class="modal-close-btn" onclick="closeModalPenilaian()" title="Tutup">&times;</button>
+        <button type="button" class="modal-close-clean" onclick="closeModalPenilaian()">&times;</button>
       </div>
 
-      <div class="modal-body" style="max-height: calc(90vh - 130px); overflow-y: auto;">
+      <!-- Nav Tabs -->
+      <div class="modal-nav-tabs-clean">
+        <button type="button" class="modal-tab-btn-clean active" id="tabBtnDossier" onclick="switchReviewModalTab('dossier')">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>1. Berkas Usulan Dosen</span>
+          <span class="modal-tab-badge-clean">Naskah &amp; RAB</span>
+        </button>
+        <button type="button" class="modal-tab-btn-clean" id="tabBtnScoring" onclick="switchReviewModalTab('scoring')">
+          <i class="fa-solid fa-pen-ruler"></i>
+          <span>2. Lembar Nilai &amp; Masukan</span>
+          <span class="modal-tab-badge-clean" id="modalTabBadgeScore">Skor: 0.0</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body-clean">
         
-        <!-- Info Ringkas Usulan -->
-        <div style="background: #f1f5f9; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px;">
-          <div style="font-size: 0.74rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Judul Usulan Penelitian:</div>
-          <h5 id="modalReviewTitle" style="margin: 4px 0 6px 0; font-size: 0.95rem; font-weight: 700; color: #0f172a; line-height: 1.4;">Judul Usulan</h5>
-          <div style="display: flex; gap: 14px; font-size: 0.78rem; color: #475569; flex-wrap: wrap;">
-            <span>Skema: <strong id="modalReviewScheme" style="color: #0284c7;">Skema</strong></span>
-            <span>&bull;</span>
-            <span>Usulan Dana: <strong id="modalReviewDana">Rp 0</strong></span>
-            <span>&bull;</span>
-            <span>Metode: <strong>Double-Blind Review</strong></span>
-          </div>
-        </div>
+        <!-- TAB 1: DOSSIER BERKAS USULAN DOSEN -->
+        <div id="tabContentDossier">
+          
+          <!-- Banner Ringkas Judul -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap;">
+              <span id="dossierSchemeBadge" class="pill-scheme">Penelitian Fundamental</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="pill-blind" id="dossierBlindStatus"><i class="fa-solid fa-user-secret"></i> Double-Blind Review</span>
+                <button type="button" class="btn-subnav-action" onclick="toggleBlindReviewRevealer()" style="padding: 2px 8px; font-size: 11px;">
+                  <i class="fa-solid fa-eye"></i> <span id="btnBlindToggleText">Buka Samaran</span>
+                </button>
+              </div>
+            </div>
 
-        <!-- Formulir Kriteria 1: Kebaruan (25%) -->
-        <div class="criteria-card-item">
-          <div class="criteria-card-head">
-            <div class="criteria-title-badge">1. Kebaruan dan Orisinalitas Ide Riset</div>
-            <div class="criteria-weight-tag">Bobot 25%</div>
-          </div>
-          <p style="font-size: 0.76rem; color: #64748b; margin: 0 0 8px 0;">Kejelasan *state of the art*, kebaruan pendekatan ilmiah, urgensi permasalahan.</p>
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-            <input type="range" class="score-range-slider" min="0" max="100" value="0" id="sliderC1" oninput="document.getElementById('scoreC1').value = this.value; calculateTotalScore();">
-            <input type="number" class="score-input-number" id="scoreC1" min="0" max="100" placeholder="0" oninput="document.getElementById('sliderC1').value = this.value; calculateTotalScore();">
-          </div>
-          <input type="text" class="portal-input" id="catatanC1" placeholder="Catatan/komentar reviewer untuk kriteria 1...">
-        </div>
+            <h3 id="dossierTitle" style="margin: 0 0 10px 0; font-size: 1.05rem; font-weight: 700; color: #0f172a; line-height: 1.45;">
+              Judul Usulan
+            </h3>
 
-        <!-- Formulir Kriteria 2: Metodologi (30%) -->
-        <div class="criteria-card-item">
-          <div class="criteria-card-head">
-            <div class="criteria-title-badge">2. Metodologi dan Kelayakan Pelaksanaan</div>
-            <div class="criteria-weight-tag">Bobot 30%</div>
-          </div>
-          <p style="font-size: 0.76rem; color: #64748b; margin: 0 0 8px 0;">Kesesuaian metode penelitian, tahapan kerja, parameter pengujian, dan jadwal riset.</p>
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-            <input type="range" class="score-range-slider" min="0" max="100" value="0" id="sliderC2" oninput="document.getElementById('scoreC2').value = this.value; calculateTotalScore();">
-            <input type="number" class="score-input-number" id="scoreC2" min="0" max="100" placeholder="0" oninput="document.getElementById('sliderC2').value = this.value; calculateTotalScore();">
-          </div>
-          <input type="text" class="portal-input" id="catatanC2" placeholder="Catatan/komentar reviewer untuk kriteria 2...">
-        </div>
-
-        <!-- Formulir Kriteria 3: Anggaran & Tim (20%) -->
-        <div class="criteria-card-item">
-          <div class="criteria-card-head">
-            <div class="criteria-title-badge">3. Kesesuaian Anggaran (RAB) dan Kualifikasi Tim</div>
-            <div class="criteria-weight-tag">Bobot 20%</div>
-          </div>
-          <p style="font-size: 0.76rem; color: #64748b; margin: 0 0 8px 0;">Kewajaran rincian RAB, efisiensi belanja bahan, relevansi kepakaran anggota tim.</p>
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-            <input type="range" class="score-range-slider" min="0" max="100" value="0" id="sliderC3" oninput="document.getElementById('scoreC3').value = this.value; calculateTotalScore();">
-            <input type="number" class="score-input-number" id="scoreC3" min="0" max="100" placeholder="0" oninput="document.getElementById('sliderC3').value = this.value; calculateTotalScore();">
-          </div>
-          <input type="text" class="portal-input" id="catatanC3" placeholder="Catatan/komentar reviewer untuk kriteria 3...">
-        </div>
-
-        <!-- Formulir Kriteria 4: Luaran (25%) -->
-        <div class="criteria-card-item">
-          <div class="criteria-card-head">
-            <div class="criteria-title-badge">4. Potensi Luaran dan Dampak Riset</div>
-            <div class="criteria-weight-tag">Bobot 25%</div>
-          </div>
-          <p style="font-size: 0.76rem; color: #64748b; margin: 0 0 8px 0;">Peluang publikasi jurnal bereputasi (SINTA/Scopus), prototipe/HKI, dan manfaat persyarikatan.</p>
-          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-            <input type="range" class="score-range-slider" min="0" max="100" value="0" id="sliderC4" oninput="document.getElementById('scoreC4').value = this.value; calculateTotalScore();">
-            <input type="number" class="score-input-number" id="scoreC4" min="0" max="100" placeholder="0" oninput="document.getElementById('sliderC4').value = this.value; calculateTotalScore();">
-          </div>
-          <input type="text" class="portal-input" id="catatanC4" placeholder="Catatan/komentar reviewer untuk kriteria 4...">
-        </div>
-
-        <!-- Catatan Umum -->
-        <div style="margin-top: 14px;">
-          <label class="portal-label">Kesimpulan dan Masukan Umum untuk Pengusul</label>
-          <textarea class="portal-textarea" id="catatanUmum" rows="3" placeholder="Tuliskan masukan komprehensif, saran perbaikan metodologi, atau revisi anggaran..."></textarea>
-        </div>
-
-        <!-- Total Skor Terbobot Bar -->
-        <div class="score-summary-bar">
-          <div>
-            <div style="font-size: 0.74rem; color: #94a3b8; text-transform: uppercase;">Total Skor Terbobot (0-100):</div>
-            <div class="score-summary-total" id="totalScoreDisplay">0.0</div>
-          </div>
-          <div style="text-align: right;">
-            <div style="font-size: 0.74rem; color: #94a3b8; text-transform: uppercase;">Rekomendasi Hasil:</div>
-            <div id="verdictDisplay" style="font-size: 0.95rem; font-weight: 800; color: #94a3b8;">BELUM DINILAI</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn-secondary" onclick="closeModalPenilaian()">Tutup</button>
-        <button type="button" class="btn-secondary" id="btnSaveDraftPenilaian" onclick="saveDraftPenilaian()" style="color: #0284c7; border-color: #0284c7;">
-          <i class="fa-regular fa-floppy-disk"></i>
-          <span>Simpan Draf</span>
-        </button>
-        <button type="button" class="btn-primary-save" id="btnSubmitPenilaian" onclick="submitPenilaianFinal()">
-          <i class="fa-solid fa-paper-plane"></i>
-          <span>Kirim Penilaian Final</span>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MODAL 2: DEKLARASI KONFLIK KEPENTINGAN -->
-  <div class="modal-backdrop" id="modalKonflik" style="display: none;">
-    <div class="modal-dialog" style="max-width: 580px;">
-      <div class="modal-header">
-        <div class="modal-title-wrap">
-          <div class="modal-icon-badge" style="background: #fffbeb; border-color: #fde68a; color: #d97706;">
-            <i class="fa-solid fa-handshake-slash"></i>
-          </div>
-          <div>
-            <h4 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0f172a;">Deklarasi Konflik Kepentingan</h4>
-            <span style="font-size: 0.78rem; color: #64748b;">Pengalihan usulan untuk menjaga independensi review</span>
-          </div>
-        </div>
-        <button type="button" class="modal-close-btn" onclick="closeModalKonflik()">&times;</button>
-      </div>
-
-      <form onsubmit="submitKonflikForm(event)">
-        <div class="modal-body">
-          <p style="font-size: 0.82rem; color: #475569; margin: 0 0 14px 0;">
-            Sesuai integritas akademik LPPM UMSU, jika Anda memiliki afiliasi dengan pengusul proposal, silakan nyatakan konflik kepentingan di bawah ini:
-          </p>
-
-          <div class="form-group" style="margin-bottom: 12px;">
-            <label class="portal-label">Pilih Usulan yang Mengalami Konflik <span class="required-star">*</span></label>
-            <select class="portal-select" required>
-              <option value="">-- Pilih Usulan --</option>
-              <option value="1">Implementasi Deep Learning Multi-Modal Tanaman Padi</option>
-              <option value="2">Pemberdayaan Kelompok Tani Smart Irrigation</option>
-              <option value="3">Sistem Telemedicine Syariah Enkripsi Kuantum</option>
-            </select>
+            <div style="display: flex; gap: 16px; font-size: 12.5px; color: #475569; flex-wrap: wrap; border-top: 1px dashed #e2e8f0; padding-top: 10px;">
+              <span>Usulan Dana: <strong id="dossierDana" style="color: #4f46e5; font-size: 13.5px;">Rp 0</strong></span>
+              <span>&bull;</span>
+              <span>Durasi: <strong id="dossierDurasi">12 Bulan</strong></span>
+              <span>&bull;</span>
+              <span>Target TKT: <strong id="dossierTKT">TKT 3 ke 5</strong></span>
+            </div>
           </div>
 
-          <div class="form-group" style="margin-bottom: 12px;">
-            <label class="portal-label">Jenis Hubungan / Alasan Konflik <span class="required-star">*</span></label>
-            <select class="portal-select" required>
-              <option value="Satu Program Studi / Tim Riset Aktif">Satu Program Studi / Laboratorium Riset yang Sama</option>
-              <option value="Hubungan Keluarga / Kekerabatan">Hubungan Keluarga / Kekerabatan dengan Pengusul</option>
-              <option value="Mitra Kerjasama Publikasi Bersama">Memiliki Publikasi Bersama dalam 2 Tahun Terakhir</option>
-              <option value="Lainnya">Lainnya</option>
-            </select>
+          <!-- Section 1: Identitas & Tim -->
+          <div class="dossier-card">
+            <h4 class="dossier-card-title">
+              <i class="fa-solid fa-users"></i> Identitas &amp; Tim Peneliti
+            </h4>
+
+            <div class="dossier-meta-grid-clean">
+              <div class="dossier-meta-box">
+                <small>Bidang Fokus Riset</small>
+                <span id="dossierBidangFokus">Pangan &amp; Pertanian</span>
+              </div>
+              <div class="dossier-meta-box">
+                <small>Tema Penelitian</small>
+                <span id="dossierTema">Teknologi Sensor Presisi</span>
+              </div>
+              <div class="dossier-meta-box">
+                <small>Topik Riset</small>
+                <span id="dossierTopik">Deteksi Dini Berbasis AI</span>
+              </div>
+              <div class="dossier-meta-box">
+                <small>Rumpun Ilmu</small>
+                <span id="dossierRumpun">Ilmu Komputer</span>
+              </div>
+            </div>
+
+            <div style="background: #f8fafc; border: 1px solid #f1f5f9; border-radius: 6px; padding: 10px 14px; font-size: 12.5px; color: #334155; line-height: 1.6;">
+              <div style="font-weight: 700; color: #64748b; font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Komposisi Tim:</div>
+              <div id="dossierTimContainer"><!-- Render via JS --></div>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label class="portal-label">Keterangan Tambahan</label>
-            <textarea class="portal-textarea" rows="2" placeholder="Tuliskan catatan singkat pengalihan..."></textarea>
-          </div>
-        </div>
+          <!-- Section 2: Substansi Usulan & Naskah -->
+          <div class="dossier-card">
+            <h4 class="dossier-card-title">
+              <i class="fa-solid fa-paragraph"></i> Ringkasan Abstrak &amp; Luaran
+            </h4>
 
-        <div class="modal-footer">
-          <button type="button" class="btn-secondary" onclick="closeModalKonflik()">Batal</button>
-          <button type="submit" class="btn-primary-save" style="background: #d97706; border-color: #d97706;">
-            <i class="fa-solid fa-check"></i>
-            <span>Konfirmasi &amp; Alihkan Usulan</span>
+            <div class="dossier-abstract-clean" id="dossierAbstrak">
+              Abstrak naskah proposal dosen...
+            </div>
+
+            <div style="margin: 14px 0 10px 0; font-size: 12.5px;">
+              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">Target Luaran Dijanjikan:</strong>
+              <div class="dossier-luaran-list" id="dossierLuaranList">
+                <!-- Render via JS -->
+              </div>
+            </div>
+
+            <!-- Download File Naskah -->
+            <div style="display: flex; align-items: center; justify-content: space-between; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 12px 16px; margin-top: 14px; flex-wrap: wrap; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-file-pdf" style="font-size: 24px; color: #ef4444;"></i>
+                <div>
+                  <strong style="font-size: 13px; color: #1e1b4b;" id="dossierNaskahNamaFile">Naskah_Proposal_Lengkap.pdf</strong>
+                  <div style="font-size: 11px; color: #6366f1;">Format RisetMu UMSU &bull; 32 Halaman</div>
+                </div>
+              </div>
+              <button type="button" class="btn-primary-rev" onclick="showToast('Mengunduh Naskah Proposal Lengkap (PDF)...', 'success')" style="padding: 6px 12px; font-size: 12px;">
+                <i class="fa-solid fa-download"></i> Unduh Naskah PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Section 3: Rencana Anggaran Biaya (RAB) -->
+          <div class="dossier-card">
+            <h4 class="dossier-card-title">
+              <i class="fa-solid fa-coins"></i> Rencana Anggaran Biaya (RAB)
+            </h4>
+
+            <table class="dossier-rab-table-clean">
+              <thead>
+                <tr>
+                  <th style="width: 35px; text-align: center;">No</th>
+                  <th>Kategori Belanja</th>
+                  <th>Rincian Kebutuhan</th>
+                  <th style="width: 130px; text-align: right;">Total Biaya</th>
+                </tr>
+              </thead>
+              <tbody id="dossierRabTableBody">
+                <!-- Render via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Section 4: Dokumen Pendukung -->
+          <div class="dossier-card">
+            <h4 class="dossier-card-title">
+              <i class="fa-solid fa-folder-open"></i> Dokumen Pendukung
+            </h4>
+            <div class="dossier-doc-card-list" id="dossierDocList">
+              <!-- Render via JS -->
+            </div>
+          </div>
+
+          <!-- Call to action button -->
+          <button type="button" class="btn-primary-rev" onclick="switchReviewModalTab('scoring')" style="width: 100%; justify-content: center; padding: 12px; font-size: 14px; margin-top: 8px;">
+            <span>Lanjut ke Lembar Nilai &amp; Scoring</span>
+            <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>
-      </form>
-    </div>
-  </div>
 
-  <!-- MODAL 3: PANDUAN LENGKAP RUBRIK PENILAIAN -->
-  <div class="modal-backdrop" id="modalRubrikFull" style="display: none;">
-    <div class="modal-dialog" style="max-width: 720px;">
-      <div class="modal-header">
-        <div class="modal-title-wrap">
-          <div class="modal-icon-badge">
-            <i class="fa-solid fa-book-open-reader"></i>
+        <!-- TAB 2: LEMBAR PENILAIAN RUBRIK & SCORING -->
+        <div id="tabContentScoring" style="display: none;">
+          
+          <div style="display: flex; align-items: center; justify-content: space-between; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-size: 12.5px; color: #4338ca;">
+            <span><i class="fa-solid fa-circle-info" style="margin-right: 6px;"></i> Isi skor (0 - 100) dan catatan evaluasi untuk setiap kriteria berikut.</span>
+            <button type="button" class="btn-ghost-rev" onclick="switchReviewModalTab('dossier')" style="padding: 4px 8px; font-size: 11px;">
+              <i class="fa-solid fa-eye"></i> Baca Ulang Usulan
+            </button>
           </div>
-          <div>
-            <h4 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #0f172a;">Panduan &amp; Rubrik Penilaian RisetMu</h4>
-            <span style="font-size: 0.78rem; color: #64748b;">Pedoman resmi reviewer LPPM UMSU Periode 2026</span>
+
+          <!-- Kriteria 1 -->
+          <div class="scoring-card-item">
+            <div class="scoring-card-head">
+              <span class="scoring-title">1. Kebaruan &amp; Orisinalitas Riset</span>
+              <span class="scoring-weight">Bobot 25%</span>
+            </div>
+            <p style="font-size: 12px; color: #64748b; margin: 0 0 8px 0;">Kejelasan *state of the art*, kebaruan pendekatan, dan urgensi permasalahan.</p>
+            <div class="scoring-controls-row">
+              <input type="range" class="scoring-slider" min="0" max="100" value="0" id="sliderC1" oninput="document.getElementById('scoreC1').value = this.value; calculateTotalScore();">
+              <input type="number" class="scoring-number-input" id="scoreC1" min="0" max="100" placeholder="0" oninput="document.getElementById('sliderC1').value = this.value; calculateTotalScore();">
+            </div>
+            <input type="text" class="scoring-note-input" id="catatanC1" placeholder="Catatan masukan untuk kriteria 1...">
           </div>
+
+          <!-- Kriteria 2 -->
+          <div class="scoring-card-item">
+            <div class="scoring-card-head">
+              <span class="scoring-title">2. Metodologi &amp; Kelayakan Pelaksanaan</span>
+              <span class="scoring-weight">Bobot 30%</span>
+            </div>
+            <p style="font-size: 12px; color: #64748b; margin: 0 0 8px 0;">Kesesuaian metode penelitian, tahapan kerja, parameter pengujian, dan jadwal riset.</p>
+            <div class="scoring-controls-row">
+              <input type="range" class="scoring-slider" min="0" max="100" value="0" id="sliderC2" oninput="document.getElementById('scoreC2').value = this.value; calculateTotalScore();">
+              <input type="number" class="scoring-number-input" id="scoreC2" min="0" max="100" placeholder="0" oninput="document.getElementById('sliderC2').value = this.value; calculateTotalScore();">
+            </div>
+            <input type="text" class="scoring-note-input" id="catatanC2" placeholder="Catatan masukan untuk kriteria 2...">
+          </div>
+
+          <!-- Kriteria 3 -->
+          <div class="scoring-card-item">
+            <div class="scoring-card-head">
+              <span class="scoring-title">3. Kesesuaian Anggaran (RAB) &amp; Tim</span>
+              <span class="scoring-weight">Bobot 20%</span>
+            </div>
+            <p style="font-size: 12px; color: #64748b; margin: 0 0 8px 0;">Kewajaran perincian RAB, efisiensi belanja bahan, dan kepakaran tim.</p>
+            <div class="scoring-controls-row">
+              <input type="range" class="scoring-slider" min="0" max="100" value="0" id="sliderC3" oninput="document.getElementById('scoreC3').value = this.value; calculateTotalScore();">
+              <input type="number" class="scoring-number-input" id="scoreC3" min="0" max="100" placeholder="0" oninput="document.getElementById('sliderC3').value = this.value; calculateTotalScore();">
+            </div>
+            <input type="text" class="scoring-note-input" id="catatanC3" placeholder="Catatan masukan untuk kriteria 3...">
+          </div>
+
+          <!-- Kriteria 4 -->
+          <div class="scoring-card-item">
+            <div class="scoring-card-head">
+              <span class="scoring-title">4. Potensi Luaran &amp; Dampak Riset</span>
+              <span class="scoring-weight">Bobot 25%</span>
+            </div>
+            <p style="font-size: 12px; color: #64748b; margin: 0 0 8px 0;">Peluang publikasi jurnal bereputasi (SINTA/Scopus), prototipe/HKI, dan manfaat persyarikatan.</p>
+            <div class="scoring-controls-row">
+              <input type="range" class="scoring-slider" min="0" max="100" value="0" id="sliderC4" oninput="document.getElementById('scoreC4').value = this.value; calculateTotalScore();">
+              <input type="number" class="scoring-number-input" id="scoreC4" min="0" max="100" placeholder="0" oninput="document.getElementById('sliderC4').value = this.value; calculateTotalScore();">
+            </div>
+            <input type="text" class="scoring-note-input" id="catatanC4" placeholder="Catatan masukan untuk kriteria 4...">
+          </div>
+
+          <!-- Catatan Umum -->
+          <div style="margin-top: 14px;">
+            <label style="display: block; font-size: 12.5px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
+              Kesimpulan &amp; Rekomendasi Umum untuk Pengusul:
+            </label>
+            <textarea class="scoring-note-input" id="catatanUmum" rows="3" placeholder="Tuliskan masukan komprehensif, evaluasi metodologi, atau revisi naskah..." style="resize: vertical;"></textarea>
+          </div>
+
+          <!-- Total Skor Summary -->
+          <div class="scoring-total-bar">
+            <div>
+              <div style="font-size: 11px; text-transform: uppercase; color: #94a3b8; font-weight: 700;">Total Skor Terbobot (0-100):</div>
+              <div class="scoring-total-num" id="totalScoreDisplay">0.0</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 11px; text-transform: uppercase; color: #94a3b8; font-weight: 700;">Rekomendasi Reviewer:</div>
+              <div id="verdictDisplay" style="font-size: 14px; font-weight: 800; color: #94a3b8;">BELUM DINILAI</div>
+            </div>
+          </div>
+
         </div>
-        <button type="button" class="modal-close-btn" onclick="closeModalPanduanRubrik()">&times;</button>
+
       </div>
 
-      <div class="modal-body">
-        <div class="portal-table-wrapper" style="margin-bottom: 14px;">
-          <table class="portal-table">
-            <thead>
-              <tr>
-                <th style="width: 50px; text-align: center;">No</th>
-                <th>Kriteria Penilaian</th>
-                <th style="width: 100px; text-align: center;">Bobot</th>
-                <th>Rentang Indikator Nilai</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align: center;">1</td>
-                <td><strong>Kebaruan &amp; Orisinalitas</strong></td>
-                <td style="text-align: center; font-weight: 800; color: #0284c7;">25%</td>
-                <td>80-100: Novelty sangat jelas, kontribusi keilmuan nyata.<br>60-79: Replikasi dengan variasi baru.<br>&lt;60: Tidak ada novelty.</td>
-              </tr>
-              <tr>
-                <td style="text-align: center;">2</td>
-                <td><strong>Metodologi &amp; Kelayakan</strong></td>
-                <td style="text-align: center; font-weight: 800; color: #0284c7;">30%</td>
-                <td>80-100: Metode teruji, road map jelas, indikator terukur.<br>60-79: Metode cukup lengkap, parameter perlu dipertajam.<br>&lt;60: Metode kabur.</td>
-              </tr>
-              <tr>
-                <td style="text-align: center;">3</td>
-                <td><strong>Kesesuaian Anggaran &amp; Tim</strong></td>
-                <td style="text-align: center; font-weight: 800; color: #0284c7;">20%</td>
-                <td>80-100: RAB wajar sesuai SBM, pembagian tugas tim proporsional.<br>60-79: RAB agak berlebih.<br>&lt;60: RAB tidak rasional.</td>
-              </tr>
-              <tr>
-                <td style="text-align: center;">4</td>
-                <td><strong>Luaran &amp; Dampak Riset</strong></td>
-                <td style="text-align: center; font-weight: 800; color: #0284c7;">25%</td>
-                <td>80-100: Jurnal Scopus/SINTA 2 realistis, paten/HKI siap diajukan.<br>60-79: Luaran mencukupi standar minimum.<br>&lt;60: Luaran minim.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn-secondary" onclick="closeModalPanduanRubrik()">Tutup</button>
-        <button type="button" class="btn-primary-save" onclick="showToast('Mengunduh Buku Panduan Reviewer (PDF)...', 'success')">
-          <i class="fa-solid fa-file-pdf"></i>
-          <span>Unduh Buku Panduan (PDF)</span>
+      <!-- Modal Footer -->
+      <div class="modal-footer-clean">
+        <button type="button" class="btn-ghost-rev" onclick="closeModalPenilaian()">Tutup</button>
+        <button type="button" class="btn-ghost-rev" id="btnSaveDraftPenilaian" onclick="saveDraftPenilaian()" style="color: #4f46e5; border-color: #c7d2fe;">
+          <i class="fa-regular fa-floppy-disk"></i> Simpan Draf
+        </button>
+        <button type="button" class="btn-primary-rev" id="btnSubmitPenilaian" onclick="submitPenilaianFinal()">
+          <i class="fa-solid fa-paper-plane"></i> Kirim Penilaian Final
         </button>
       </div>
+
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="site-footer" style="margin-top: 3rem;">
-    <div>&copy; 2026 Lembaga Penelitian dan Pengabdian Masyarakat (LPPM) UMSU. All rights reserved.</div>
-    <div class="footer-links">
-      <a href="javascript:void(0)">Kebijakan Privasi</a>
-      <span>|</span>
-      <a href="javascript:void(0)">Pedoman Reviewer</a>
-      <span>|</span>
-      <a href="javascript:void(0)">Bantuan Helpdesk</a>
+  <!-- MODAL PANDUAN RUBRIK -->
+  <div class="modal-backdrop" id="modalRubrikFull" style="display: none;">
+    <div class="modal-dialog-clean" style="max-width: 680px;">
+      <div class="modal-header-clean">
+        <h4 class="modal-title-clean">Panduan &amp; Rubrik Penilaian RisetMu</h4>
+        <button type="button" class="modal-close-clean" onclick="closeModalPanduanRubrik()">&times;</button>
+      </div>
+      <div class="modal-body-clean" style="font-size: 13px; color: #334155; line-height: 1.6;">
+        <p><strong>Standar Pembobotan Kriteria:</strong></p>
+        <ul>
+          <li><strong>Kebaruan &amp; Orisinalitas (Bobot 25%):</strong> State of the art dan orisinalitas riset.</li>
+          <li><strong>Metodologi (Bobot 30%):</strong> Kejelasan desain percobaan, sampel, tahapan riset.</li>
+          <li><strong>Kesesuaian Anggaran &amp; Tim (Bobot 20%):</strong> Rasionalitas pos belanja RAB terhadap SBM.</li>
+          <li><strong>Potensi Luaran (Bobot 25%):</strong> Publikasi Scopus/SINTA, HKI, buku, dan dampak sosial.</li>
+        </ul>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; margin-top: 14px;">
+          <strong>Ambang Batas Nilai:</strong>
+          <div>&bull; Nilai &ge; 80.0 : Direkomendasikan Didanai</div>
+          <div>&bull; Nilai 70.0 - 79.9 : Dipertimbangkan dengan Revisi</div>
+          <div>&bull; Nilai &lt; 70.0 : Tidak Direkomendasikan</div>
+        </div>
+      </div>
+      <div class="modal-footer-clean">
+        <button type="button" class="btn-ghost-rev" onclick="closeModalPanduanRubrik()">Tutup</button>
+      </div>
     </div>
-  </footer>
+  </div>
 
-  <!-- Toast Notification Container -->
-  <div id="toastContainer" class="toast-container"></div>
+  <!-- SCRIPTS -->
+  <script src="js/app.js?v=26"></script>
+  <script src="js/reviewer.js?v=5"></script>
 
-  <!-- Scripts -->
-  <script src="js/app.js?v=4"></script>
-  <script src="js/reviewer.js?v=1"></script>
+  <script>
+    // Atur active tab indicator pada navbar subnav reviewer
+    function setActiveSubnavTab(el) {
+      document.querySelectorAll('.subnav-tab-link').forEach(tab => tab.classList.remove('active'));
+      if (el) el.classList.add('active');
+    }
+
+    // Helper function for quick filter switching in reviewer.html
+    function switchFilter(type) {
+      const usulanContainer = document.getElementById('reviewUsulanList');
+      const laporanContainer = document.getElementById('evaluasiLaporanList');
+      const btns = document.querySelectorAll('.segmented-btn');
+
+      btns.forEach(b => {
+        if (b.getAttribute('data-filter') === type) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
+      const tabTugas = document.getElementById('subnavTugas');
+      const tabLaporan = document.getElementById('subnavLaporan');
+
+      if (type === 'usulan') {
+        if (usulanContainer) usulanContainer.style.display = 'flex';
+        if (laporanContainer) laporanContainer.style.display = 'none';
+        if (tabTugas) setActiveSubnavTab(tabTugas);
+      } else {
+        if (usulanContainer) usulanContainer.style.display = 'none';
+        if (laporanContainer) laporanContainer.style.display = 'flex';
+        if (tabLaporan) setActiveSubnavTab(tabLaporan);
+      }
+    }
+
+    function handleTaskSearch(query) {
+      const q = query.toLowerCase();
+      const cards = document.querySelectorAll('.proposal-clean-card');
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+  </script>
 </body>
 </html>

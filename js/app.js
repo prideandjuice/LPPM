@@ -242,7 +242,15 @@ function initDropdowns() {
         setTimeout(() => {
           window.location.href = 'reviewer.html';
         }, 400);
-      } else if ((val === 'DOSEN' || val === 'PENGUSUL') && window.location.pathname.includes('reviewer.html')) {
+      } else if (val === 'ADMIN LPPM' && !window.location.pathname.includes('admin-lppm.html')) {
+        setTimeout(() => {
+          window.location.href = 'admin-lppm.html';
+        }, 400);
+      } else if (val === 'PIMPINAN' && !window.location.pathname.includes('pimpinan.html')) {
+        setTimeout(() => {
+          window.location.href = 'pimpinan.html';
+        }, 400);
+      } else if (val === 'DOSEN' && !window.location.pathname.includes('index.html')) {
         setTimeout(() => {
           window.location.href = 'index.html';
         }, 400);

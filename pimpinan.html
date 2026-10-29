@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Pimpinan - LPPM UMSU &amp; RisetMu</title>
-  <meta name="description" content="Dashboard Eksekutif Pimpinan Universitas untuk Pengesahan dan Portofolio RisetMu LPPM UMSU">
+  <title>Portal Pimpinan - LPPM UMSU &amp; RisetMu</title>
+  <meta name="description" content="Portal Pengesahan Keputusan Pendanaan Proposal &amp; Portofolio Riset LPPM UMSU">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Stylesheets -->
+  <!-- Base & Pimpinan Stylesheets -->
   <link rel="stylesheet" href="css/style.css?v=28">
-  <link rel="stylesheet" href="css/pimpinan.css?v=1">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  <link rel="stylesheet" href="css/pimpinan.css?v=5">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
 </head>
 <body>
 
@@ -49,7 +49,7 @@
 
         <!-- Role Dropdown with Active PIMPINAN Role -->
         <div class="dropdown-wrapper">
-          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran" style="border-color: #fde68a; color: #b45309; background: #fffbeb;">
+          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran" style="border-color: #bae6fd; color: #0284c7; background: #f0f9ff;">
             <i class="fa-solid fa-building-columns"></i>
             <span id="selectedRole">PIMPINAN</span>
             <i class="fa-solid fa-chevron-down arrow-icon"></i>
@@ -71,15 +71,23 @@
           <div class="dropdown-menu notif-menu" id="notifMenu">
             <div class="notif-header">
               <span>Pemberitahuan Pimpinan</span>
-              <span class="notif-tag">1 Menunggu</span>
+              <span class="notif-tag">4 Menunggu</span>
             </div>
             <div class="notif-list">
               <div class="notif-item unread">
-                <div class="notif-icon bg-blue"><i class="fa-solid fa-stamp"></i></div>
+                <div class="notif-icon" style="background: #fffbeb; color: #b45309;"><i class="fa-solid fa-stamp"></i></div>
                 <div class="notif-text">
-                  <strong>18 Usulan Siap Disahkan</strong>
-                  <p>LPPM telah merampungkan pleno penilaian Batch 10 dan menunggu pengesahan Anda.</p>
-                  <small>30 menit lalu</small>
+                  <strong>Hasil Seleksi LPPM Siap Disahkan</strong>
+                  <p>4 usulan Batch 10 lolos passing grade menunggu persetujuan SK Rektor.</p>
+                  <small>15 menit lalu</small>
+                </div>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-icon" style="background: #f0f9ff; color: #0284c7;"><i class="fa-solid fa-file-contract"></i></div>
+                <div class="notif-text">
+                  <strong>Evaluasi Laporan Kemajuan</strong>
+                  <p>2 berkas laporan termin 1 siap diverifikasi untuk pencairan termin 2.</p>
+                  <small>1 jam lalu</small>
                 </div>
               </div>
             </div>
@@ -102,6 +110,7 @@
             </div>
             <div class="dropdown-divider"></div>
             <a href="admin-lppm.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i> Portal Admin LPPM</a>
+            <a href="reviewer.html" class="dropdown-item"><i class="fa-solid fa-scale-balanced"></i> Mode Reviewer</a>
             <a href="index.html" class="dropdown-item"><i class="fa-solid fa-house"></i> Mode Dosen</a>
             <div class="dropdown-divider"></div>
             <a href="index.html" class="dropdown-item text-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
@@ -111,323 +120,639 @@
     </div>
   </header>
 
-  <!-- SUB NAVIGATION MENU PIMPINAN (EXACT SCREENSHOT TABS) -->
+  <!-- SUB-NAVBAR PIMPINAN TABS (MATCHES REVIEWER SUBNAV SYSTEM) -->
   <nav class="pimpinan-subnav-bar">
     <div class="pimpinan-subnav-container">
       <div class="pimpinan-subnav-tabs">
-        <a href="pimpinan.html" class="pimpinan-subnav-tab active">
+        <a href="pimpinan.html" class="subnav-tab-link active" id="subnavDashboard" onclick="setActiveSubnavTab(this)">
+          <i class="fa-solid fa-house"></i>
           <span>Dashboard</span>
         </a>
-        <a href="javascript:void(0)" class="pimpinan-subnav-tab" onclick="openReviewModal()">
-          <span>Pengesahan</span>
+        <a href="#tugasPengesahanSection" class="subnav-tab-link" id="subnavPengesahan" onclick="setActiveSubnavTab(this); switchFilter('usulan')">
+          <i class="fa-solid fa-stamp"></i>
+          <span>Siap Disahkan</span>
+          <span class="subnav-tab-badge" id="badgeNavPengesahan">3</span>
         </a>
-        <a href="#skemaSection" class="pimpinan-subnav-tab" onclick="showToast('Membuka Portofolio Usulan Kampus', 'info')">
-          <span>Portofolio Usulan</span>
+        <a href="#tugasPengesahanSection" class="subnav-tab-link" id="subnavLaporan" onclick="setActiveSubnavTab(this); switchFilter('laporan')">
+          <i class="fa-solid fa-file-signature"></i>
+          <span>Evaluasi Laporan</span>
+          <span class="subnav-tab-badge" id="badgeNavLaporan">2</span>
         </a>
-        <a href="#luaranSection" class="pimpinan-subnav-tab" onclick="showToast('Membuka Monitoring Capaian & Luaran Strategis', 'info')">
-          <span>Capaian &amp; Luaran</span>
+        <a href="#riwayatSkSection" class="subnav-tab-link" id="subnavRiwayat" onclick="setActiveSubnavTab(this)">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>Riwayat SK &amp; Arsip</span>
         </a>
-        <a href="javascript:void(0)" class="pimpinan-subnav-tab" onclick="downloadSummaryPDF()">
-          <span>Laporan</span>
+        <a href="#analitikSection" class="subnav-tab-link" id="subnavAnalitik" onclick="setActiveSubnavTab(this)">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Portofolio Kampus</span>
         </a>
+      </div>
+
+      <div class="pimpinan-subnav-actions">
+        <button type="button" class="btn-subnav-action" onclick="downloadSummaryPDF()">
+          <i class="fa-solid fa-file-pdf" style="color: #38bdf8;"></i>
+          <span>Ringkasan SK &amp; Dana</span>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- MAIN DASHBOARD CONTENT -->
-  <main class="pimpinan-container">
+  <!-- MAIN CONTAINER (1280px Grid Centered like Reviewer) -->
+  <main class="app-container" style="max-width: 1280px; margin: 24px auto; padding: 0 24px;">
 
-    <!-- PAGE HEADER TITLE & CONTROLS -->
-    <div class="pimpinan-header-row">
-      <div class="pimpinan-header-left">
-        <h1>Dashboard Pimpinan</h1>
-        <p>Keputusan yang menunggu Anda, lalu gambaran besar riset dan pengabdian kampus.</p>
-      </div>
-
-      <div class="pimpinan-header-actions">
-        <!-- Batch Selector Dropdown -->
-        <div class="dropdown-wrapper">
-          <button type="button" class="btn-batch-select" id="batchSelectBtn" aria-expanded="false" style="padding: 8px 14px; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px; font-weight: 600; color: #334155; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
-            <span id="selectedBatchLabel">Batch 10 (2026/2027)</span>
-            <i class="fa-solid fa-chevron-down" style="font-size: 11px; color: #64748b;"></i>
-          </button>
-          <div class="dropdown-menu" id="batchSelectMenu">
-            <div class="dropdown-item active" data-batch="Batch 10 (2026/2027)"><i class="fa-solid fa-check"></i> Batch 10 (2026/2027) - Aktif</div>
-            <div class="dropdown-item" data-batch="Batch 9 (2025/2026)">Batch 9 (2025/2026)</div>
-            <div class="dropdown-item" data-batch="Batch 8 (2024/2025)">Batch 8 (2024/2025)</div>
-          </div>
-        </div>
-
-        <button type="button" class="btn-admin-outline" onclick="downloadSummaryPDF()" style="padding: 8px 16px; background: #ffffff; border: 1.5px solid #0284c7; border-radius: 8px; color: #0284c7; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
-          <i class="fa-regular fa-file-pdf"></i>
-          <span>Unduh ringkasan PDF</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- HERO SECTION: MENUNGGU PENGESAHAN ANDA -->
+    <!-- RICH CONTRAST HERO BANNER (ROYAL NAVY / EXECUTIVE) -->
     <div class="pimpinan-hero-card">
       <div class="pimpinan-hero-left">
-        <h2 class="hero-main-title">Menunggu pengesahan Anda</h2>
-        <p class="hero-main-subtitle">Hasil review Batch 10 sudah selesai dan direkomendasikan LPPM.</p>
-
-        <div class="hero-stats-row">
-          <!-- Stat 1 -->
-          <div class="hero-stat-block">
-            <span class="hero-stat-num">18</span>
-            <span class="hero-stat-label">Direkomendasikan didanai</span>
-          </div>
-
-          <!-- Stat 2 -->
-          <div class="hero-stat-block">
-            <span class="hero-stat-num">06</span>
-            <span class="hero-stat-label">Tidak direkomendasikan</span>
-          </div>
-
-          <!-- Stat 3 -->
-          <div class="hero-stat-block">
-            <span class="hero-stat-num">Rp 650.000.000</span>
-            <span class="hero-stat-label">Total dana, dari plafon Rp 850.000.000</span>
-          </div>
-        </div>
+        <h1>
+          <i class="fa-solid fa-building-columns" style="color: #38bdf8; font-size: 1.45rem;"></i>
+          Portal Pengesahan &amp; Keputusan Pimpinan
+        </h1>
+        <p>Otorisasi pengesahan hasil seleksi usulan LPPM, penetapan Surat Keputusan (SK) pendanaan, dan pemantauan capaian strategis riset UMSU.</p>
       </div>
 
-      <div class="pimpinan-hero-actions">
-        <button type="button" class="btn-admin-outline" onclick="openReviewModal()" style="padding: 9px 18px; font-size: 13px; font-weight: 700; border-radius: 8px; border: 1.5px solid #0284c7; background: #ffffff; color: #0284c7; cursor: pointer;">
-          Tinjau rekomendasi
-        </button>
-        <button type="button" class="btn-admin-primary" onclick="openSahkanModal()" style="padding: 9px 20px; font-size: 13px; font-weight: 700; border-radius: 8px; border: none; background: #0284c7; color: #ffffff; cursor: pointer; box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);">
-          <i class="fa-solid fa-stamp"></i> Sahkan batch
-        </button>
+      <div class="hero-pill-badge">
+        <i class="fa-solid fa-stamp" style="color: #38bdf8;"></i>
+        <span>Otoritas Pengesahan Batch 10 Aktif</span>
       </div>
     </div>
 
-    <!-- 4-METRIC STATS GRID -->
+    <!-- 4-STAT TINTED METRICS GRID (MATCHES REVIEWER CARDS PALETTE) -->
     <section class="pimpinan-metrics-grid">
-      <!-- Metric 1 -->
-      <div class="pimpinan-metric-card">
-        <div class="metric-card-title">Total usulan batch ini</div>
-        <div class="metric-card-value">48</div>
-        <div class="metric-delta-tag">
-          <i class="fa-solid fa-caret-up"></i>
-          <span>14% dibanding batch lalu</span>
+      <!-- Card 1: Warm Amber -->
+      <div class="pimpinan-metric-card card-amber">
+        <div class="metric-top-row">
+          <span class="metric-label-text">Menunggu Pengesahan</span>
+          <span class="metric-pill-tag amber">Prioritas SK</span>
         </div>
+        <div class="metric-value-number" id="metricPendingCount">03</div>
+        <span class="metric-sub-note">3 usulan lolos seleksi siap disahkan</span>
       </div>
 
-      <!-- Metric 2 -->
-      <div class="pimpinan-metric-card">
-        <div class="metric-card-title">Tingkat lolos</div>
-        <div class="metric-card-value">75%</div>
-        <div class="metric-delta-tag">
-          <i class="fa-solid fa-caret-up"></i>
-          <span>5% dibanding batch lalu</span>
+      <!-- Card 2: Soft Blue/Indigo -->
+      <div class="pimpinan-metric-card card-indigo">
+        <div class="metric-top-row">
+          <span class="metric-label-text">Total Usulan Masuk</span>
+          <span class="metric-pill-tag indigo">18 Lolos Seleksi</span>
         </div>
+        <div class="metric-value-number">48</div>
+        <span class="metric-sub-note">Tingkat kelolosan 75%</span>
       </div>
 
-      <!-- Metric 3 -->
-      <div class="pimpinan-metric-card">
-        <div class="metric-card-title">Dana terserap dari plafon</div>
-        <div class="metric-card-value">76%</div>
-        <div class="metric-delta-tag">
-          <i class="fa-solid fa-caret-up"></i>
-          <span>8% dibanding batch lalu</span>
+      <!-- Card 3: Soft Emerald -->
+      <div class="pimpinan-metric-card card-emerald">
+        <div class="metric-top-row">
+          <span class="metric-label-text">Telah Disahkan</span>
+          <span class="metric-pill-tag emerald">SK Terbit</span>
         </div>
+        <div class="metric-value-number" id="metricApprovedCount">14</div>
+        <span class="metric-sub-note">Rp 520.000.000 dana disahkan</span>
       </div>
 
-      <!-- Metric 4 -->
-      <div class="pimpinan-metric-card">
-        <div class="metric-card-title">Luaran terkirim dari target</div>
-        <div class="metric-card-value">82%</div>
-        <div class="metric-delta-tag">
-          <i class="fa-solid fa-caret-up"></i>
-          <span>12% dibanding batch lalu</span>
+      <!-- Card 4: Soft Violet -->
+      <div class="pimpinan-metric-card card-violet">
+        <div class="metric-top-row">
+          <span class="metric-label-text">Dana Terpakai</span>
+          <span class="metric-pill-tag slate">Terpakai 76.5%</span>
         </div>
+        <div class="metric-value-number">Rp 650Jt</div>
+        <span class="metric-sub-note">Dari total anggaran Rp 850 Jt</span>
       </div>
     </section>
 
-    <!-- MIDDLE ROW: TREN USULAN & PENDANAAN VS SEBARAN PER FAKULTAS -->
-    <div class="pimpinan-grid-60-40">
+    <!-- TASK FILTER BAR & SEARCH (MATCHES REVIEWER CONTROL BAR) -->
+    <div class="pimpinan-filter-bar" id="tugasPengesahanSection">
+      <div class="pimpinan-segmented-control">
+        <button type="button" class="segmented-btn active" data-filter="usulan" onclick="switchFilter('usulan')">
+          <i class="fa-solid fa-stamp"></i>
+          <span>Usulan Siap Pengesahan</span>
+          <span class="segmented-badge" id="badgeFilterUsulan">3</span>
+        </button>
+        <button type="button" class="segmented-btn" data-filter="laporan" onclick="switchFilter('laporan')">
+          <i class="fa-solid fa-file-signature"></i>
+          <span>Laporan &amp; Capaian Luaran</span>
+          <span class="segmented-badge" id="badgeFilterLaporan">2</span>
+        </button>
+        <button type="button" class="segmented-btn" data-filter="semua" onclick="switchFilter('semua')">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>Semua Usulan Batch 10</span>
+        </button>
+      </div>
+
+      <div class="pimpinan-search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchTaskInput" placeholder="Cari judul proposal, ketua, atau skema..." oninput="handleTaskSearch(this.value)">
+      </div>
+    </div>
+
+    <!-- LIST OF PROPOSALS (CLEAN & USABLE CARDS FOR LEADERSHIP) -->
+    <div class="pimpinan-items-container" id="pimpinanUsulanList">
       
-      <!-- Card Left: Tren Usulan dan Pendanaan -->
-      <div class="pimpinan-card-panel">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Tren usulan dan pendanaan</h3>
-            <p class="panel-subtitle">Per tahun akademik, lima tahun terakhir.</p>
+      <!-- PROPOSAL 1: Siap Disahkan (Urgent / Pending) -->
+      <div class="proposal-clean-card urgent" id="proposalCard_1" data-status="pending">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Penelitian Fundamental Reguler</span>
+            <span class="pill-status pending"><i class="fa-solid fa-stamp"></i> Siap Disahkan</span>
+            <span class="pill-faculty"><i class="fa-solid fa-building-columns"></i> Fakultas Pertanian</span>
+            <span class="pill-pleno-score"><i class="fa-solid fa-star"></i> Skor Seleksi: 89.5 (Lolos)</span>
           </div>
-          <div class="panel-legend">
-            <div class="legend-item">
-              <span class="legend-box primary"></span>
-              <span>Usulan masuk</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-box secondary"></span>
-              <span>Didanai</span>
-            </div>
+          <span class="card-deadline-text urgent">
+            <i class="fa-solid fa-triangle-exclamation"></i> Menunggu SK Rektor
+          </span>
+        </div>
+
+        <h3 class="proposal-title-heading">
+          Implementasi Deep Learning Multi-Modal untuk Deteksi Dini Penyakit Tanaman Padi Berbasis Citra Multispektral Drone
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">
+            <i class="fa-solid fa-user-graduate" style="color: #64748b;"></i>
+            <span>Ketua: <strong>Dr. Ir. Siti Rahmah, M.T.</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-wallet" style="color: #64748b;"></i>
+            <span>Rekomendasi Dana: <strong style="color: #0284c7;">Rp 48.500.000</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-scale-balanced" style="color: #64748b;"></i>
+            <span>Skor Reviewer: <strong>Rev 1: 90.0 &bull; Rev 2: 89.0</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-award" style="color: #64748b;"></i>
+            <span>Target Luaran: <strong>Scopus Q2 &bull; HKI Cipta</strong></span>
           </div>
         </div>
 
-        <!-- Custom Trend Chart Bars -->
-        <div class="trend-chart-container">
-          <!-- Year 2022 -->
-          <div class="trend-year-group" title="Tahun 2022: 24 Usulan, 10 Didanai">
-            <div class="trend-bars-pair">
-              <div class="trend-bar usulan" style="height: 40%;"></div>
-              <div class="trend-bar didanai" style="height: 18%;"></div>
-            </div>
-            <span class="trend-year-label">2022</span>
+        <div class="compact-progress-row">
+          <span class="compact-progress-label">Alur Penetapan: Reviewer Selesai &bull; Lolos Seleksi LPPM</span>
+          <div class="compact-progress-bar">
+            <div class="compact-progress-fill amber" style="width: 85%;"></div>
           </div>
+          <span style="font-size: 11px; font-weight: 700; color: #b45309;">Siap Sah</span>
+        </div>
 
-          <!-- Year 2023 -->
-          <div class="trend-year-group" title="Tahun 2023: 32 Usulan, 14 Didanai">
-            <div class="trend-bars-pair">
-              <div class="trend-bar usulan" style="height: 56%;"></div>
-              <div class="trend-bar didanai" style="height: 25%;"></div>
-            </div>
-            <span class="trend-year-label">2023</span>
+        <div class="card-action-footer">
+          <div class="action-left-btns">
+            <button type="button" class="btn-ghost-pim" onclick="showToast('Mengunduh Naskah Proposal Lengkap (PDF)...', 'success')">
+              <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+              <span>Unduh PDF</span>
+            </button>
+            <button type="button" class="btn-ghost-pim" onclick="openModalPengesahan(1, 'dossier')">
+              <i class="fa-solid fa-file-lines" style="color: #0284c7;"></i>
+              <span>Lihat Dossier Usulan</span>
+            </button>
           </div>
-
-          <!-- Year 2024 -->
-          <div class="trend-year-group" title="Tahun 2024: 38 Usulan, 16 Didanai">
-            <div class="trend-bars-pair">
-              <div class="trend-bar usulan" style="height: 68%;"></div>
-              <div class="trend-bar didanai" style="height: 30%;"></div>
-            </div>
-            <span class="trend-year-label">2024</span>
-          </div>
-
-          <!-- Year 2025 -->
-          <div class="trend-year-group" title="Tahun 2025: 42 Usulan, 18 Didanai">
-            <div class="trend-bars-pair">
-              <div class="trend-bar usulan" style="height: 82%;"></div>
-              <div class="trend-bar didanai" style="height: 38%;"></div>
-            </div>
-            <span class="trend-year-label">2025</span>
-          </div>
-
-          <!-- Year 2026 -->
-          <div class="trend-year-group" title="Tahun 2026: 48 Usulan, 24 Didanai">
-            <div class="trend-bars-pair">
-              <div class="trend-bar usulan" style="height: 100%;"></div>
-              <div class="trend-bar didanai" style="height: 50%;"></div>
-            </div>
-            <span class="trend-year-label">2026</span>
-          </div>
+          <button type="button" class="btn-primary-pim" onclick="openModalPengesahan(1, 'approval')">
+            <i class="fa-solid fa-stamp"></i>
+            <span>Tinjau &amp; Sahkan Usulan</span>
+          </button>
         </div>
       </div>
 
-      <!-- Card Right: Sebaran per Fakultas -->
-      <div class="pimpinan-card-panel">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Sebaran per fakultas</h3>
-            <p class="panel-subtitle">Jumlah usulan yang didanai batch ini.</p>
+      <!-- PROPOSAL 2: Siap Disahkan -->
+      <div class="proposal-clean-card urgent" id="proposalCard_2" data-status="pending">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Pengabdian Kemitraan Masyarakat</span>
+            <span class="pill-status pending"><i class="fa-solid fa-stamp"></i> Siap Disahkan</span>
+            <span class="pill-faculty"><i class="fa-solid fa-building-columns"></i> Fakultas Teknik</span>
+            <span class="pill-pleno-score"><i class="fa-solid fa-star"></i> Skor Seleksi: 86.0 (Lolos)</span>
+          </div>
+          <span class="card-deadline-text urgent">
+            <i class="fa-solid fa-triangle-exclamation"></i> Menunggu SK Rektor
+          </span>
+        </div>
+
+        <h3 class="proposal-title-heading">
+          Pemberdayaan Kelompok Tani Mandiri melalui Penerapan Smart Irrigation System dan Manajemen Rantai Pasok Berkelanjutan
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">
+            <i class="fa-solid fa-user-graduate" style="color: #64748b;"></i>
+            <span>Ketua: <strong>Ir. Bambang Hermanto, M.T.</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-wallet" style="color: #64748b;"></i>
+            <span>Rekomendasi Dana: <strong style="color: #0284c7;">Rp 35.000.000</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-scale-balanced" style="color: #64748b;"></i>
+            <span>Skor Reviewer: <strong>Rev 1: 85.0 &bull; Rev 2: 87.0</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-award" style="color: #64748b;"></i>
+            <span>Target Luaran: <strong>SINTA 3 &bull; Alat TTG Binjai</strong></span>
           </div>
         </div>
 
-        <div class="faculty-list">
-          <!-- Fakultas 1 -->
-          <div class="faculty-item">
-            <div class="faculty-meta-top">
-              <span class="faculty-name">Fakultas Kedokteran</span>
-              <span class="faculty-count">05</span>
-            </div>
-            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 90%;"></div></div>
+        <div class="compact-progress-row">
+          <span class="compact-progress-label">Alur Penetapan: Reviewer Selesai &bull; Lolos Seleksi LPPM</span>
+          <div class="compact-progress-bar">
+            <div class="compact-progress-fill amber" style="width: 85%;"></div>
           </div>
+          <span style="font-size: 11px; font-weight: 700; color: #b45309;">Siap Sah</span>
+        </div>
 
-          <!-- Fakultas 2 -->
-          <div class="faculty-item">
-            <div class="faculty-meta-top">
-              <span class="faculty-name">Fakultas Teknik</span>
-              <span class="faculty-count">04</span>
-            </div>
-            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 75%;"></div></div>
+        <div class="card-action-footer">
+          <div class="action-left-btns">
+            <button type="button" class="btn-ghost-pim" onclick="showToast('Mengunduh Naskah Proposal Lengkap (PDF)...', 'success')">
+              <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+              <span>Unduh PDF</span>
+            </button>
+            <button type="button" class="btn-ghost-pim" onclick="openModalPengesahan(2, 'dossier')">
+              <i class="fa-solid fa-file-lines" style="color: #0284c7;"></i>
+              <span>Lihat Dossier Usulan</span>
+            </button>
           </div>
+          <button type="button" class="btn-primary-pim" onclick="openModalPengesahan(2, 'approval')">
+            <i class="fa-solid fa-stamp"></i>
+            <span>Tinjau &amp; Sahkan Usulan</span>
+          </button>
+        </div>
+      </div>
 
-          <!-- Fakultas 3 -->
-          <div class="faculty-item">
-            <div class="faculty-meta-top">
-              <span class="faculty-name">Fakultas Pertanian</span>
-              <span class="faculty-count">03</span>
-            </div>
-            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 70%;"></div></div>
+      <!-- PROPOSAL 3: Siap Disahkan -->
+      <div class="proposal-clean-card urgent" id="proposalCard_3" data-status="pending">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Penelitian Terapan Unggulan</span>
+            <span class="pill-status pending"><i class="fa-solid fa-stamp"></i> Siap Disahkan</span>
+            <span class="pill-faculty"><i class="fa-solid fa-building-columns"></i> Fakultas Kedokteran</span>
+            <span class="pill-pleno-score"><i class="fa-solid fa-star"></i> Skor Seleksi: 84.5 (Lolos)</span>
           </div>
+          <span class="card-deadline-text urgent">
+            <i class="fa-solid fa-triangle-exclamation"></i> Menunggu SK Rektor
+          </span>
+        </div>
 
-          <!-- Fakultas 4 -->
-          <div class="faculty-item">
-            <div class="faculty-meta-top">
-              <span class="faculty-name">Fakultas Ekonomi &amp; Bisnis</span>
-              <span class="faculty-count">02</span>
-            </div>
-            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 50%;"></div></div>
-          </div>
+        <h3 class="proposal-title-heading">
+          Pengembangan Sistem Telemedicine Syariah Berbasis Enkripsi Kuantum untuk Kerahasiaan Rekam Medis Rumah Sakit Muhammadiyah
+        </h3>
 
-          <!-- Fakultas 5 -->
-          <div class="faculty-item">
-            <div class="faculty-meta-top">
-              <span class="faculty-name">Fakultas Agama Islam</span>
-              <span class="faculty-count">02</span>
-            </div>
-            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 35%;"></div></div>
+        <div class="proposal-specs-row">
+          <div class="spec-item">
+            <i class="fa-solid fa-user-graduate" style="color: #64748b;"></i>
+            <span>Ketua: <strong>Dr. Aisyah Putri, M.Kom.</strong></span>
           </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-wallet" style="color: #64748b;"></i>
+            <span>Rekomendasi Dana: <strong style="color: #0284c7;">Rp 65.000.000</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-scale-balanced" style="color: #64748b;"></i>
+            <span>Skor Reviewer: <strong>Rev 1: 85.0 &bull; Rev 2: 84.0</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-award" style="color: #64748b;"></i>
+            <span>Target Luaran: <strong>Scopus Q1/Q2 &bull; Paten Sederhana</strong></span>
+          </div>
+        </div>
 
-          <!-- Fakultas 6 -->
-          <div class="faculty-item">
-            <div class="faculty-meta-top">
-              <span class="faculty-name">Fakultas Ilmu Sosial &amp; Politik</span>
-              <span class="faculty-count">01</span>
-            </div>
-            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 20%;"></div></div>
+        <div class="compact-progress-row">
+          <span class="compact-progress-label">Alur Penetapan: Reviewer Selesai &bull; Lolos Seleksi LPPM</span>
+          <div class="compact-progress-bar">
+            <div class="compact-progress-fill amber" style="width: 85%;"></div>
           </div>
+          <span style="font-size: 11px; font-weight: 700; color: #b45309;">Siap Sah</span>
+        </div>
+
+        <div class="card-action-footer">
+          <div class="action-left-btns">
+            <button type="button" class="btn-ghost-pim" onclick="showToast('Mengunduh Naskah Proposal Lengkap (PDF)...', 'success')">
+              <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+              <span>Unduh PDF</span>
+            </button>
+            <button type="button" class="btn-ghost-pim" onclick="openModalPengesahan(3, 'dossier')">
+              <i class="fa-solid fa-file-lines" style="color: #0284c7;"></i>
+              <span>Lihat Dossier Usulan</span>
+            </button>
+          </div>
+          <button type="button" class="btn-primary-pim" onclick="openModalPengesahan(3, 'approval')">
+            <i class="fa-solid fa-stamp"></i>
+            <span>Tinjau &amp; Sahkan Usulan</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PROPOSAL 4: Telah Disahkan SK (Muncul di tab 'Semua Usulan Batch 10') -->
+      <div class="proposal-clean-card completed" id="proposalCard_4" data-status="approved" style="display: none;">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Pengabdian Persyarikatan</span>
+            <span class="pill-status done"><i class="fa-solid fa-circle-check"></i> Telah Disahkan SK</span>
+            <span class="pill-faculty"><i class="fa-solid fa-building-columns"></i> Fakultas Agama Islam</span>
+            <span class="pill-pleno-score"><i class="fa-solid fa-star"></i> Skor Seleksi: 82.0 (Didanai)</span>
+          </div>
+          <span class="card-deadline-text done">
+            <i class="fa-solid fa-stamp"></i> No. SK: SK-REK/UMSU/LPPM/2026/X-10
+          </span>
+        </div>
+
+        <h3 class="proposal-title-heading">
+          Pelatihan Literasi Keuangan Digital dan Kurasi Produk Halal bagi Pelaku UMKM Aisyiyah Cabang Medan Denai
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">
+            <i class="fa-solid fa-user-graduate" style="color: #64748b;"></i>
+            <span>Ketua: <strong>Hj. Nurhasanah, S.Ag., M.Hum.</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-wallet" style="color: #64748b;"></i>
+            <span>Dana Disahkan: <strong style="color: #047857;">Rp 25.000.000 (100%)</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-shield-check" style="color: #059669;"></i>
+            <span>Tanda Tangan: <strong>BSrE Terverifikasi Sah</strong></span>
+          </div>
+          <div class="spec-item">
+            <i class="fa-solid fa-award" style="color: #64748b;"></i>
+            <span>Target Luaran: <strong>Jurnal Terakreditasi &bull; Halal BPJPH</strong></span>
+          </div>
+        </div>
+
+        <div class="compact-progress-row">
+          <span class="compact-progress-label">Alur Penetapan: SK Rektor Diterbitkan &bull; Siap Kontrak</span>
+          <div class="compact-progress-bar">
+            <div class="compact-progress-fill emerald" style="width: 100%;"></div>
+          </div>
+          <span style="font-size: 11px; font-weight: 700; color: #047857;">100% Sah</span>
+        </div>
+
+        <div class="card-action-footer">
+          <div class="action-left-btns">
+            <button type="button" class="btn-ghost-pim" onclick="showToast('Mengunduh Naskah Proposal Lengkap (PDF)...', 'success')">
+              <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i>
+              <span>Unduh PDF</span>
+            </button>
+            <button type="button" class="btn-ghost-pim" onclick="openModalPengesahan(4, 'dossier')">
+              <i class="fa-solid fa-file-lines" style="color: #0284c7;"></i>
+              <span>Lihat Dossier Usulan</span>
+            </button>
+          </div>
+          <button type="button" class="btn-ghost-pim" onclick="openModalPengesahan(4, 'approval')" style="border-color: #10b981; color: #047857;">
+            <i class="fa-solid fa-file-contract"></i>
+            <span>Salinan SK Rektor</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Empty state when all pending proposals are approved -->
+      <div id="emptyPendingUsulan" style="display: none; background: #ffffff; border: 1.5px dashed #cbd5e1; border-radius: 10px; padding: 36px 20px; text-align: center;">
+        <i class="fa-solid fa-circle-check" style="font-size: 36px; color: #10b981; margin-bottom: 12px; display: block;"></i>
+        <h4 style="margin: 0 0 6px 0; color: #0f172a; font-weight: 800;">Seluruh Usulan Telah Disahkan</h4>
+        <p style="margin: 0; font-size: 13px; color: #64748b;">Tidak ada lagi usulan batch ini yang menunggu persetujuan SK. Anda dapat melihat arsip di tab <strong>Semua Usulan Batch 10</strong> atau <strong>Riwayat SK &amp; Arsip</strong>.</p>
+      </div>
+
+    </div>
+
+    <!-- LIST OF REPORTS / LAPORAN EVALUATION (MATCHES REVIEWER SUBSECTION) -->
+    <div class="pimpinan-items-container" id="pimpinanLaporanList" style="display: none;">
+      
+      <!-- Laporan Item 1 -->
+      <div class="proposal-clean-card in-progress">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Laporan Kemajuan Penelitian 2026</span>
+            <span class="pill-status draft"><i class="fa-solid fa-clock"></i> Verifikasi Termin 2</span>
+            <span class="pill-faculty">Fakultas Pertanian</span>
+          </div>
+          <span class="card-deadline-text">Realisasi 70%</span>
+        </div>
+
+        <h3 class="proposal-title-heading">
+          Laporan Kemajuan: Model Prediksi Ketahanan Pangan Sumatera Utara dengan Pendekatan Spatial Econometrics
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">Ketua: <strong>Prof. Dr. Ir. M. Nasution, M.Sc</strong></div>
+          <div class="spec-item">Realisasi Anggaran: <strong>Rp 35.000.000 (70%)</strong></div>
+          <div class="spec-item">Capaian: <strong>Draf Jurnal SINTA 2 Terbit</strong></div>
+        </div>
+
+        <div class="card-action-footer">
+          <button type="button" class="btn-ghost-pim" onclick="showToast('Mengunduh Berkas Laporan Kemajuan PDF...', 'success')">
+            <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i> Unduh Laporan
+          </button>
+          <button type="button" class="btn-primary-pim" onclick="showToast('Mengesahkan pencairan dana termin 2 (30%)...', 'success')">
+            <i class="fa-solid fa-stamp"></i> Sahkan Pencairan Termin 2
+          </button>
+        </div>
+      </div>
+
+      <!-- Laporan Item 2 -->
+      <div class="proposal-clean-card in-progress">
+        <div class="card-top-meta">
+          <div class="meta-badges-left">
+            <span class="pill-scheme">Laporan Akhir Pengabdian 2026</span>
+            <span class="pill-status draft"><i class="fa-solid fa-clock"></i> Verifikasi Laporan Akhir</span>
+            <span class="pill-faculty">Fakultas Teknik</span>
+          </div>
+          <span class="card-deadline-text">Realisasi 100%</span>
+        </div>
+
+        <h3 class="proposal-title-heading">
+          Laporan Akhir: Penerapan Mesin Pengering Gabah Tenaga Surya pada Gapoktan Sinar Tani Langkat
+        </h3>
+
+        <div class="proposal-specs-row">
+          <div class="spec-item">Ketua: <strong>Dr. Hendra Cipta, S.T., M.T.</strong></div>
+          <div class="spec-item">Realisasi Anggaran: <strong>Rp 40.000.000 (100%)</strong></div>
+          <div class="spec-item">Luaran: <strong>Video Dokumenter &amp; Berita Harian</strong></div>
+        </div>
+
+        <div class="card-action-footer">
+          <button type="button" class="btn-ghost-pim" onclick="showToast('Mengunduh Laporan Akhir PDF...', 'success')">
+            <i class="fa-solid fa-file-pdf" style="color: #ef4444;"></i> Unduh Laporan
+          </button>
+          <button type="button" class="btn-primary-pim" onclick="showToast('Mengesahkan Laporan Akhir & Penerbitan Sertifikat Peneliti...', 'success')">
+            <i class="fa-solid fa-stamp"></i> Sahkan Laporan Akhir
+          </button>
         </div>
       </div>
 
     </div>
 
-    <!-- BOTTOM ROW: CAPAIAN LUARAN VS TINGKAT LOLOS PER SKEMA -->
-    <div class="pimpinan-grid-40-60" id="luaranSection">
+    <!-- RIWAYAT SK & ARSIP PENETAPAN (CLEAN DATA TABLE MATCHES REVIEWER RIWAYAT) -->
+    <section class="riwayat-section-panel" id="riwayatSkSection">
+      <div class="riwayat-header">
+        <h3>
+          <i class="fa-solid fa-clock-rotate-left" style="color: #0284c7;"></i>
+          Riwayat Penerbitan Surat Keputusan (SK) Rektor
+        </h3>
+        <span style="font-size: 12px; color: #64748b;">Arsip resmi keputusan pendanaan dan pengesahan LPPM UMSU</span>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="clean-table" id="tabelRiwayatPimpinan">
+          <thead>
+            <tr>
+              <th style="width: 45px; text-align: center;">No</th>
+              <th style="min-width: 280px;">Judul Usulan / Program Riset</th>
+              <th style="width: 180px; white-space: nowrap;">Skema &amp; Fakultas</th>
+              <th style="width: 140px; text-align: right; white-space: nowrap;">Dana Disetujui</th>
+              <th class="col-sk" style="width: 250px; white-space: nowrap;">Nomor SK Rektor</th>
+              <th style="width: 120px; text-align: center; white-space: nowrap;">Tanggal Sah</th>
+              <th style="width: 120px; text-align: center; white-space: nowrap;">Status</th>
+              <th style="width: 80px; text-align: center; white-space: nowrap;">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center; font-weight: 600; color: #64748b;">1</td>
+              <td>
+                <strong style="color: #0f172a;">Pelatihan Literasi Keuangan Digital &amp; Kurasi Produk Halal UMKM Aisyiyah</strong>
+                <div style="font-size: 11.5px; color: #64748b; margin-top: 2px;">Ketua: Hj. Nurhasanah, S.Ag., M.Hum.</div>
+              </td>
+              <td style="white-space: nowrap;"><span class="pill-scheme">Pengabdian Persyarikatan</span><br><small style="color: #64748b;">Fak. Agama Islam</small></td>
+              <td style="text-align: right; font-weight: 700; color: #0f172a; white-space: nowrap;">Rp 25.000.000</td>
+              <td class="cell-sk"><span class="sk-number-pill"><i class="fa-solid fa-stamp" style="font-size: 10px; color: #0284c7;"></i> SK-REK/UMSU/LPPM/2026/X-10</span></td>
+              <td style="text-align: center; color: #64748b; font-size: 12px; white-space: nowrap;">28 Okt 2026</td>
+              <td style="text-align: center; white-space: nowrap;"><span class="pill-status done">Disahkan</span></td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-ghost-pim" onclick="openModalPengesahan(4, 'approval')" style="padding: 4px 8px;" title="Lihat SK">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 600; color: #64748b;">2</td>
+              <td>
+                <strong style="color: #0f172a;">Sistem Klasifikasi Kualitas Biji Kopi Berbasis Visi Komputer dan IoT</strong>
+                <div style="font-size: 11.5px; color: #64748b; margin-top: 2px;">Ketua: Ir. Faisal Riza, M.T.</div>
+              </td>
+              <td style="white-space: nowrap;"><span class="pill-scheme">Penelitian Fundamental</span><br><small style="color: #64748b;">Fak. Teknik</small></td>
+              <td style="text-align: right; font-weight: 700; color: #0f172a; white-space: nowrap;">Rp 45.000.000</td>
+              <td class="cell-sk"><span class="sk-number-pill"><i class="fa-solid fa-stamp" style="font-size: 10px; color: #0284c7;"></i> SK-REK/UMSU/LPPM/2026/IX-04</span></td>
+              <td style="text-align: center; color: #64748b; font-size: 12px; white-space: nowrap;">15 Sep 2026</td>
+              <td style="text-align: center; white-space: nowrap;"><span class="pill-status done">Disahkan</span></td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-ghost-pim" onclick="showToast('Membuka arsip SK Rektor...')" style="padding: 4px 8px;" title="Lihat SK">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 600; color: #64748b;">3</td>
+              <td>
+                <strong style="color: #0f172a;">Pemberdayaan Kelompok Tani Aren melalui Pengolahan Gula Semut Higienis</strong>
+                <div style="font-size: 11.5px; color: #64748b; margin-top: 2px;">Ketua: Dr. Ir. Wan Arfian, M.P.</div>
+              </td>
+              <td style="white-space: nowrap;"><span class="pill-scheme">Pengabdian Kemitraan</span><br><small style="color: #64748b;">Fak. Pertanian</small></td>
+              <td style="text-align: right; font-weight: 700; color: #0f172a; white-space: nowrap;">Rp 30.000.000</td>
+              <td class="cell-sk"><span class="sk-number-pill"><i class="fa-solid fa-stamp" style="font-size: 10px; color: #0284c7;"></i> SK-REK/UMSU/LPPM/2026/VIII-12</span></td>
+              <td style="text-align: center; color: #64748b; font-size: 12px; white-space: nowrap;">20 Agu 2026</td>
+              <td style="text-align: center; white-space: nowrap;"><span class="pill-status done">Disahkan</span></td>
+              <td style="text-align: center;">
+                <button type="button" class="btn-ghost-pim" onclick="showToast('Membuka arsip SK Rektor...')" style="padding: 4px 8px;" title="Lihat SK">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PORTOFOLIO KAMPUS & ANALITIK (CLEAN 2-COLUMN SECTION) -->
+    <section class="pimpinan-grid-60-40" id="analitikSection">
       
-      <!-- Card Left: Capaian Luaran Dibanding Target -->
+      <!-- Col 1: Sebaran per Fakultas -->
       <div class="pimpinan-card-panel">
         <div class="panel-header-row">
           <div>
-            <h3 class="panel-title">Capaian luaran dibanding target</h3>
-            <p class="panel-subtitle">Dari proposal yang didanai dan sudah selesai.</p>
+            <h3 class="panel-title">Sebaran Usulan per Fakultas</h3>
+            <p class="panel-subtitle">Jumlah proposal yang lolos seleksi batch ini.</p>
           </div>
+          <span style="font-size: 12px; font-weight: 700; color: #0284c7;">Batch 10 (Aktif)</span>
+        </div>
+
+        <div class="faculty-list">
+          <div class="faculty-item">
+            <div class="faculty-meta-top">
+              <span>Fakultas Kedokteran</span>
+              <strong>05 Proposal</strong>
+            </div>
+            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 85%;"></div></div>
+          </div>
+          <div class="faculty-item">
+            <div class="faculty-meta-top">
+              <span>Fakultas Teknik</span>
+              <strong>04 Proposal</strong>
+            </div>
+            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 75%;"></div></div>
+          </div>
+          <div class="faculty-item">
+            <div class="faculty-meta-top">
+              <span>Fakultas Pertanian</span>
+              <strong>03 Proposal</strong>
+            </div>
+            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 65%;"></div></div>
+          </div>
+          <div class="faculty-item">
+            <div class="faculty-meta-top">
+              <span>Fakultas Ekonomi &amp; Bisnis</span>
+              <strong>03 Proposal</strong>
+            </div>
+            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 55%;"></div></div>
+          </div>
+          <div class="faculty-item">
+            <div class="faculty-meta-top">
+              <span>Fakultas Agama Islam</span>
+              <strong>02 Proposal</strong>
+            </div>
+            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 40%;"></div></div>
+          </div>
+          <div class="faculty-item">
+            <div class="faculty-meta-top">
+              <span>Fakultas Ilmu Sosial &amp; Politik</span>
+              <strong>01 Proposal</strong>
+            </div>
+            <div class="faculty-bar-track"><div class="faculty-bar-fill" style="width: 25%;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: Capaian Luaran Dibanding Target -->
+      <div class="pimpinan-card-panel">
+        <div class="panel-header-row">
+          <div>
+            <h3 class="panel-title">Monitoring Capaian Luaran Strategis</h3>
+            <p class="panel-subtitle">Komitmen publikasi &amp; HKI dari usulan didanai.</p>
+          </div>
+          <span style="font-size: 12px; font-weight: 700; color: #059669;">Capaian 82%</span>
         </div>
 
         <div class="output-target-list">
-          <!-- Item 1 -->
           <div class="output-target-item">
             <div class="output-target-top">
-              <span class="output-target-name">Artikel jurnal terindeks</span>
+              <span class="output-target-name">Artikel Jurnal Bereputasi (Scopus / SINTA 1-2)</span>
               <span class="output-target-val">12 dari target 14</span>
             </div>
             <div class="output-target-bar-track"><div class="output-target-bar-fill" style="width: 85%;"></div></div>
           </div>
 
-          <!-- Item 2 -->
           <div class="output-target-item">
             <div class="output-target-top">
-              <span class="output-target-name">Prosiding seminar</span>
+              <span class="output-target-name">Prosiding Seminar Internasional</span>
               <span class="output-target-val">18 dari target 20</span>
             </div>
             <div class="output-target-bar-track"><div class="output-target-bar-fill" style="width: 90%;"></div></div>
           </div>
 
-          <!-- Item 3 -->
           <div class="output-target-item">
             <div class="output-target-top">
-              <span class="output-target-name">HKI dan produk</span>
+              <span class="output-target-name">Paten &amp; Hak Cipta Komputer (HKI)</span>
               <span class="output-target-val">04 dari target 10</span>
             </div>
             <div class="output-target-bar-track"><div class="output-target-bar-fill" style="width: 40%;"></div></div>
           </div>
 
-          <!-- Item 4 -->
           <div class="output-target-item">
             <div class="output-target-top">
-              <span class="output-target-name">Mitra dan dampak masyarakat</span>
+              <span class="output-target-name">Mitra UMKM / PkM Persyarikatan Berkelanjutan</span>
               <span class="output-target-val">06 dari target 12</span>
             </div>
             <div class="output-target-bar-track"><div class="output-target-bar-fill" style="width: 50%;"></div></div>
@@ -435,210 +760,327 @@
         </div>
       </div>
 
-      <!-- Card Right: Tingkat Lolos per Skema -->
-      <div class="pimpinan-card-panel" id="skemaSection">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Tingkat lolos per skema</h3>
-            <p class="panel-subtitle">Membantu memutuskan skema mana yang perlu diperkuat atau ditambah plafonnya.</p>
-          </div>
-          <a href="javascript:void(0)" class="panel-link-action" onclick="showToast('Membuka portofolio lengkap per skema penelitian & PkM...', 'info')" style="font-size: 12.5px; font-weight: 700; color: #0284c7; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
-            <span>Buka portofolio</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <table class="schema-table">
-          <thead>
-            <tr>
-              <th>Skema</th>
-              <th>Usulan</th>
-              <th>Didanai</th>
-              <th>Tingkat Lolos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Row 1 -->
-            <tr>
-              <td class="td-schema-title">Penelitian Fundamental</td>
-              <td class="td-num">18</td>
-              <td class="td-num">12</td>
-              <td>
-                <div class="td-rate-cell">
-                  <div class="rate-bar-track"><div class="rate-bar-fill" style="width: 67%;"></div></div>
-                  <span class="rate-percent-text">67%</span>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 2 -->
-            <tr>
-              <td class="td-schema-title">Penelitian Terapan</td>
-              <td class="td-num">12</td>
-              <td class="td-num">08</td>
-              <td>
-                <div class="td-rate-cell">
-                  <div class="rate-bar-track"><div class="rate-bar-fill" style="width: 67%;"></div></div>
-                  <span class="rate-percent-text">67%</span>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 3 -->
-            <tr>
-              <td class="td-schema-title">Pengabdian Kemitraan</td>
-              <td class="td-num">10</td>
-              <td class="td-num">07</td>
-              <td>
-                <div class="td-rate-cell">
-                  <div class="rate-bar-track"><div class="rate-bar-fill" style="width: 70%;"></div></div>
-                  <span class="rate-percent-text">70%</span>
-                </div>
-              </td>
-            </tr>
-
-            <!-- Row 4 -->
-            <tr>
-              <td class="td-schema-title">Pengabdian Persyarikatan</td>
-              <td class="td-num">08</td>
-              <td class="td-num">06</td>
-              <td>
-                <div class="td-rate-cell">
-                  <div class="rate-bar-track"><div class="rate-bar-fill" style="width: 75%;"></div></div>
-                  <span class="rate-percent-text">75%</span>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
+    </section>
 
   </main>
 
-  <!-- MODAL 1: TINJAU REKOMENDASI LPPM -->
-  <div id="tinjauModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-    <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 760px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
-      <div style="padding: 16px 20px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
-        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
-          <i class="fa-solid fa-clipboard-check" style="color: #0284c7;"></i>
-          Daftar Usulan Hasil Pleno Reviewer LPPM (Batch 10)
-        </h3>
-        <button type="button" onclick="closeReviewModal()" style="background: transparent; border: none; font-size: 18px; color: #64748b; cursor: pointer;">&times;</button>
-      </div>
-
-      <div style="padding: 20px; max-height: 65vh; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: #f0f9ff; padding: 10px 14px; border-radius: 8px; border: 1px solid #bae6fd;">
-          <span style="font-size: 12.5px; color: #0369a1; font-weight: 600;">18 Usulan Lolos Passing Grade (Skor &ge; 75.0) &bull; Total Dana: <strong>Rp 650.000.000</strong></span>
-          <span style="font-size: 11.5px; background: #0284c7; color: #ffffff; padding: 3px 8px; border-radius: 999px; font-weight: 700;">Kuotasi 100% Sesuai Plafon</span>
+  <!-- ================================================================= -->
+  <!-- MODAL: TABBED DOSSIER & PENGESAHAN SK PIMPINAN (IDENTICAL TO REVIEWER) -->
+  <!-- ================================================================= -->
+  <div class="modal-backdrop" id="modalPengesahan" style="display: none;">
+    <div class="modal-dialog-clean">
+      
+      <!-- Modal Header -->
+      <div class="modal-header-clean">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 32px; height: 32px; border-radius: 6px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 15px;">
+            <i class="fa-solid fa-stamp"></i>
+          </div>
+          <div>
+            <h4 class="modal-title-clean">Pengesahan Usulan LPPM UMSU &bull; Tingkat Pimpinan</h4>
+            <span id="modalPimpinanTagStatus" style="font-size: 11.5px; color: #0284c7; font-weight: 600;">Status: Menunggu Pengesahan Pimpinan</span>
+          </div>
         </div>
-
-        <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
-          <thead>
-            <tr style="border-bottom: 1.5px solid #e2e8f0; text-align: left; color: #64748b;">
-              <th style="padding: 6px 8px;">No</th>
-              <th style="padding: 6px 8px;">Judul &amp; Pengusul</th>
-              <th style="padding: 6px 8px;">Skema</th>
-              <th style="padding: 6px 8px; text-align: right;">Skor</th>
-              <th style="padding: 6px 8px; text-align: right;">Dana Disetujui</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom: 1px solid #f1f5f9;">
-              <td style="padding: 10px 8px;">1</td>
-              <td style="padding: 10px 8px;">
-                <strong>Implementasi AI &amp; Drone Multispektral Tanaman Padi</strong>
-                <div style="color: #64748b; font-size: 11px;">Dr. Ir. Siti Rahmah, M.T. &bull; Fak. Pertanian</div>
-              </td>
-              <td style="padding: 10px 8px;">Penelitian Fundamental</td>
-              <td style="padding: 10px 8px; text-align: right; font-weight: 800; color: #059669;">89.5</td>
-              <td style="padding: 10px 8px; text-align: right; font-weight: 700;">Rp 48.500.000</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f1f5f9;">
-              <td style="padding: 10px 8px;">2</td>
-              <td style="padding: 10px 8px;">
-                <strong>Smart Irrigation System Petani Mandiri</strong>
-                <div style="color: #64748b; font-size: 11px;">Ir. Bambang Hermanto, M.T. &bull; Fak. Teknik</div>
-              </td>
-              <td style="padding: 10px 8px;">Pengabdian Kemitraan</td>
-              <td style="padding: 10px 8px; text-align: right; font-weight: 800; color: #059669;">86.0</td>
-              <td style="padding: 10px 8px; text-align: right; font-weight: 700;">Rp 35.000.000</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f1f5f9;">
-              <td style="padding: 10px 8px;">3</td>
-              <td style="padding: 10px 8px;">
-                <strong>Telemedicine Syariah Enkripsi Kuantum RS Muhammadiyah</strong>
-                <div style="color: #64748b; font-size: 11px;">Dr. Aisyah Putri, M.Kom. &bull; Fak. Kedokteran</div>
-              </td>
-              <td style="padding: 10px 8px;">Penelitian Terapan</td>
-              <td style="padding: 10px 8px; text-align: right; font-weight: 800; color: #059669;">84.5</td>
-              <td style="padding: 10px 8px; text-align: right; font-weight: 700;">Rp 65.000.000</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f1f5f9;">
-              <td style="padding: 10px 8px;">4</td>
-              <td style="padding: 10px 8px;">
-                <strong>Literasi Keuangan Digital &amp; Produk Halal UMKM Aisyiyah</strong>
-                <div style="color: #64748b; font-size: 11px;">Hj. Nurhasanah, S.Ag., M.Hum. &bull; Fak. Agama Islam</div>
-              </td>
-              <td style="padding: 10px 8px;">Pengabdian Persyarikatan</td>
-              <td style="padding: 10px 8px; text-align: right; font-weight: 800; color: #059669;">82.0</td>
-              <td style="padding: 10px 8px; text-align: right; font-weight: 700;">Rp 25.000.000</td>
-            </tr>
-          </tbody>
-        </table>
-        <div style="text-align: center; margin-top: 10px; color: #64748b; font-size: 11.5px;">... dan 14 usulan lainnya telah memenuhi seluruh kriteria kelayakan.</div>
+        <button type="button" class="modal-close-clean" onclick="closeModalPengesahan()">&times;</button>
       </div>
 
-      <div style="padding: 14px 20px; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
-        <button type="button" class="btn-batch-select" onclick="closeReviewModal()">Tutup</button>
-        <button type="button" class="btn-admin-primary" onclick="closeReviewModal(); openSahkanModal();">
-          <i class="fa-solid fa-arrow-right"></i> Lanjutkan Pengesahan
+      <!-- Nav Tabs (Tab 1: Dossier Berkas | Tab 2: Lembar Pengesahan SK) -->
+      <div class="modal-nav-tabs-clean">
+        <button type="button" class="modal-tab-btn-clean active" id="tabBtnDossier" onclick="switchPimpinanModalTab('dossier')">
+          <i class="fa-solid fa-file-lines"></i>
+          <span>1. Berkas &amp; Rekam Jejak Usulan</span>
+          <span class="modal-tab-badge-clean">Naskah &amp; RAB</span>
+        </button>
+        <button type="button" class="modal-tab-btn-clean" id="tabBtnApproval" onclick="switchPimpinanModalTab('approval')">
+          <i class="fa-solid fa-stamp"></i>
+          <span>2. Lembar Pengesahan &amp; Penerbitan SK</span>
+          <span class="modal-tab-badge-clean" id="modalTabBadgeScore">Otorisasi Rektorat</span>
         </button>
       </div>
-    </div>
-  </div>
 
-  <!-- MODAL 2: SAHKAN BATCH -->
-  <div id="sahkanModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-    <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 520px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
-      <div style="padding: 16px 20px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
-        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a;">
-          <i class="fa-solid fa-stamp" style="color: #0284c7;"></i>
-          Pengesahan Keputusan Pendanaan Batch 10
-        </h3>
-        <button type="button" onclick="closeSahkanModal()" style="background: transparent; border: none; font-size: 18px; color: #64748b; cursor: pointer;">&times;</button>
-      </div>
+      <!-- Modal Body -->
+      <div class="modal-body-clean">
+        
+        <!-- ============================================ -->
+        <!-- TAB 1: DOSSIER BERKAS USULAN DOSEN & REVIEWER -->
+        <!-- ============================================ -->
+        <div id="tabContentDossier">
+          
+          <!-- Banner Ringkas Judul -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 18px; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap;">
+              <span id="dossierSchemeBadge" class="pill-scheme">Penelitian Fundamental Reguler</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="pill-faculty" id="dossierFacultyBadge"><i class="fa-solid fa-building-columns"></i> Fakultas Pertanian</span>
+                <span class="pill-pleno-score"><i class="fa-solid fa-check-double"></i> Lolos Passing Grade Seleksi</span>
+              </div>
+            </div>
 
-      <div style="padding: 20px;">
-        <p style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 14px;">
-          Dengan menekan tombol sahkan, Anda selaku <strong>Pimpinan / Rektorat UMSU</strong> secara resmi menyetujui pendanaan bagi <strong>18 usulan</strong> dengan total pagu anggaran <strong>Rp 650.000.000</strong>.
-        </p>
+            <h3 id="dossierTitle" style="margin: 0 0 10px 0; font-size: 1.05rem; font-weight: 700; color: #0f172a; line-height: 1.45;">
+              Judul Usulan
+            </h3>
 
-        <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 14px;">
-          <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">Nomor SK Penerbitan Otomatis:</div>
-          <div style="font-size: 13px; font-weight: 800; color: #0f172a;">SK-REK/UMSU/LPPM/2026/X-10</div>
-          <div style="font-size: 11px; color: #059669; margin-top: 4px;"><i class="fa-solid fa-shield-check"></i> Dilengkapi Tanda Tangan Elektronik Bersertifikasi (BSrE)</div>
+            <div style="display: flex; gap: 16px; font-size: 12.5px; color: #475569; flex-wrap: wrap; border-top: 1px dashed #e2e8f0; padding-top: 10px;">
+              <span>Rekomendasi Dana: <strong id="dossierDana" style="color: #0284c7; font-size: 13.5px;">Rp 0</strong></span>
+              <span>&bull;</span>
+              <span>Durasi: <strong id="dossierDurasi">12 Bulan</strong></span>
+              <span>&bull;</span>
+              <span>Target TKT: <strong id="dossierTKT">TKT 3 ke 5</strong></span>
+            </div>
+          </div>
+
+          <!-- Section 1: Identitas & Tim Pengusul -->
+          <div class="dossier-card">
+            <h4 class="dossier-card-title">
+              <i class="fa-solid fa-users"></i> Identitas &amp; Tim Peneliti
+            </h4>
+
+            <div class="dossier-meta-grid-clean">
+              <div class="dossier-meta-box">
+                <small>Bidang Fokus Riset</small>
+                <span id="dossierBidangFokus">Pangan &amp; Pertanian</span>
+              </div>
+              <div class="dossier-meta-box">
+                <small>Tema Penelitian</small>
+                <span id="dossierTema">Teknologi Sensor Presisi</span>
+              </div>
+              <div class="dossier-meta-box">
+                <small>Topik Riset</small>
+                <span id="dossierTopik">Deteksi Dini Berbasis AI</span>
+              </div>
+              <div class="dossier-meta-box">
+                <small>Rumpun Ilmu</small>
+                <span id="dossierRumpun">Ilmu Komputer / Informatika</span>
+              </div>
+            </div>
+
+            <div style="background: #f8fafc; border: 1px solid #f1f5f9; border-radius: 6px; padding: 10px 14px; font-size: 12.5px; color: #334155; line-height: 1.6;">
+              <div style="font-weight: 700; color: #64748b; font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Komposisi Tim:</div>
+              <div id="dossierTimContainer"><!-- Render via JS --></div>
+            </div>
+          </div>
+
+          <!-- Section 2: Ringkasan Abstrak & Rekomendasi Reviewer -->
+          <div class="dossier-card">
+            <h4 class="dossier-card-title">
+              <i class="fa-solid fa-paragraph"></i> Ringkasan Abstrak Proposal
+            </h4>
+
+            <div class="dossier-abstract-clean" id="dossierAbstrak">
+              Abstrak naskah proposal dosen...
+            </div>
+
+            <div style="margin: 14px 0 10px 0; font-size: 12.5px;">
+              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">Target Luaran Strategis Dijanjikan:</strong>
+              <div class="dossier-luaran-list" id="dossierLuaranList">
+                <!-- Render via JS -->
+              </div>
+            </div>
+
+            <!-- Catatan Tim Reviewer & LPPM -->
+            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 12px 14px; margin-top: 14px;">
+              <div style="font-size: 12px; font-weight: 700; color: #166534; margin-bottom: 4px;">
+                <i class="fa-solid fa-clipboard-check"></i> Catatan Tim Reviewer &amp; LPPM:
+              </div>
+              <div id="dossierReviewerNote" style="font-size: 12px; color: #14532d; line-height: 1.5;">
+                Proposal memiliki novelty tinggi dan target luaran jurnal terindeks Scopus Q2 terukur.
+              </div>
+            </div>
+
+            <!-- Unduh Berkas -->
+            <div style="display: flex; align-items: center; justify-content: space-between; background: #e0f2fe; border: 1px solid #bae6fd; border-radius: 8px; padding: 12px 16px; margin-top: 14px; flex-wrap: wrap; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-file-pdf" style="font-size: 24px; color: #ef4444;"></i>
+                <div>
+                  <strong style="font-size: 13px; color: #0c4a6e;">Naskah_Proposal_Lengkap_RisetMu.pdf</strong>
+                  <div style="font-size: 11px; color: #0284c7;">Dokumen Terverifikasi Admin LPPM &bull; 32 Halaman</div>
+                </div>
+              </div>
+              <button type="button" class="btn-primary-pim" onclick="showToast('Mengunduh Naskah Lengkap PDF...', 'success')" style="padding: 6px 12px; font-size: 12px;">
+                <i class="fa-solid fa-download"></i> Unduh Naskah PDF
+              </button>
+            </div>
+          </div>
+
+          <!-- Section 3: Rincian Anggaran Biaya (RAB) -->
+          <div class="dossier-card">
+            <h4 class="dossier-card-title">
+              <i class="fa-solid fa-coins"></i> Rekapitulasi Rincian Anggaran Biaya (RAB)
+            </h4>
+
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead>
+                  <tr style="background: #f8fafc; border-bottom: 1.5px solid #e2e8f0; text-align: left; color: #64748b;">
+                    <th style="padding: 8px 10px;">Kategori Anggaran</th>
+                    <th style="padding: 8px 10px;">Uraian Kegiatan &amp; Keperluan</th>
+                    <th style="padding: 8px 10px; text-align: right;">Total Biaya Disetujui</th>
+                  </tr>
+                </thead>
+                <tbody id="dossierRabTableBody">
+                  <!-- Render via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
 
-        <div style="display: flex; align-items: flex-start; gap: 8px;">
-          <input type="checkbox" id="chkAgree" checked style="margin-top: 3px; cursor: pointer;">
-          <label for="chkAgree" style="font-size: 12px; color: #475569; cursor: pointer;">
-            Saya telah meninjau rekapitulasi penilaian dan menyetujui pengumuman hasil pendanaan Batch 10 disiarkan kepada seluruh pengusul.
-          </label>
+        <!-- ============================================ -->
+        <!-- TAB 2: LEMBAR PENGESAHAN & PENERBITAN SK -->
+        <!-- ============================================ -->
+        <div id="tabContentApproval" style="display: none;">
+          
+          <!-- Summary Box Hasil Seleksi -->
+          <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 18px 20px; margin-bottom: 20px;">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;">
+              <!-- Left Column: Scheme, Title & Author -->
+              <div style="flex: 1; min-width: 0;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                  <span class="pill-scheme" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd;">Hasil Seleksi LPPM</span>
+                  <span class="pill-faculty" id="plenoFacultyBadge"><i class="fa-solid fa-building-columns"></i> Fakultas Pertanian</span>
+                </div>
+                <h4 style="margin: 0 0 6px 0; font-size: 1.05rem; font-weight: 800; color: #0f172a; line-height: 1.45;" id="plenoProposalTitle">
+                  Judul Usulan
+                </h4>
+                <div style="font-size: 12.5px; color: #64748b; display: flex; align-items: center; gap: 6px;">
+                  <i class="fa-solid fa-user-graduate" style="color: #94a3b8; font-size: 12px;"></i>
+                  <span id="plenoProposalKetua">Ketua Peneliti</span>
+                </div>
+              </div>
+
+              <!-- Right Column: Styled Score Card Box (Fixed Width, Crisp & Highlighted) -->
+              <div style="flex-shrink: 0; background: #ecfdf5; border: 1.5px solid #6ee7b7; border-radius: 8px; padding: 10px 16px; text-align: center; min-width: 140px; box-shadow: 0 2px 6px rgba(5, 150, 105, 0.06);">
+                <div style="font-size: 10.5px; font-weight: 700; color: #065f46; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px;">
+                  Skor Akhir Seleksi
+                </div>
+                <div style="font-size: 2rem; font-weight: 800; color: #047857; line-height: 1.1;" id="plenoSkorAngka">
+                  89.5
+                </div>
+                <div style="font-size: 11px; font-weight: 700; color: #059669; margin-top: 3px; display: inline-flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-circle-check"></i> Direkomendasikan
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Row: 3 Highlighted Metric Pills -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed #cbd5e1;">
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 10px;">
+                <div style="width: 26px; height: 26px; border-radius: 5px; background: #f0fdf4; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">
+                  1
+                </div>
+                <div>
+                  <div style="font-size: 10.5px; color: #64748b; font-weight: 600;">Skor Reviewer 1</div>
+                  <div style="font-size: 13px; font-weight: 800; color: #0f172a;" id="plenoRev1Score">90.0</div>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 10px;">
+                <div style="width: 26px; height: 26px; border-radius: 5px; background: #f0fdf4; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">
+                  2
+                </div>
+                <div>
+                  <div style="font-size: 10.5px; color: #64748b; font-weight: 600;">Skor Reviewer 2</div>
+                  <div style="font-size: 13px; font-weight: 800; color: #0f172a;" id="plenoRev2Score">89.0</div>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 10px;">
+                <div style="width: 26px; height: 26px; border-radius: 5px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 12px;">
+                  <i class="fa-solid fa-coins"></i>
+                </div>
+                <div>
+                  <div style="font-size: 10.5px; color: #64748b; font-weight: 600;">Rekomendasi Dana LPPM</div>
+                  <div style="font-size: 13px; font-weight: 800; color: #0284c7;" id="plenoRekomendasiDana">Rp 48.500.000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Keputusan Pimpinan -->
+          <div class="form-group-pim">
+            <label class="form-label-pim">Keputusan Akhir Pimpinan Universitas / Rektorat:</label>
+            <div class="radio-decision-cards">
+              <!-- Option 1: Sahkan -->
+              <label class="decision-card-label selected" id="decisionLabel_approve" onclick="selectDecision('approve')">
+                <input type="radio" name="pimpinanDecision" value="approve" checked>
+                <div class="decision-title" style="color: #059669;">
+                  <i class="fa-solid fa-stamp"></i> Setujui &amp; Terbitkan SK
+                </div>
+                <div class="decision-desc">Usulan didanai penuh sesuai hasil seleksi LPPM UMSU.</div>
+              </label>
+
+              <!-- Option 2: Revisi Anggaran -->
+              <label class="decision-card-label" id="decisionLabel_revision" onclick="selectDecision('revision')">
+                <input type="radio" name="pimpinanDecision" value="revision">
+                <div class="decision-title" style="color: #d97706;">
+                  <i class="fa-solid fa-pen-ruler"></i> Setujui Penyesuaian Dana
+                </div>
+                <div class="decision-desc">Disetujui didanai dengan nominal plafon yang disesuaikan.</div>
+              </label>
+
+              <!-- Option 3: Tolak / Tunda -->
+              <label class="decision-card-label" id="decisionLabel_reject" onclick="selectDecision('reject')">
+                <input type="radio" name="pimpinanDecision" value="reject">
+                <div class="decision-title" style="color: #dc2626;">
+                  <i class="fa-solid fa-ban"></i> Tunda / Evaluasi Ulang
+                </div>
+                <div class="decision-desc">Kembalikan usulan ke LPPM untuk evaluasi substansi ulang.</div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Nominal Dana Disetujui -->
+          <div class="form-group-pim" id="wrapperDanaInput">
+            <label class="form-label-pim">Penetapan Besaran Dana Akhir (Rp):</label>
+            <input type="text" class="form-control-pim" id="inputDanaDisetujui" value="Rp 48.500.000" style="font-weight: 700; font-size: 14px; color: #0f172a;">
+            <small style="color: #64748b; font-size: 11px; margin-top: 4px; display: block;">Besaran anggaran resmi yang akan dicantumkan dalam lampiran Surat Keputusan Rektor.</small>
+          </div>
+
+          <!-- Catatan / Arahan Strategis Pimpinan -->
+          <div class="form-group-pim">
+            <label class="form-label-pim">Catatan &amp; Arahan Strategis Pimpinan (Opsional):</label>
+            <textarea class="form-control-pim" id="catatanPimpinan" rows="3" placeholder="Masukkan arahan strategis, pesan hilirisasi hasil riset, atau catatan luaran wajib bagi tim peneliti..."></textarea>
+          </div>
+
+          <!-- SK Rektor Preview Box -->
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 14px; margin-bottom: 16px;">
+            <div style="font-size: 11.5px; color: #64748b; margin-bottom: 2px;">Format Nomor SK Penerbitan Otomatis:</div>
+            <div style="font-size: 13.5px; font-weight: 800; color: #0284c7; white-space: nowrap; font-family: 'SFMono-Regular', Consolas, monospace; letter-spacing: 0.2px;" id="fieldNoSKRektor">SK-REK/UMSU/LPPM/2026/X-01</div>
+            <div style="font-size: 11px; color: #059669; margin-top: 4px; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-shield-check"></i> Dilengkapi Tanda Tangan Elektronik Bersertifikasi (BSrE BSSN)
+            </div>
+          </div>
+
+          <!-- Checkbox Persetujuan -->
+          <div style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px;">
+            <input type="checkbox" id="chkAgreePimpinan" checked style="margin-top: 3px; cursor: pointer;">
+            <label for="chkAgreePimpinan" style="font-size: 12px; color: #334155; cursor: pointer; line-height: 1.4;">
+              Saya selaku <strong>Pimpinan / Rektorat UMSU</strong> telah meneliti hasil seleksi dan pertimbangan LPPM serta secara sah menyetujui pendanaan usulan ini dan menandatangani SK penerbitan secara digital.
+            </label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer-clean">
+        <button type="button" class="btn-ghost-pim" onclick="closeModalPengesahan()">Tutup</button>
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn-ghost-pim" onclick="showToast('Draf keputusan pimpinan berhasil disimpan sementara.', 'info')">
+            <i class="fa-solid fa-floppy-disk"></i> Simpan Draf
+          </button>
+          <button type="button" class="btn-primary-pim" onclick="submitPengesahanPimpinan()">
+            <i class="fa-solid fa-stamp"></i> Sahkan &amp; Terbitkan SK
+          </button>
         </div>
       </div>
 
-      <div style="padding: 14px 20px; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 8px; background: #f8fafc;">
-        <button type="button" class="btn-batch-select" onclick="closeSahkanModal()">Batal</button>
-        <button type="button" class="btn-admin-primary" onclick="submitSahkanBatch()">
-          <i class="fa-solid fa-check"></i> Sahkan &amp; Terbitkan SK
-        </button>
-      </div>
     </div>
   </div>
 
   <!-- Standard Scripts -->
-  <script src="js/pimpinan.js?v=1"></script>
+  <script src="js/pimpinan.js?v=3"></script>
 </body>
 </html>

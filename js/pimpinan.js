@@ -697,6 +697,101 @@ function submitPengesahanPimpinan() {
   showToast(`Usulan "${p.title.substring(0, 32)}..." berhasil disahkan & dialihkan ke tab 'Semua Usulan'!`, 'success');
 }
 
+// Navigasi Sub-Navbar Utama (Dashboard, Pengesahan, Portofolio, Capaian, Laporan)
+function switchMainView(viewName) {
+  const tabs = document.querySelectorAll('.subnav-tab-link');
+  tabs.forEach(t => t.classList.remove('active'));
+
+  if (viewName === 'dashboard') {
+    const el = document.getElementById('subnavDashboard');
+    if (el) el.classList.add('active');
+    const target = document.getElementById('dashboardSection');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  } else if (viewName === 'pengesahan') {
+    const el = document.getElementById('subnavPengesahan');
+    if (el) el.classList.add('active');
+    switchFilter('usulan');
+    const target = document.getElementById('tugasPengesahanSection');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  } else if (viewName === 'portofolio') {
+    const el = document.getElementById('subnavPortofolio');
+    if (el) el.classList.add('active');
+    const target = document.getElementById('riwayatSkSection');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  } else if (viewName === 'capaian') {
+    const el = document.getElementById('subnavCapaian');
+    if (el) el.classList.add('active');
+    const target = document.getElementById('capaianSection');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  } else if (viewName === 'laporan') {
+    const el = document.getElementById('subnavLaporan');
+    if (el) el.classList.add('active');
+    switchFilter('laporan');
+    const target = document.getElementById('tugasPengesahanSection');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// Shortcut Scroll ke Bagian Pengesahan dari Banner
+function scrollToPengesahan() {
+  switchMainView('pengesahan');
+}
+
+// Modal Sahkan Batch Kolektif
+function openModalSahkanBatch() {
+  const modal = document.getElementById('modalSahkanBatch');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModalSahkanBatch() {
+  const modal = document.getElementById('modalSahkanBatch');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+function submitBatchApproval() {
+  const chk = document.getElementById('chkAgreeBatch');
+  if (chk && !chk.checked) {
+    showToast('Harap centang konfirmasi pengesahan SK Kolektif.', 'error');
+    return;
+  }
+
+  // Sahkan seluruh proposal pending
+  Object.keys(PIMPINAN_PROPOSALS).forEach(id => {
+    const p = PIMPINAN_PROPOSALS[id];
+    if (p.status === 'pending') {
+      p.status = 'approved';
+      p.noSK = `SK-REK/UMSU/LPPM/2026/X-BATCH10`;
+      p.tglSah = 'Hari ini, ' + new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      const card = document.getElementById('proposalCard_' + p.id);
+      if (card) {
+        card.setAttribute('data-status', 'approved');
+        card.classList.remove('urgent');
+        card.classList.add('completed');
+        const st = card.querySelector('.pill-status');
+        if (st) {
+          st.className = 'pill-status done';
+          st.innerHTML = '<i class="fa-solid fa-circle-check"></i> Telah Disahkan SK';
+        }
+      }
+    }
+  });
+
+  // Perbarui counter banner
+  const recCount = document.getElementById('decisionCountRecommended');
+  if (recCount) recCount.textContent = '00';
+
+  updatePimpinanCounters();
+  closeModalSahkanBatch();
+  showToast('18 Usulan Batch 10 berhasil disahkan serentak dengan SK Kolektif Rektor!', 'success');
+}
+
 // Download PDF / Excel Summary
 function downloadSummaryPDF() {
   showToast('Menyiapkan Berkas Ringkasan Portofolio & Surat Keputusan (PDF)...', 'info');

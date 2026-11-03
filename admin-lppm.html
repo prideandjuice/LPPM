@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Admin LPPM - LPPM UMSU &amp; RisetMu</title>
-  <meta name="description" content="Dashboard Manajemen dan Monitoring Usulan RisetMu LPPM UMSU">
+  <title>Pusat Komando Admin LPPM - LPPM UMSU &amp; RisetMu</title>
+  <meta name="description" content="Sistem Informasi Manajemen dan Pengendalian Usulan Riset & Pengabdian LPPM UMSU">
 
-  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Stylesheets -->
+  <!-- Base & Bespoke Admin Workspace Stylesheets -->
   <link rel="stylesheet" href="css/style.css?v=28">
-  <link rel="stylesheet" href="css/admin-lppm.css?v=1">
+  <link rel="stylesheet" href="css/admin-lppm.css?v=23">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
 </head>
-<body>
+<body style="background-color: #f8fafc;">
 
   <!-- TOP HEADER / NAVBAR (STANDARD LPPM) -->
   <header class="top-header">
@@ -49,7 +49,7 @@
 
         <!-- Role Dropdown with Active ADMIN LPPM Role -->
         <div class="dropdown-wrapper">
-          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran" style="border-color: #bae6fd; color: #0284c7; background: #f0f9ff;">
+          <button class="pill-btn nav-dropdown-btn" id="roleDropdownBtn" aria-expanded="false" title="Ganti Peran" style="border-color: #bae6fd; color: #0284c7; background: #f0f9ff; font-weight: 700;">
             <i class="fa-solid fa-user-shield"></i>
             <span id="selectedRole">ADMIN LPPM</span>
             <i class="fa-solid fa-chevron-down arrow-icon"></i>
@@ -114,7 +114,7 @@
           <div class="dropdown-menu user-menu" id="userMenu">
             <div class="user-menu-header">
               <strong>Yoshida Sary, M.Kom.</strong>
-              <small>Administrator LPPM UMSU</small>
+              <small>Administrator Utama LPPM UMSU</small>
             </div>
             <div class="dropdown-divider"></div>
             <a href="index.html" class="dropdown-item"><i class="fa-solid fa-house"></i> Mode Dosen</a>
@@ -127,54 +127,86 @@
     </div>
   </header>
 
-  <!-- SUB NAVIGATION MENU ADMIN (EXACT SCREENSHOT TABS) -->
-  <nav class="admin-subnav-bar">
-    <div class="admin-subnav-container">
-      <div class="admin-subnav-tabs">
-        <a href="admin-lppm.html" class="admin-subnav-tab active">
-          <span>Dashboard</span>
-        </a>
-        <a href="#antreanVerifikasiSection" class="admin-subnav-tab" onclick="showToast('Membuka modul Kelola Usulan', 'info')">
-          <span>Usulan</span>
-        </a>
-        <a href="javascript:void(0)" class="admin-subnav-tab" onclick="openScheduleModal()">
-          <span>Batch &amp; Periode</span>
-        </a>
-        <a href="#bebanReviewerSection" class="admin-subnav-tab" onclick="showToast('Membuka modul Manajemen Reviewer', 'info')">
-          <span>Reviewer</span>
-        </a>
-        <a href="#anggaranSection" class="admin-subnav-tab" onclick="showToast('Membuka modul Alokasi Pendanaan', 'info')">
-          <span>Pendanaan</span>
-        </a>
-        <a href="#pelaksanaanSection" class="admin-subnav-tab" onclick="showToast('Membuka modul Monitoring & Evaluasi', 'info')">
-          <span>Monitoring</span>
-        </a>
-        <a href="javascript:void(0)" class="admin-subnav-tab" onclick="showToast('Membuka modul Laporan Rekapitulasi Tahunan', 'info')">
-          <span>Laporan</span>
-        </a>
-        <a href="javascript:void(0)" class="admin-subnav-tab" onclick="showToast('Membuka Pengaturan Sistem LPPM', 'info')">
-          <span>Pengaturan</span>
-        </a>
-      </div>
+  <!-- SUB NAVIGATION MENU ADMIN (MATCHES LPPM SYSTEM) -->
+  <nav class="sub-nav">
+    <div class="sub-nav-container">
+      <ul class="nav-links" style="margin-left: 0;">
+        <li class="nav-item active">
+          <a href="admin-lppm.html" class="nav-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#antreanVerifikasiSection" class="nav-link" onclick="showToast('Menuju antrean verifikasi usulan...', 'info')">
+            <i class="fa-solid fa-file-circle-check"></i>
+            <span>Verifikasi Usulan</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="javascript:void(0)" onclick="openScheduleModal()" class="nav-link">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Batch &amp; Periode</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#bebanReviewerSection" class="nav-link" onclick="openAssignReviewerModal()">
+            <i class="fa-solid fa-user-check"></i>
+            <span>Reviewer</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#anggaranSection" class="nav-link" onclick="showToast('Membuka alokasi dana', 'info')">
+            <i class="fa-solid fa-coins"></i>
+            <span>Alokasi Dana</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#pelaksanaanSection" class="nav-link" onclick="showToast('Membuka monitoring &amp; evaluasi', 'info')">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Monitoring</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </nav>
 
-  <!-- MAIN DASHBOARD CONTENT -->
-  <main class="admin-container">
+  <!-- MAIN WORKSPACE -->
+  <main class="admin-workspace-container">
 
-    <!-- PAGE HEADER TITLE & BATCH ACTIONS -->
-    <div class="admin-header-row">
-      <div class="admin-header-left">
-        <h1>Dashboard LPPM</h1>
-        <p>Pantau usulan dari masuk sampai laporan akhir, dalam satu batch.</p>
+    <!-- EXECUTIVE COMMAND CARD (Pine Green Modern Horizontal Gradient) -->
+    <section class="admin-executive-card">
+      <div class="admin-exec-top-bar">
+        <div class="admin-exec-left">
+          <div class="admin-exec-title-row">
+            <h1 class="admin-exec-heading">
+              <i class="fa-solid fa-server"></i>
+              Pusat Komando &amp; Operasional LPPM
+            </h1>
+            <span class="admin-center-live-badge">
+              <span class="live-beacon-dot"></span> Batch 10 (2026/2027) Aktif
+            </span>
+          </div>
+          <p class="admin-exec-subtitle">
+            Monitoring seluruh siklus usulan riset, verifikasi administrasi berkas, dan penugasan reviewer &bull; Sentra LPPM UMSU
+          </p>
+        </div>
+        <div class="admin-exec-right">
+          <span class="admin-center-phase-pill">
+            <i class="fa-solid fa-diagram-project"></i>
+            <span>Fase Saat Ini: <strong>Verifikasi Berkas &amp; Plotting Reviewer</strong></span>
+          </span>
+        </div>
       </div>
 
-      <div class="admin-header-actions">
+      <!-- Controls Row: Rata Kiri (Pine Green Action Controls) -->
+      <div class="admin-exec-actions-row">
         <!-- Batch Selector Dropdown -->
         <div class="dropdown-wrapper">
-          <button type="button" class="btn-batch-select" id="batchSelectBtn" aria-expanded="false">
-            <span id="selectedBatchLabel">Batch 10 (2026/2027)</span>
-            <i class="fa-solid fa-chevron-down" style="font-size: 11px; color: #64748b;"></i>
+          <button type="button" class="btn-control-pill outline" id="batchSelectBtn" aria-expanded="false" style="padding: 8px 14px; font-size: 13px;">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span id="selectedBatchLabel">Batch 10 (2026/2027) Aktif</span>
+            <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 4px; opacity: 0.8;"></i>
           </button>
           <div class="dropdown-menu" id="batchSelectMenu">
             <div class="dropdown-item active" data-batch="Batch 10 (2026/2027)"><i class="fa-solid fa-check"></i> Batch 10 (2026/2027) - Aktif</div>
@@ -183,524 +215,608 @@
           </div>
         </div>
 
-        <button type="button" class="btn-admin-outline" onclick="openAnnouncementModal()">
+        <!-- Action Buttons -->
+        <button type="button" class="btn-control-pill outline" onclick="openAnnouncementModal()" style="padding: 8px 15px; font-size: 13px;">
           <i class="fa-regular fa-paper-plane"></i>
           <span>Kirim Pengumuman</span>
         </button>
 
-        <button type="button" class="btn-admin-primary" onclick="openNewBatchModal()">
+        <button type="button" class="btn-control-pill outline" onclick="openScheduleModal()" style="padding: 8px 15px; font-size: 13px;">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>Atur Jadwal</span>
+        </button>
+
+        <button type="button" class="btn-control-pill primary" onclick="openNewBatchModal()" style="padding: 8px 18px; font-size: 13px;">
           <i class="fa-solid fa-plus"></i>
           <span>Buka Batch Baru</span>
         </button>
       </div>
-    </div>
+    </section>
 
-    <!-- SECTION 1: PERLU TINDAKAN HARI INI (4 CARDS) -->
-    <section class="action-needed-section">
-      <h2 class="section-label-heading">Perlu tindakan hari ini</h2>
-
-      <div class="action-cards-grid">
-        <!-- Card 1 -->
-        <div class="action-metric-card">
-          <div>
-            <div class="action-metric-num">08</div>
-            <div class="action-metric-desc">Usulan menunggu verifikasi administrasi</div>
+    <!-- 2. COCKPIT 4 OPERATIONAL LIVE HUBS -->
+    <section class="cockpit-grid">
+      <!-- Hub 1: Verifikasi Berkas (Priority Coral) -->
+      <div class="cockpit-card coral">
+        <div>
+          <div class="cockpit-top-row">
+            <span class="cockpit-hub-label">Antrean Berkas</span>
+            <span class="cockpit-tag coral"><i class="fa-solid fa-bolt"></i> 8 Perlu Aksi</span>
           </div>
-          <button type="button" class="action-metric-btn" onclick="openVerifModal(1)">Verifikasi</button>
+          <div class="cockpit-number-row">
+            <span class="cockpit-num" style="color: #e11d48;">08</span>
+            <span class="cockpit-sub-unit">/ 24 total masuk</span>
+          </div>
+          <p class="cockpit-desc">5 usulan berkas lengkap siap verifikasi, 3 butuh konfirmasi dokumen.</p>
         </div>
-
-        <!-- Card 2 -->
-        <div class="action-metric-card">
-          <div>
-            <div class="action-metric-num">05</div>
-            <div class="action-metric-desc">Usulan lolos verifikasi tapi belum punya reviewer</div>
+        <div>
+          <div class="cockpit-progress-track">
+            <div class="cockpit-progress-fill coral" style="width: 35%;"></div>
           </div>
-          <button type="button" class="action-metric-btn" onclick="openAssignReviewerModal()">Tugaskan</button>
+          <button type="button" class="btn-cockpit-action coral" onclick="openVerifModal(1)">
+            <i class="fa-solid fa-file-circle-check"></i>
+            <span>Mulai Verifikasi Antrean &rarr;</span>
+          </button>
         </div>
+      </div>
 
-        <!-- Card 3 -->
-        <div class="action-metric-card">
-          <div>
-            <div class="action-metric-num">03</div>
-            <div class="action-metric-desc">Review melewati batas waktu</div>
+      <!-- Hub 2: Plot Reviewer (Cobalt Cyan) -->
+      <div class="cockpit-card cyan">
+        <div>
+          <div class="cockpit-top-row">
+            <span class="cockpit-hub-label">Plotting Reviewer</span>
+            <span class="cockpit-tag cyan"><i class="fa-solid fa-user-clock"></i> 5 Usulan Kosong</span>
           </div>
-          <button type="button" class="action-metric-btn" onclick="showToast('Pengingat otomatis telah dikirimkan ke 3 reviewer yang melewati tenggat!', 'success')">Kirim pengingat</button>
+          <div class="cockpit-number-row">
+            <span class="cockpit-num" style="color: #0284c7;">05</span>
+            <span class="cockpit-sub-unit">usulan lolos berkas</span>
+          </div>
+          <p class="cockpit-desc">Usulan lolos administrasi belum ditugaskan ke reviewer substantif.</p>
         </div>
-
-        <!-- Card 4 -->
-        <div class="action-metric-card">
-          <div>
-            <div class="action-metric-num">06</div>
-            <div class="action-metric-desc">Laporan kemajuan belum masuk</div>
+        <div>
+          <div class="cockpit-progress-track">
+            <div class="cockpit-progress-fill cyan" style="width: 62%;"></div>
           </div>
-          <button type="button" class="action-metric-btn" onclick="showToast('Surat teguran penyerahan laporan kemajuan telah dikirimkan ke 6 peneliti.', 'info')">Tagih</button>
+          <button type="button" class="btn-cockpit-action cyan" onclick="openAssignReviewerModal()">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Plotting Reviewer &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hub 3: Monitoring SLA & Batas Waktu (Amber Gold) -->
+      <div class="cockpit-card amber">
+        <div>
+          <div class="cockpit-top-row">
+            <span class="cockpit-hub-label">Monitoring Tenggat</span>
+            <span class="cockpit-tag amber"><i class="fa-solid fa-triangle-exclamation"></i> H-02 Batas</span>
+          </div>
+          <div class="cockpit-number-row">
+            <span class="cockpit-num" style="color: #d97706;">03</span>
+            <span class="cockpit-sub-unit">reviewer terlambat</span>
+          </div>
+          <p class="cockpit-desc">Batas penilaian substansi: 10 Nov 2026. Reviewer belum mengisi skor.</p>
+        </div>
+        <div>
+          <div class="cockpit-progress-track">
+            <div class="cockpit-progress-fill amber" style="width: 82%;"></div>
+          </div>
+          <button type="button" class="btn-cockpit-action amber" onclick="showToast('Blast pengingat WhatsApp & Email telah dikirim ke 3 reviewer!', 'success')">
+            <i class="fa-solid fa-bell"></i>
+            <span>Kirim Pengingat SLA &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hub 4: Penetapan Dana & Pleno (Emerald Green) -->
+      <div class="cockpit-card green">
+        <div>
+          <div class="cockpit-top-row">
+            <span class="cockpit-hub-label">Alokasi &amp; Kelulusan</span>
+            <span class="cockpit-tag green"><i class="fa-solid fa-circle-check"></i> 18 Siap SK</span>
+          </div>
+          <div class="cockpit-number-row">
+            <span class="cockpit-num" style="color: #059669; font-size: 1.85rem;">Rp 650 Jt</span>
+            <span class="cockpit-sub-unit">76.5% terserap</span>
+          </div>
+          <p class="cockpit-desc">18 usulan direkomendasikan pleno dari total alokasi dana Rp 850 Jt.</p>
+        </div>
+        <div>
+          <div class="cockpit-progress-track">
+            <div class="cockpit-progress-fill green" style="width: 76.5%;"></div>
+          </div>
+          <button type="button" class="btn-cockpit-action green" onclick="showToast('Membuka rekapitulasi usulan lolos pendanaan pleno...', 'info')">
+            <i class="fa-solid fa-award"></i>
+            <span>Rekap Usulan Lolos &rarr;</span>
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: MIDDLE ROW 1 (PIPELINE USULAN VS TENGGAT MENDEKAT) -->
-    <div class="admin-two-col-grid">
-      
-      <!-- Card Left: Pipeline Usulan -->
-      <div class="admin-card-panel">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Pipeline usulan, Batch 10</h3>
-            <p class="panel-subtitle">Tinggi batang = jumlah usulan di tahap itu. Baris bawah = siapa yang sedang memegang bola.</p>
-          </div>
-        </div>
+    <!-- 3. MAIN WORKSPACE GRID (70% LEFT OPERATIONS / 30% RIGHT INTELLIGENCE) -->
+    <div class="workspace-split-grid">
 
-        <!-- Filter Pills: Semua, Penelitian, Pengabdian -->
-        <div class="pipeline-filter-pills">
-          <button type="button" class="pipeline-pill-btn active" data-filter="semua">Semua</button>
-          <button type="button" class="pipeline-pill-btn" data-filter="penelitian">Penelitian</button>
-          <button type="button" class="pipeline-pill-btn" data-filter="pengabdian">Pengabdian</button>
-        </div>
+      <!-- LEFT DECK -->
+      <section class="left-ops-deck">
 
-        <!-- Funnel Columns -->
-        <div class="pipeline-funnel-container" id="pipelineFunnelContainer">
-          <!-- Col 1 -->
-          <div class="pipeline-col" title="Klik untuk melihat 48 usulan pada tahap Draf diajukan" onclick="showStageDetail('Draf diajukan', 48, 'Dosen')">
-            <div class="pipeline-num-label">48</div>
-            <div class="pipeline-bar-wrapper">
-              <div class="pipeline-bar" style="height: 100%;"></div>
+        <!-- PANEL 1: LIVE PROPOSAL TRIAGE QUEUE -->
+        <div class="ops-panel" id="antreanVerifikasiSection">
+          <div class="ops-panel-header">
+            <div class="ops-panel-title-group">
+              <h3>
+                <i class="fa-solid fa-list-check" style="color: #0284c7;"></i>
+                Antrean Triage Usulan Masuk (Batch 10)
+              </h3>
+              <p>Daftar proposal masuk yang membutuhkan verifikasi kelayakan berkas administratif.</p>
             </div>
-            <div class="pipeline-stage-info">
-              <span class="pipeline-stage-title">Draf diajukan</span>
-              <span class="pipeline-role-pill dosen">Dosen</span>
+
+            <!-- Operational Sub-tabs -->
+            <div class="ops-tab-nav">
+              <button type="button" class="ops-tab-btn active" onclick="showToast('Menampilkan antrean berkas', 'info')">Antrean (8)</button>
+              <button type="button" class="ops-tab-btn" onclick="showToast('Menampilkan seluruh usulan', 'info')">Semua (48)</button>
+              <button type="button" class="ops-tab-btn" onclick="showToast('Menampilkan usulan lolos berkas', 'info')">Lolos Berkas (18)</button>
             </div>
           </div>
 
-          <!-- Col 2 -->
-          <div class="pipeline-col" title="Klik untuk melihat 36 usulan pada tahap Verifikasi" onclick="showStageDetail('Verifikasi', 36, 'Admin LPPM')">
-            <div class="pipeline-num-label">36</div>
-            <div class="pipeline-bar-wrapper">
-              <div class="pipeline-bar" style="height: 75%;"></div>
+          <!-- Triage Search & Filter Toolbar (Tepat Dibawah Antrean Triage Usulan Masuk) -->
+          <div class="triage-search-toolbar">
+            <div class="triage-search-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" class="triage-search-input" id="triageTableSearchInput" placeholder="Cari judul usulan, nama dosen, NIDN..." onkeyup="filterTriageTable(this.value)">
             </div>
-            <div class="pipeline-stage-info">
-              <span class="pipeline-stage-title">Verifikasi</span>
-              <span class="pipeline-role-pill admin">Admin LPPM</span>
-            </div>
-          </div>
-
-          <!-- Col 3 -->
-          <div class="pipeline-col" title="Klik untuk melihat 24 usulan pada tahap Review substantif" onclick="showStageDetail('Review substantif', 24, 'Reviewer')">
-            <div class="pipeline-num-label">24</div>
-            <div class="pipeline-bar-wrapper">
-              <div class="pipeline-bar" style="height: 50%;"></div>
-            </div>
-            <div class="pipeline-stage-info">
-              <span class="pipeline-stage-title">Review substantif</span>
-              <span class="pipeline-role-pill reviewer">Reviewer</span>
-            </div>
-          </div>
-
-          <!-- Col 4 -->
-          <div class="pipeline-col" title="Klik untuk melihat 18 usulan pada tahap Keputusan" onclick="showStageDetail('Keputusan', 18, 'Pimpinan')">
-            <div class="pipeline-num-label">18</div>
-            <div class="pipeline-bar-wrapper">
-              <div class="pipeline-bar" style="height: 38%;"></div>
-            </div>
-            <div class="pipeline-stage-info">
-              <span class="pipeline-stage-title">Keputusan</span>
-              <span class="pipeline-role-pill pimpinan">Pimpinan</span>
-            </div>
-          </div>
-
-          <!-- Col 5 -->
-          <div class="pipeline-col" title="Klik untuk melihat 14 usulan pada tahap Didanai" onclick="showStageDetail('Didanai', 14, 'Admin LPPM')">
-            <div class="pipeline-num-label">14</div>
-            <div class="pipeline-bar-wrapper">
-              <div class="pipeline-bar" style="height: 30%;"></div>
-            </div>
-            <div class="pipeline-stage-info">
-              <span class="pipeline-stage-title">Didanai</span>
-              <span class="pipeline-role-pill admin">Admin LPPM</span>
-            </div>
-          </div>
-
-          <!-- Col 6 -->
-          <div class="pipeline-col" title="Klik untuk melihat 12 usulan pada tahap Laporan akhir" onclick="showStageDetail('Laporan akhir', 12, 'Dosen')">
-            <div class="pipeline-num-label">12</div>
-            <div class="pipeline-bar-wrapper">
-              <div class="pipeline-bar" style="height: 25%;"></div>
-            </div>
-            <div class="pipeline-stage-info">
-              <span class="pipeline-stage-title">Laporan akhir</span>
-              <span class="pipeline-role-pill dosen">Dosen</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="pipeline-footnote">
-          <i class="fa-solid fa-circle-info" style="color: #0284c7;"></i>
-          <span>Klik satu tahap untuk membuka daftar usulan yang sedang berhenti di sana.</span>
-        </div>
-      </div>
-
-      <!-- Card Right: Tenggat Mendekat -->
-      <div class="admin-card-panel">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Tenggat mendekat</h3>
-            <p class="panel-subtitle">Diurutkan dari yang paling dekat.</p>
-          </div>
-        </div>
-
-        <div class="tenggat-list">
-          <!-- Item 1 -->
-          <div class="tenggat-item">
-            <div class="tenggat-left">
-              <span class="tenggat-name">Batas verifikasi administrasi</span>
-              <span class="tenggat-date">10 Nov 2026</span>
-            </div>
-            <span class="tenggat-badge urgent">H-02</span>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="tenggat-item">
-            <div class="tenggat-left">
-              <span class="tenggat-name">Batas review substantif</span>
-              <span class="tenggat-date">20 Nov 2026</span>
-            </div>
-            <span class="tenggat-badge warning">H-05</span>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="tenggat-item">
-            <div class="tenggat-left">
-              <span class="tenggat-name">Rapat keputusan pimpinan</span>
-              <span class="tenggat-date">28 Nov 2026</span>
-            </div>
-            <span class="tenggat-badge">H-13</span>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="tenggat-item">
-            <div class="tenggat-left">
-              <span class="tenggat-name">Pengumuman hasil</span>
-              <span class="tenggat-date">05 Des 2026</span>
-            </div>
-            <span class="tenggat-badge">H-20</span>
-          </div>
-        </div>
-
-        <button type="button" class="btn-admin-outline w-full" onclick="openScheduleModal()">
-          <i class="fa-regular fa-calendar-check"></i>
-          <span>Atur jadwal batch</span>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- SECTION 3: MIDDLE ROW 2 (ANTREAN VERIFIKASI VS BEBAN REVIEWER) -->
-    <div class="admin-two-col-grid" id="antreanVerifikasiSection">
-      
-      <!-- Card Left: Antrean Verifikasi Administrasi -->
-      <div class="admin-card-panel">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Antrean verifikasi administrasi</h3>
-            <p class="panel-subtitle">Urut dari yang masuk paling lama.</p>
-          </div>
-          <a href="javascript:void(0)" class="panel-link-action" onclick="showToast('Menampilkan seluruh 36 antrean verifikasi usulan...', 'info')">
-            <span>Buka semua usulan</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="admin-table-container">
-          <table class="admin-clean-table">
-            <thead>
-              <tr>
-                <th>Judul Usulan</th>
-                <th>Pengusul</th>
-                <th>Skema</th>
-                <th>Masuk</th>
-                <th style="text-align: right;">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Row 1 -->
-              <tr>
-                <td class="td-proposal-info">
-                  <div class="prop-table-title">Implementasi AI &amp; Drone Multispektral untuk Deteksi Dini Penyakit Padi</div>
-                  <div class="prop-berkas-wrap">
-                    <div class="prop-berkas-bar"><div class="prop-berkas-fill" style="width: 100%;"></div></div>
-                    <span class="prop-berkas-text">5/5 berkas</span>
-                  </div>
-                </td>
-                <td class="td-proposer">Dr. Ir. Siti Rahmah, M.T.</td>
-                <td class="td-scheme">Penelitian Fundamental</td>
-                <td class="td-date">2 hari lalu</td>
-                <td style="text-align: right;">
-                  <button type="button" class="btn-table-action" onclick="openVerifModal(1)">Verifikasi</button>
-                </td>
-              </tr>
-
-              <!-- Row 2 -->
-              <tr>
-                <td class="td-proposal-info">
-                  <div class="prop-table-title">Pemberdayaan UMKM Kopi Liberika Melalui Penerapan Smart Packaging</div>
-                  <div class="prop-berkas-wrap">
-                    <div class="prop-berkas-bar"><div class="prop-berkas-fill" style="width: 80%;"></div></div>
-                    <span class="prop-berkas-text">4/5 berkas</span>
-                  </div>
-                </td>
-                <td class="td-proposer">Muhammad Fauzi, S.E., M.Si.</td>
-                <td class="td-scheme">Pengabdian Kemitraan</td>
-                <td class="td-date">3 hari lalu</td>
-                <td style="text-align: right;">
-                  <button type="button" class="btn-table-action" onclick="openVerifModal(2)">Verifikasi</button>
-                </td>
-              </tr>
-
-              <!-- Row 3 -->
-              <tr>
-                <td class="td-proposal-info">
-                  <div class="prop-table-title">Rancang Bangun Turbin Angin Sumbu Vertikal pada Pesisir Belawan</div>
-                  <div class="prop-berkas-wrap">
-                    <div class="prop-berkas-bar"><div class="prop-berkas-fill" style="width: 100%;"></div></div>
-                    <span class="prop-berkas-text">5/5 berkas</span>
-                  </div>
-                </td>
-                <td class="td-proposer">Ir. Bambang Wicaksono, M.Eng.</td>
-                <td class="td-scheme">Penelitian Terapan</td>
-                <td class="td-date">3 hari lalu</td>
-                <td style="text-align: right;">
-                  <button type="button" class="btn-table-action" onclick="openVerifModal(3)">Verifikasi</button>
-                </td>
-              </tr>
-
-              <!-- Row 4 -->
-              <tr>
-                <td class="td-proposal-info">
-                  <div class="prop-table-title">Literasi Keuangan Syariah dan Akselerasi Sertifikasi Halal Aisyiyah</div>
-                  <div class="prop-berkas-wrap">
-                    <div class="prop-berkas-bar"><div class="prop-berkas-fill" style="width: 80%;"></div></div>
-                    <span class="prop-berkas-text">4/5 berkas</span>
-                  </div>
-                </td>
-                <td class="td-proposer">Hj. Nurhasanah, S.Ag., M.Hum.</td>
-                <td class="td-scheme">Pengabdian Persyarikatan</td>
-                <td class="td-date">4 hari lalu</td>
-                <td style="text-align: right;">
-                  <button type="button" class="btn-table-action" onclick="openVerifModal(4)">Verifikasi</button>
-                </td>
-              </tr>
-
-              <!-- Row 5 -->
-              <tr>
-                <td class="td-proposal-info">
-                  <div class="prop-table-title">Sintesis Membran Kitosan Nanokomposit untuk Pengolahan Air Bersih</div>
-                  <div class="prop-berkas-wrap">
-                    <div class="prop-berkas-bar"><div class="prop-berkas-fill" style="width: 100%;"></div></div>
-                    <span class="prop-berkas-text">5/5 berkas</span>
-                  </div>
-                </td>
-                <td class="td-proposer">Dr. rer. nat. Hendra Gunawan</td>
-                <td class="td-scheme">Penelitian Fundamental</td>
-                <td class="td-date">5 hari lalu</td>
-                <td style="text-align: right;">
-                  <button type="button" class="btn-table-action" onclick="openVerifModal(5)">Verifikasi</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Card Right: Beban Reviewer -->
-      <div class="admin-card-panel" id="bebanReviewerSection">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Beban reviewer</h3>
-            <p class="panel-subtitle">Terisi / kuota usulan per batch.</p>
-          </div>
-        </div>
-
-        <div class="reviewer-load-list">
-          <!-- Item 1 -->
-          <div class="reviewer-load-item">
-            <div class="rev-load-top">
-              <span class="rev-load-name">Prof. Dr. Ir. M. Nasution, M.Sc.</span>
-              <span class="rev-load-ratio">5/5</span>
-            </div>
-            <div class="rev-load-bar"><div class="rev-load-fill full" style="width: 100%;"></div></div>
-          </div>
-
-          <!-- Item 2 with Conflict Check -->
-          <div class="reviewer-load-item">
-            <div class="rev-load-top">
-              <div class="rev-load-name-wrap">
-                <span class="rev-load-name">Dr. Hendra Cipta, S.T., M.T.</span>
-                <span class="rev-conflict-pill" title="Reviewer dan pengusul berada dalam program studi yang sama">Cek konflik</span>
+            <div class="triage-toolbar-meta">
+              <div class="dropdown-wrapper">
+                <button type="button" class="btn-control-pill outline" id="triageSchemeFilterBtn" onclick="toggleTriageSchemeFilter()" style="padding: 7px 12px; font-size: 12px; background: #ffffff;">
+                  <i class="fa-solid fa-layer-group" style="color: #0284c7;"></i>
+                  <span id="selectedSchemeLabel">Semua Skema</span>
+                  <i class="fa-solid fa-chevron-down" style="font-size: 10px; color: #64748b; margin-left: 3px;"></i>
+                </button>
+                <div class="dropdown-menu" id="triageSchemeMenu">
+                  <div class="dropdown-item active" onclick="filterByScheme('all')">Semua Skema</div>
+                  <div class="dropdown-item" onclick="filterByScheme('Penelitian Fundamental')">Penelitian Fundamental</div>
+                  <div class="dropdown-item" onclick="filterByScheme('Penelitian Terapan')">Penelitian Terapan</div>
+                  <div class="dropdown-item" onclick="filterByScheme('Pengabdian Kemitraan')">Pengabdian Kemitraan</div>
+                  <div class="dropdown-item" onclick="filterByScheme('Pengabdian Desa Binaan')">Pengabdian Desa Binaan</div>
+                </div>
               </div>
-              <span class="rev-load-ratio">4/5</span>
+              <span class="triage-count-badge" id="triageCountBadge"><i class="fa-solid fa-filter" style="color: #0284c7;"></i> Menampilkan <strong>8</strong> usulan antrean</span>
             </div>
-            <div class="rev-load-bar"><div class="rev-load-fill" style="width: 80%;"></div></div>
           </div>
 
-          <!-- Item 3 -->
-          <div class="reviewer-load-item">
-            <div class="rev-load-top">
-              <span class="rev-load-name">Dr. Aisyah Putri, M.Kom.</span>
-              <span class="rev-load-ratio">3/5</span>
-            </div>
-            <div class="rev-load-bar"><div class="rev-load-fill" style="width: 60%;"></div></div>
-          </div>
+          <!-- Interactive Table -->
+          <div class="ops-table-wrap">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>Judul Usulan &amp; Pengusul</th>
+                  <th>Skema &amp; Anggaran</th>
+                  <th>Kelengkapan Berkas</th>
+                  <th>Waktu Masuk</th>
+                  <th style="text-align: right;">Aksi Cepat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1 -->
+                <tr>
+                  <td>
+                    <div class="table-prop-title">Implementasi AI &amp; Drone Multispektral untuk Deteksi Dini Penyakit Padi</div>
+                    <div class="table-prop-meta">
+                      <span><i class="fa-regular fa-user" style="color: #0284c7;"></i> Dr. Ir. Siti Rahmah, M.T.</span>
+                      <span>&bull;</span>
+                      <span>Fakultas Pertanian</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="scheme-chip fundamental">Penelitian Fundamental</span>
+                    <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 2px;">Rp 45.000.000</div>
+                  </td>
+                  <td>
+                    <span class="doc-status-pill complete">
+                      <i class="fa-solid fa-circle-check"></i> 5/5 Berkas Lengkap
+                    </span>
+                  </td>
+                  <td style="color: #64748b; font-size: 11.5px;">2 hari lalu</td>
+                  <td style="text-align: right;">
+                    <button type="button" class="btn-table-action-sm" onclick="openVerifModal(1)">
+                      <i class="fa-solid fa-file-circle-check"></i> Verifikasi
+                    </button>
+                  </td>
+                </tr>
 
-          <!-- Item 4 -->
-          <div class="reviewer-load-item">
-            <div class="rev-load-top">
-              <span class="rev-load-name">Dr. Surya Darma, M.Hum.</span>
-              <span class="rev-load-ratio">2/5</span>
-            </div>
-            <div class="rev-load-bar"><div class="rev-load-fill" style="width: 40%;"></div></div>
-          </div>
+                <!-- Row 2 -->
+                <tr>
+                  <td>
+                    <div class="table-prop-title">Pemberdayaan UMKM Kopi Liberika Melalui Penerapan Smart Packaging</div>
+                    <div class="table-prop-meta">
+                      <span><i class="fa-regular fa-user" style="color: #0284c7;"></i> Muhammad Fauzi, S.E., M.Si.</span>
+                      <span>&bull;</span>
+                      <span>Fakultas Ekonomi</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="scheme-chip pengabdian">Pengabdian Kemitraan</span>
+                    <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 2px;">Rp 25.000.000</div>
+                  </td>
+                  <td>
+                    <span class="doc-status-pill pending">
+                      <i class="fa-solid fa-clock"></i> 4/5 (RAB Kurang)
+                    </span>
+                  </td>
+                  <td style="color: #64748b; font-size: 11.5px;">3 hari lalu</td>
+                  <td style="text-align: right;">
+                    <button type="button" class="btn-table-action-sm" onclick="openVerifModal(2)">
+                      <i class="fa-solid fa-file-circle-check"></i> Verifikasi
+                    </button>
+                  </td>
+                </tr>
 
-          <!-- Item 5 -->
-          <div class="reviewer-load-item">
-            <div class="rev-load-top">
-              <span class="rev-load-name">Prof. Dr. Syahril, M.Si.</span>
-              <span class="rev-load-ratio">1/5</span>
-            </div>
-            <div class="rev-load-bar"><div class="rev-load-fill" style="width: 20%;"></div></div>
+                <!-- Row 3 -->
+                <tr>
+                  <td>
+                    <div class="table-prop-title">Rancang Bangun Turbin Angin Sumbu Vertikal pada Pesisir Belawan</div>
+                    <div class="table-prop-meta">
+                      <span><i class="fa-regular fa-user" style="color: #0284c7;"></i> Ir. Bambang Wicaksono, M.Eng.</span>
+                      <span>&bull;</span>
+                      <span>Fakultas Teknik</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="scheme-chip terapan">Penelitian Terapan</span>
+                    <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 2px;">Rp 35.000.000</div>
+                  </td>
+                  <td>
+                    <span class="doc-status-pill complete">
+                      <i class="fa-solid fa-circle-check"></i> 5/5 Berkas Lengkap
+                    </span>
+                  </td>
+                  <td style="color: #64748b; font-size: 11.5px;">3 hari lalu</td>
+                  <td style="text-align: right;">
+                    <button type="button" class="btn-table-action-sm" onclick="openVerifModal(3)">
+                      <i class="fa-solid fa-file-circle-check"></i> Verifikasi
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 4 -->
+                <tr>
+                  <td>
+                    <div class="table-prop-title">Literasi Keuangan Syariah dan Akselerasi Sertifikasi Halal Aisyiyah</div>
+                    <div class="table-prop-meta">
+                      <span><i class="fa-regular fa-user" style="color: #0284c7;"></i> Hj. Nurhasanah, S.Ag., M.Hum.</span>
+                      <span>&bull;</span>
+                      <span>FAI UMSU</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="scheme-chip pengabdian">Pengabdian Persyarikatan</span>
+                    <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 2px;">Rp 20.000.000</div>
+                  </td>
+                  <td>
+                    <span class="doc-status-pill pending">
+                      <i class="fa-solid fa-clock"></i> 4/5 (Lembar Pengesahan)
+                    </span>
+                  </td>
+                  <td style="color: #64748b; font-size: 11.5px;">4 hari lalu</td>
+                  <td style="text-align: right;">
+                    <button type="button" class="btn-table-action-sm" onclick="openVerifModal(4)">
+                      <i class="fa-solid fa-file-circle-check"></i> Verifikasi
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 5 -->
+                <tr>
+                  <td>
+                    <div class="table-prop-title">Sintesis Membran Kitosan Nanokomposit untuk Pengolahan Air Bersih</div>
+                    <div class="table-prop-meta">
+                      <span><i class="fa-regular fa-user" style="color: #0284c7;"></i> Dr. rer. nat. Hendra Gunawan</span>
+                      <span>&bull;</span>
+                      <span>Fakultas MIPA</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="scheme-chip fundamental">Penelitian Fundamental</span>
+                    <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 2px;">Rp 50.000.000</div>
+                  </td>
+                  <td>
+                    <span class="doc-status-pill complete">
+                      <i class="fa-solid fa-circle-check"></i> 5/5 Berkas Lengkap
+                    </span>
+                  </td>
+                  <td style="color: #64748b; font-size: 11.5px;">5 hari lalu</td>
+                  <td style="text-align: right;">
+                    <button type="button" class="btn-table-action-sm" onclick="openVerifModal(5)">
+                      <i class="fa-solid fa-file-circle-check"></i> Verifikasi
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <p class="rev-footnote">Sistem menandai reviewer yang satu prodi atau satu tim dengan pengusul.</p>
+        <!-- PANEL 2: PIPELINE WORKFLOW SIKLUS USULAN BATCH 10 -->
+        <div class="ops-panel">
+          <div class="ops-panel-header">
+            <div class="ops-panel-title-group">
+              <h3>
+                <i class="fa-solid fa-diagram-project" style="color: #0284c7;"></i>
+                Pipeline Siklus Usulan &bull; Batch 10
+              </h3>
+              <p>Distribusi proposal berjalan berdasarkan tahapan seleksi dan penanggung jawab.</p>
+            </div>
+            <div style="font-size: 12px; color: #64748b;">
+              Total: <strong>48 Usulan</strong>
+            </div>
+          </div>
 
-        <div class="rev-actions-row">
-          <button type="button" class="btn-admin-primary" style="flex: 1;" onclick="openAssignReviewerModal()">
+          <!-- Horizontal Stepper Funnel -->
+          <div class="workflow-stepper">
+            <div class="workflow-step-card" onclick="showStageDetail('Draf diajukan', 48, 'Dosen')">
+              <div class="step-num-bubble">48</div>
+              <span class="step-label-text">1. Draf Masuk</span>
+              <span class="step-role-tag">Dosen</span>
+            </div>
+
+            <div class="workflow-step-card active" onclick="showStageDetail('Verifikasi Berkas', 36, 'Admin LPPM')">
+              <div class="step-num-bubble" style="color: #0284c7;">36</div>
+              <span class="step-label-text">2. Verifikasi</span>
+              <span class="step-role-tag" style="background: #0284c7; color: #ffffff;">Admin LPPM</span>
+            </div>
+
+            <div class="workflow-step-card" onclick="showStageDetail('Review Substantif', 24, 'Reviewer')">
+              <div class="step-num-bubble">24</div>
+              <span class="step-label-text">3. Review Skor</span>
+              <span class="step-role-tag">Reviewer</span>
+            </div>
+
+            <div class="workflow-step-card" onclick="showStageDetail('Keputusan Pleno', 18, 'Pimpinan')">
+              <div class="step-num-bubble">18</div>
+              <span class="step-label-text">4. Sidang Pleno</span>
+              <span class="step-role-tag">Pimpinan</span>
+            </div>
+
+            <div class="workflow-step-card" onclick="showStageDetail('Didanai (SK)', 14, 'Admin LPPM')">
+              <div class="step-num-bubble">14</div>
+              <span class="step-label-text">5. Terbit SK</span>
+              <span class="step-role-tag">Admin LPPM</span>
+            </div>
+
+            <div class="workflow-step-card" onclick="showStageDetail('Laporan & Luaran', 12, 'Dosen')">
+              <div class="step-num-bubble">12</div>
+              <span class="step-label-text">6. Monev Luaran</span>
+              <span class="step-role-tag">Dosen</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT SIDEBAR INTELLIGENCE & WIDGETS -->
+      <aside class="right-ops-sidebar">
+
+        <!-- WIDGET 1: DETEKSI & PERINGATAN SISTEM -->
+        <div class="sidebar-box">
+          <div class="sidebar-box-header">
+            <span class="sidebar-box-title">
+              <i class="fa-solid fa-triangle-exclamation" style="color: #e11d48;"></i>
+              Peringatan Sistem
+            </span>
+            <span style="font-size: 11px; font-weight: 700; color: #e11d48; background: #ffe4e6; padding: 2px 6px; border-radius: 4px;">Perlu Cek</span>
+          </div>
+
+          <div class="system-alert-item danger">
+            <i class="fa-solid fa-shield-virus" style="margin-top: 2px;"></i>
+            <div>
+              <strong>3 Usulan Kemiripan &gt; 20%</strong>
+              <div style="font-size: 11px; color: #b91c1c;">Cek hasil uji Turnitin otomatis pada usulan nomor #P-002, #P-007, #P-014.</div>
+            </div>
+          </div>
+
+          <div class="system-alert-item warning">
+            <i class="fa-solid fa-user-xmark" style="margin-top: 2px;"></i>
+            <div>
+              <strong>Potensi Konflik Penugasan</strong>
+              <div style="font-size: 11px; color: #b45309;">Dr. Hendra Cipta ditugaskan pada proposal dari program studi yang sama.</div>
+            </div>
+          </div>
+
+          <div class="system-alert-item info">
+            <i class="fa-solid fa-certificate" style="margin-top: 2px;"></i>
+            <div>
+              <strong>BSrE BSSN Terhubung</strong>
+              <div style="font-size: 11px; color: #0369a1;">Sertifikat digital tanda tangan SK Kolektif Rektorat aktif &amp; valid.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WIDGET 2: TENGGAT WAKTU KRITIS -->
+        <div class="sidebar-box">
+          <div class="sidebar-box-header">
+            <span class="sidebar-box-title">
+              <i class="fa-solid fa-clock-rotate-left" style="color: #0284c7;"></i>
+              Tenggat Waktu Batch 10
+            </span>
+            <button type="button" class="btn-batch-select" style="padding: 2px 7px; font-size: 11px;" onclick="openScheduleModal()">Ubah</button>
+          </div>
+
+          <div class="deadline-countdown-list">
+            <div class="deadline-countdown-card">
+              <div class="deadline-info-group">
+                <span class="deadline-title-text">Batas Verifikasi Administrasi</span>
+                <span class="deadline-date-text">10 November 2026</span>
+              </div>
+              <span class="countdown-badge-pill urgent">H-02</span>
+            </div>
+
+            <div class="deadline-countdown-card">
+              <div class="deadline-info-group">
+                <span class="deadline-title-text">Batas Penilaian Reviewer</span>
+                <span class="deadline-date-text">20 November 2026</span>
+              </div>
+              <span class="countdown-badge-pill warning">H-05</span>
+            </div>
+
+            <div class="deadline-countdown-card">
+              <div class="deadline-info-group">
+                <span class="deadline-title-text">Sidang Pleno Keputusan</span>
+                <span class="deadline-date-text">28 November 2026</span>
+              </div>
+              <span class="countdown-badge-pill normal">H-13</span>
+            </div>
+
+            <div class="deadline-countdown-card">
+              <div class="deadline-info-group">
+                <span class="deadline-title-text">Pengumuman &amp; SK Rektor</span>
+                <span class="deadline-date-text">05 Desember 2026</span>
+              </div>
+              <span class="countdown-badge-pill normal">H-20</span>
+            </div>
+          </div>
+
+          <button type="button" class="btn-sidebar-full" onclick="openScheduleModal()">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>Kelola Jadwal Batch</span>
+          </button>
+        </div>
+
+        <!-- WIDGET 3: BEBAN & KUOTA REVIEWER -->
+        <div class="sidebar-box" id="bebanReviewerSection">
+          <div class="sidebar-box-header">
+            <span class="sidebar-box-title">
+              <i class="fa-solid fa-users" style="color: #7c3aed;"></i>
+              Beban Reviewer Aktif
+            </span>
+            <span style="font-size: 11px; font-weight: 700; color: #0284c7;">12 Reviewer</span>
+          </div>
+
+          <div class="reviewer-roster-list">
+            <div class="reviewer-roster-item">
+              <div class="reviewer-roster-top">
+                <span class="reviewer-roster-name">Prof. Dr. Ir. M. Nasution</span>
+                <span class="reviewer-roster-quota" style="color: #e11d48;">5/5 Penuh</span>
+              </div>
+              <div class="reviewer-roster-bar"><div class="reviewer-roster-fill full" style="width: 100%;"></div></div>
+            </div>
+
+            <div class="reviewer-roster-item">
+              <div class="reviewer-roster-top">
+                <span class="reviewer-roster-name">Dr. Hendra Cipta <small style="color: #d97706;">(Cek Konflik)</small></span>
+                <span class="reviewer-roster-quota">4/5</span>
+              </div>
+              <div class="reviewer-roster-bar"><div class="reviewer-roster-fill" style="width: 80%;"></div></div>
+            </div>
+
+            <div class="reviewer-roster-item">
+              <div class="reviewer-roster-top">
+                <span class="reviewer-roster-name">Dr. Aisyah Putri, M.Si.</span>
+                <span class="reviewer-roster-quota" style="color: #059669;">3/5 Siap</span>
+              </div>
+              <div class="reviewer-roster-bar"><div class="reviewer-roster-fill" style="width: 60%; background: #059669;"></div></div>
+            </div>
+
+            <div class="reviewer-roster-item">
+              <div class="reviewer-roster-top">
+                <span class="reviewer-roster-name">Dr. Surya Darma, M.Kom.</span>
+                <span class="reviewer-roster-quota" style="color: #059669;">2/5 Siap</span>
+              </div>
+              <div class="reviewer-roster-bar"><div class="reviewer-roster-fill" style="width: 40%; background: #059669;"></div></div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-sidebar-full" onclick="openAssignReviewerModal()">
             <i class="fa-solid fa-user-plus"></i>
-            <span>Tugaskan reviewer</span>
-          </button>
-          <button type="button" class="btn-admin-outline" onclick="showToast('Membuka master data seluruh reviewer terdaftar...', 'info')">
-            <span>Kelola daftar</span>
+            <span>Plotting Reviewer Usulan</span>
           </button>
         </div>
-      </div>
+
+      </aside>
 
     </div>
 
-    <!-- SECTION 4: THREE-COLUMN BOTTOM SECTION -->
-    <div class="admin-three-col-grid">
-      
-      <!-- Card 1: Anggaran Batch 10 -->
-      <div class="admin-card-panel" id="anggaranSection">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Anggaran Batch 10</h3>
-            <p class="panel-subtitle">Plafon dibanding dana yang sudah dialokasikan.</p>
+    <!-- 4. BOTTOM ANALYTICS GRID (ALOKASI DANA & MONEV LUARAN) -->
+    <section class="bottom-analytics-grid">
+      <!-- Card Left: Alokasi Anggaran Batch 10 -->
+      <div class="ops-panel" id="anggaranSection" style="margin-bottom: 0;">
+        <div class="ops-panel-header">
+          <div class="ops-panel-title-group">
+            <h3>
+              <i class="fa-solid fa-coins" style="color: #0284c7;"></i>
+              Alokasi Anggaran Batch 10
+            </h3>
+            <p>Penyaluran dana dibanding pagu alokasi yang disetujui Rektorat.</p>
           </div>
+          <span style="font-weight: 800; font-size: 15px; color: #0284c7;">Rp 850.000.000</span>
         </div>
 
-        <div class="budget-segmented-bar" title="Alokasi Anggaran Batch 10: 52% Didanai, 33% Diusulkan, 15% Sisa">
+        <div class="budget-segmented-bar" title="52% Didanai, 33% Diusulkan, 15% Sisa" style="margin-top: 10px;">
           <div class="seg-allocated" style="width: 52%;"></div>
           <div class="seg-proposed" style="width: 33%;"></div>
           <div class="seg-remaining" style="width: 15%;"></div>
         </div>
 
-        <div class="budget-stats-list">
+        <div class="budget-stats-list" style="margin-top: 18px;">
           <div class="budget-stat-item">
-            <span class="budget-label allocated">Dialokasikan (didanai)</span>
+            <span class="budget-label allocated">Dialokasikan (18 Usulan Didanai)</span>
             <span class="budget-val">Rp 650.000.000</span>
           </div>
           <div class="budget-stat-item">
-            <span class="budget-label proposed">Diusulkan, belum diputuskan</span>
+            <span class="budget-label proposed">Diusulkan (Belum Diputuskan)</span>
             <span class="budget-val">Rp 420.000.000</span>
           </div>
           <div class="budget-stat-item">
-            <span class="budget-label remaining">Sisa plafon</span>
+            <span class="budget-label remaining">Sisa Alokasi Dana Batch 10</span>
             <span class="budget-val">Rp 180.000.000</span>
           </div>
         </div>
       </div>
 
-      <!-- Card 2: Pelaksanaan dan Luaran -->
-      <div class="admin-card-panel" id="pelaksanaanSection">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Pelaksanaan dan luaran</h3>
-            <p class="panel-subtitle">Proposal yang sudah didanai dan sedang berjalan.</p>
+      <!-- Card Right: Monev & Luaran Penelitian -->
+      <div class="ops-panel" id="pelaksanaanSection" style="margin-bottom: 0;">
+        <div class="ops-panel-header">
+          <div class="ops-panel-title-group">
+            <h3>
+              <i class="fa-solid fa-chart-line" style="color: #059669;"></i>
+              Monitoring Pelaksanaan &amp; Luaran Riset
+            </h3>
+            <p>Kepatuhan laporan kemajuan dan realisasi target publikasi ilmiah.</p>
           </div>
+          <button type="button" class="btn-control-pill outline" style="padding: 4px 10px; font-size: 11px;" onclick="showToast('Blast notifikasi pengingat massal telah dikirim!', 'success')">
+            <i class="fa-solid fa-bullhorn"></i> Pengingat Massal
+          </button>
         </div>
 
-        <div class="output-progress-list">
-          <!-- Item 1 -->
+        <div class="output-progress-list" style="margin-top: 10px;">
           <div class="output-progress-item">
             <div class="output-meta-row">
-              <span class="output-title">Laporan kemajuan masuk</span>
+              <span class="output-title">Laporan Kemajuan Terkumpul</span>
               <span class="output-percent">68%</span>
             </div>
             <div class="output-bar-track"><div class="output-bar-fill" style="width: 68%;"></div></div>
           </div>
 
-          <!-- Item 2 -->
           <div class="output-progress-item">
             <div class="output-meta-row">
-              <span class="output-title">Logbook terisi</span>
+              <span class="output-title">Logbook Catatan Riset Mingguan</span>
               <span class="output-percent">82%</span>
             </div>
             <div class="output-bar-track"><div class="output-bar-fill" style="width: 82%;"></div></div>
           </div>
 
-          <!-- Item 3 -->
           <div class="output-progress-item">
             <div class="output-meta-row">
-              <span class="output-title">Luaran terkirim</span>
+              <span class="output-title">Target Luaran Publikasi &amp; HKI</span>
               <span class="output-percent">45%</span>
             </div>
             <div class="output-bar-track"><div class="output-bar-fill" style="width: 45%;"></div></div>
           </div>
         </div>
-
-        <button type="button" class="btn-admin-outline w-full" onclick="showToast('Mengirimkan blast notifikasi WhatsApp & Email pengingat massal ke seluruh peneliti aktif...', 'success')">
-          <i class="fa-solid fa-bullhorn"></i>
-          <span>Kirim pengingat massal</span>
-        </button>
       </div>
-
-      <!-- Card 3: Aktivitas Terbaru (Audit Trail) -->
-      <div class="admin-card-panel">
-        <div class="panel-header-row">
-          <div>
-            <h3 class="panel-title">Aktivitas terbaru</h3>
-            <p class="panel-subtitle">Jejak audit singkat.</p>
-          </div>
-        </div>
-
-        <ul class="timeline-audit-list">
-          <li class="timeline-audit-item">
-            <strong>Dr. Siti Rahmah</strong> mengirim usulan baru.
-            <small>10 menit lalu</small>
-          </li>
-          <li class="timeline-audit-item">
-            <strong>Prof. Nasution</strong> mengirim penilaian proposal.
-            <small>45 menit lalu</small>
-          </li>
-          <li class="timeline-audit-item">
-            <strong>Ir. Bambang</strong> mengunggah laporan kemajuan.
-            <small>2 jam lalu</small>
-          </li>
-          <li class="timeline-audit-item">
-            <strong>Pimpinan</strong> mengesahkan 12 usulan didanai.
-            <small>Kemarin, 16:30 WIB</small>
-          </li>
-          <li class="timeline-audit-item">
-            <strong>Admin LPPM</strong> menerbitkan pengumuman batch.
-            <small>2 hari lalu</small>
-          </li>
-        </ul>
-      </div>
-
-    </div>
+    </section>
 
   </main>
 
   <!-- MODAL 1: VERIFIKASI ADMINISTRASI USULAN -->
-  <div id="verifModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+  <div id="verifModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
     <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 620px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
       <div style="padding: 16px 20px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
         <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
@@ -710,203 +826,212 @@
         <button type="button" onclick="closeVerifModal()" style="background: transparent; border: none; font-size: 18px; color: #64748b; cursor: pointer;">&times;</button>
       </div>
 
-      <div style="padding: 20px; max-height: 70vh; overflow-y: auto;">
-        <div style="margin-bottom: 14px; background: #f1f5f9; padding: 12px 14px; border-radius: 8px;">
-          <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-bottom: 4px;" id="modalPropTitle">Judul Proposal</div>
-          <div style="font-size: 12px; color: #475569;" id="modalPropProposer">Pengusul</div>
-          <div style="display: flex; gap: 12px; margin-top: 6px; font-size: 11.5px; color: #64748b;">
-            <span>Skema: <strong style="color: #0284c7;" id="modalPropScheme">-</strong></span>
-            <span>Usulan Dana: <strong style="color: #0f172a;" id="modalPropDana">-</strong></span>
-            <span>Masuk: <span id="modalPropMasuk">-</span></span>
+      <div style="padding: 20px; max-height: 75vh; overflow-y: auto;">
+        <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 12px 14px; margin-bottom: 16px;">
+          <div style="font-size: 11px; font-weight: 700; color: #0284c7; text-transform: uppercase;">Proposal #P-2026-001</div>
+          <strong id="modalPropTitle" style="font-size: 14px; color: #0f172a; display: block; margin: 4px 0;">Implementasi AI &amp; Drone Multispektral untuk Deteksi Dini Penyakit Padi</strong>
+          <span style="font-size: 12px; color: #64748b;">Pengusul: <strong id="modalPropProposer" style="color: #334155;">Dr. Ir. Siti Rahmah, M.T.</strong></span>
+          <div style="display: flex; gap: 14px; margin-top: 6px; font-size: 11.5px; color: #475569;">
+            <span>Skema: <strong id="modalPropScheme">Penelitian Fundamental</strong></span>
+            <span>Dana: <strong id="modalPropDana">Rp 45.000.000</strong></span>
+            <span>Masuk: <strong id="modalPropMasuk">2 hari lalu</strong></span>
           </div>
         </div>
 
-        <div style="font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 8px;">Checklist Kelengkapan Dokumen Wajib:</div>
-        <div id="modalPropFilesList" style="margin-bottom: 16px;"></div>
+        <h4 style="font-size: 12px; font-weight: 800; color: #475569; text-transform: uppercase; margin: 0 0 10px 0;">Pemeriksaan Kelengkapan Berkas:</h4>
+        <div id="modalPropFilesList" style="margin-bottom: 16px;">
+          <!-- Dynamically populated or fallback -->
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 6px;">
+            <label style="font-size: 12.5px; color: #334155;"><input type="checkbox" checked> 1. Lembar Pengesahan Tanda Tangan Dekan</label>
+            <span style="font-size: 11px; color: #059669; font-weight: 700;">Valid</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 6px;">
+            <label style="font-size: 12.5px; color: #334155;"><input type="checkbox" checked> 2. Surat Pernyataan Orisinalitas Materai</label>
+            <span style="font-size: 11px; color: #059669; font-weight: 700;">Valid</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 6px;">
+            <label style="font-size: 12.5px; color: #334155;"><input type="checkbox" checked> 3. Rincian Anggaran Biaya (RAB Standar UMSU)</label>
+            <span style="font-size: 11px; color: #059669; font-weight: 700;">Valid</span>
+          </div>
+        </div>
 
-        <div style="margin-bottom: 8px;">
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">Catatan Verifikator LPPM (Opsional jika lolos, wajib jika revisi/tolak):</label>
-          <textarea id="verifNotesInput" rows="3" placeholder="Tuliskan catatan verifikasi administrasi..." style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 12.5px; box-sizing: border-box;"></textarea>
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Catatan Verifikator untuk Pengusul:</label>
+          <textarea id="verifNotesInput" rows="3" placeholder="Tuliskan catatan perbaikan berkas jika revisi..." style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px; font-size: 13px; font-family: inherit; resize: vertical;"></textarea>
         </div>
       </div>
 
-      <div style="padding: 14px 20px; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
-        <button type="button" class="btn-batch-select" onclick="closeVerifModal()">Batal</button>
-        <div style="display: flex; gap: 8px;">
-          <button type="button" class="btn-admin-outline" style="border-color: #f59e0b; color: #d97706;" onclick="submitVerification('revise')">
-            <i class="fa-solid fa-rotate-left"></i> Minta Perbaikan
-          </button>
-          <button type="button" class="btn-admin-primary" style="background: #10b981; border-color: #10b981;" onclick="submitVerification('pass')">
-            <i class="fa-solid fa-check"></i> Lolos Administrasi
-          </button>
-        </div>
+      <div style="padding: 14px 20px; background: #f8fafc; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+        <button type="button" class="btn-table-action" onclick="submitVerification('revise')" style="background: #fffbeb; color: #d97706; border: 1px solid #fde68a; padding: 8px 14px; border-radius: 6px; font-weight: 700; cursor: pointer;">Minta Revisi</button>
+        <button type="button" class="btn-table-action" onclick="submitVerification('pass')" style="background: #0284c7; color: #ffffff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer;">Loloskan Berkas &rarr;</button>
       </div>
     </div>
   </div>
 
   <!-- MODAL 2: TUGASKAN REVIEWER -->
-  <div id="assignModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+  <div id="assignModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
     <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 560px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
       <div style="padding: 16px 20px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
         <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
-          <i class="fa-solid fa-user-check" style="color: #0284c7;"></i>
+          <i class="fa-solid fa-user-plus" style="color: #0284c7;"></i>
           Penugasan Reviewer Proposal
         </h3>
         <button type="button" onclick="closeAssignReviewerModal()" style="background: transparent; border: none; font-size: 18px; color: #64748b; cursor: pointer;">&times;</button>
       </div>
 
       <div style="padding: 20px;">
+        <p style="font-size: 13px; color: #64748b; margin-top: 0; margin-bottom: 16px;">Tugaskan minimal 2 reviewer independen yang tidak memiliki konflik kepentingan program studi.</p>
+
         <div style="margin-bottom: 14px;">
-          <label style="font-size: 12.5px; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">Pilih Usulan Lolos Administrasi:</label>
-          <select style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 13px;">
-            <option>Implementasi AI & Drone Multispektral (Dr. Siti Rahmah - Pertanian)</option>
-            <option>Turbin Angin Sumbu Vertikal (Ir. Bambang Wicaksono - Teknik)</option>
-            <option>Sintesis Membran Kitosan (Dr. Hendra Gunawan - MIPA)</option>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Pilih Reviewer 1 (Substansi Metodologi):</label>
+          <select id="selReviewer1" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px; font-family: inherit;">
+            <option value="1">Prof. Dr. Ir. M. Nasution (Beban: 5/5 - Penuh)</option>
+            <option value="2" selected>Dr. Aisyah Putri, M.Si. (Beban: 3/5 - Tersedia)</option>
+            <option value="3">Dr. Surya Darma, M.Kom. (Beban: 2/5 - Tersedia)</option>
           </select>
         </div>
 
         <div style="margin-bottom: 14px;">
-          <label style="font-size: 12.5px; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">Pilih Reviewer 1 (Bidang Keahlian Sesuai):</label>
-          <select style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 13px;">
-            <option>Dr. Aisyah Putri, M.Kom. (Beban: 3/5 usulan)</option>
-            <option>Dr. Surya Darma, M.Hum. (Beban: 2/5 usulan)</option>
-            <option disabled>Dr. Hendra Cipta, S.T. (⚠️ Konflik Prodi Pertanian)</option>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Pilih Reviewer 2 (Substansi Luaran &amp; Kelayakan):</label>
+          <select id="selReviewer2" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px; font-family: inherit;">
+            <option value="3" selected>Dr. Surya Darma, M.Kom. (Beban: 2/5 - Tersedia)</option>
+            <option value="4">Dr. Hendra Cipta (Peringatan: Konflik Prodi Serupa)</option>
           </select>
         </div>
 
         <div style="margin-bottom: 14px;">
-          <label style="font-size: 12.5px; font-weight: 700; color: #334155; display: block; margin-bottom: 4px;">Pilih Reviewer 2 (Opsional / Double Blind):</label>
-          <select style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 13px;">
-            <option>Prof. Dr. Syahril, M.Si. (Beban: 1/5 usulan)</option>
-            <option>Dr. Surya Darma, M.Hum. (Beban: 2/5 usulan)</option>
-          </select>
-        </div>
-
-        <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 10px 12px; border-radius: 6px; font-size: 12px; color: #0369a1;">
-          <i class="fa-solid fa-shield-halved"></i> <strong>Sistem Anti-Konflik Aktif:</strong> Reviewer dengan prodi atau fakultas yang sama otomatis dicegah untuk menjamin objektivitas blind review.
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Batas Waktu Penilaian (Deadline):</label>
+          <input type="date" value="2026-11-20" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px; font-family: inherit;">
         </div>
       </div>
 
-      <div style="padding: 14px 20px; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 8px; background: #f8fafc;">
-        <button type="button" class="btn-batch-select" onclick="closeAssignReviewerModal()">Batal</button>
-        <button type="button" class="btn-admin-primary" onclick="submitAssignReviewer()">
-          <i class="fa-solid fa-paper-plane"></i> Tetapkan &amp; Kirim Tugas
-        </button>
+      <div style="padding: 14px 20px; background: #f8fafc; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+        <button type="button" onclick="closeAssignReviewerModal()" style="padding: 8px 14px; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 12.5px;">Batal</button>
+        <button type="button" onclick="submitAssignReviewer()" style="background: #0284c7; color: #ffffff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer;">Simpan Penugasan</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL 3: ATUR JADWAL BATCH -->
-  <div id="scheduleModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-    <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 520px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
+  <!-- MODAL 3: KIRIM PENGUMUMAN MASSAL -->
+  <div id="announcementModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+    <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 580px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
       <div style="padding: 16px 20px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
-        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a;">
-          <i class="fa-solid fa-calendar-days" style="color: #0284c7;"></i>
-          Atur Jadwal Tenggat Batch 10
-        </h3>
-        <button type="button" onclick="closeScheduleModal()" style="background: transparent; border: none; font-size: 18px; color: #64748b; cursor: pointer;">&times;</button>
-      </div>
-
-      <div style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Batas Verifikasi Administrasi:</label>
-          <input type="date" value="2026-11-10" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
-        </div>
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Batas Review Substantif:</label>
-          <input type="date" value="2026-11-20" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
-        </div>
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Rapat Keputusan Pimpinan:</label>
-          <input type="date" value="2026-11-28" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
-        </div>
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Pengumuman Hasil Akhir:</label>
-          <input type="date" value="2026-12-05" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
-        </div>
-      </div>
-
-      <div style="padding: 14px 20px; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 8px; background: #f8fafc;">
-        <button type="button" class="btn-batch-select" onclick="closeScheduleModal()">Batal</button>
-        <button type="button" class="btn-admin-primary" onclick="saveScheduleBatch()">Simpan Jadwal</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL 4: KIRIM PENGUMUMAN -->
-  <div id="announcementModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-    <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 540px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
-      <div style="padding: 16px 20px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
-        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a;">
-          <i class="fa-solid fa-bullhorn" style="color: #0284c7;"></i>
-          Siarkan Pengumuman Batch LPPM
+        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-regular fa-paper-plane" style="color: #0284c7;"></i>
+          Broadcast Pengumuman Batch 10
         </h3>
         <button type="button" onclick="closeAnnouncementModal()" style="background: transparent; border: none; font-size: 18px; color: #64748b; cursor: pointer;">&times;</button>
       </div>
 
-      <div style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Target Penerima:</label>
-          <select style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit;">
-            <option>Seluruh Dosen &amp; Reviewer (Batch 10)</option>
-            <option>Khusus Pengusul Usulan Menunggu Verifikasi</option>
-            <option>Khusus Reviewer Bertugas</option>
+      <div style="padding: 20px;">
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Target Penerima:</label>
+          <select id="announcementTarget" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
+            <option value="all">Seluruh Dosen Peneliti Aktif UMSU (148 Dosen)</option>
+            <option value="reviewers">Seluruh Tim Reviewer Internal (12 Dosen)</option>
+            <option value="pending">Peneliti dengan Status Menunggu Revisi (8 Dosen)</option>
           </select>
         </div>
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Judul Pengumuman:</label>
-          <input type="text" id="announcementTitle" placeholder="Contoh: Pengingat Batas Akhir Submit Perbaikan Berkas" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit; box-sizing: border-box;">
+
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Judul Pengumuman:</label>
+          <input type="text" id="announcementTitle" value="Pengumuman Penyesuaian Batas Waktu Verifikasi Batch 10" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
         </div>
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Isi Pemberitahuan:</label>
-          <textarea rows="4" placeholder="Tuliskan pesan pemberitahuan resmi LPPM..." style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 12.5px; box-sizing: border-box;"></textarea>
+
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Isi Pesan:</label>
+          <textarea id="announcementBody" rows="4" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px; font-size: 13px; font-family: inherit; resize: vertical;">Diberitahukan kepada seluruh dosen pengusul Batch 10 bahwa batas akhir pengunggahan perbaikan berkas administrasi diperpanjang hingga tanggal 10 November 2026 pukul 23:59 WIB.</textarea>
         </div>
       </div>
 
-      <div style="padding: 14px 20px; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 8px; background: #f8fafc;">
-        <button type="button" class="btn-batch-select" onclick="closeAnnouncementModal()">Batal</button>
-        <button type="button" class="btn-admin-primary" onclick="sendAnnouncement()">Kirim Sekarang</button>
+      <div style="padding: 14px 20px; background: #f8fafc; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+        <button type="button" onclick="closeAnnouncementModal()" style="padding: 8px 14px; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 12.5px;">Batal</button>
+        <button type="button" onclick="sendAnnouncement()" style="background: #0284c7; color: #ffffff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer;">Broadcast Sekarang</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL 5: BUKA BATCH BARU -->
-  <div id="newBatchModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
-    <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 520px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
+  <!-- MODAL 4: BUKA BATCH BARU -->
+  <div id="newBatchModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+    <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 540px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
       <div style="padding: 16px 20px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
-        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a;">
-          <i class="fa-solid fa-folder-plus" style="color: #0284c7;"></i>
-          Buka Batch Usulan Baru
+        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-plus-circle" style="color: #0284c7;"></i>
+          Buka Periode Batch Baru
         </h3>
         <button type="button" onclick="closeNewBatchModal()" style="background: transparent; border: none; font-size: 18px; color: #64748b; cursor: pointer;">&times;</button>
       </div>
 
-      <div style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Nama Batch:</label>
-          <input type="text" value="Batch 11 (2026/2027)" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit; box-sizing: border-box;">
+      <div style="padding: 20px;">
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Nama Batch:</label>
+          <input type="text" id="newBatchName" value="Batch 11 (2026/2027) Semester Genap" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
         </div>
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Plafon Total Anggaran (Rp):</label>
-          <input type="text" value="Rp 1.500.000.000" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-family: inherit; box-sizing: border-box;">
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Tanggal Mulai:</label>
+            <input type="date" value="2027-01-10" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Tanggal Selesai:</label>
+            <input type="date" value="2027-03-30" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
+          </div>
         </div>
-        <div>
-          <label style="font-size: 12px; font-weight: 700; color: #334155; display: block; margin-bottom: 3px;">Periode Pengajuan:</label>
-          <div style="display: flex; gap: 8px;">
-            <input type="date" value="2026-12-01" style="width: 50%; padding: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px;">
-            <input type="date" value="2027-01-15" style="width: 50%; padding: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px;">
+
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 6px;">Total Alokasi Anggaran (Rp):</label>
+          <input type="text" value="Rp 850.000.000" style="width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
+        </div>
+      </div>
+
+      <div style="padding: 14px 20px; background: #f8fafc; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+        <button type="button" onclick="closeNewBatchModal()" style="padding: 8px 14px; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 12.5px;">Batal</button>
+        <button type="button" onclick="createNewBatch()" style="background: #0284c7; color: #ffffff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer;">Publikasikan Batch</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 5: ATUR JADWAL BATCH -->
+  <div id="scheduleModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(4px);">
+    <div style="background: #ffffff; border-radius: 12px; width: 100%; max-width: 560px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); overflow: hidden; margin: 20px;">
+      <div style="padding: 16px 20px; border-bottom: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; background: #f8fafc;">
+        <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-regular fa-calendar-check" style="color: #0284c7;"></i>
+          Pengaturan Jadwal &amp; Tenggat Batch 10
+        </h3>
+        <button type="button" onclick="closeScheduleModal()" style="background: transparent; border: none; font-size: 18px; color: #64748b; cursor: pointer;">&times;</button>
+      </div>
+
+      <div style="padding: 20px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 4px;">1. Batas Verifikasi Administrasi:</label>
+            <input type="date" value="2026-11-10" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 4px;">2. Batas Review Substantif:</label>
+            <input type="date" value="2026-11-20" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 4px;">3. Rapat Pleno Keputusan LPPM:</label>
+            <input type="date" value="2026-11-28" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 12px; font-weight: 700; color: #475569; margin-bottom: 4px;">4. Pengumuman &amp; Penerbitan SK:</label>
+            <input type="date" value="2026-12-05" style="width: 100%; padding: 8px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px;">
           </div>
         </div>
       </div>
 
-      <div style="padding: 14px 20px; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 8px; background: #f8fafc;">
-        <button type="button" class="btn-batch-select" onclick="closeNewBatchModal()">Batal</button>
-        <button type="button" class="btn-admin-primary" onclick="createNewBatch()">Aktifkan Batch</button>
+      <div style="padding: 14px 20px; background: #f8fafc; border-top: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+        <button type="button" onclick="closeScheduleModal()" style="padding: 8px 14px; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; cursor: pointer; font-size: 12.5px;">Batal</button>
+        <button type="button" onclick="saveScheduleBatch()" style="background: #0284c7; color: #ffffff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer;">Simpan Jadwal</button>
       </div>
     </div>
   </div>
 
   <!-- Standard Scripts -->
-  <script src="js/admin-lppm.js?v=1"></script>
+  <script src="js/admin-lppm.js?v=8"></script>
 </body>
 </html>

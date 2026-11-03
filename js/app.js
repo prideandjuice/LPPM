@@ -25,8 +25,8 @@ function initChart() {
     '2022', '2023', '2024', '2025', '2026'
   ];
 
-  const dataUsulan = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2];
-  const dataDidanai = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const dataUsulan = [1, 1, 2, 1, 2, 2, 3, 2, 3, 3, 4, 3, 4, 4, 5];
+  const dataDidanai = [1, 0, 1, 1, 1, 2, 2, 1, 2, 2, 3, 2, 3, 3, 4];
 
   chartInstance = new Chart(ctx, {
     type: 'line',
@@ -103,7 +103,7 @@ function initChart() {
         },
         y: {
           min: 0,
-          max: 2,
+          suggestedMax: 5,
           ticks: {
             stepSize: 1,
             precision: 0,
@@ -145,26 +145,26 @@ function filterChart(type) {
   
   if (type === 'penelitian') {
     showToast('Fokus: Riwayat Penelitian (4 Usulan Didanai)');
-    chartInstance.data.datasets[0].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2];
-    chartInstance.data.datasets[1].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    chartInstance.data.datasets[0].data = [1, 1, 2, 1, 2, 2, 3, 2, 3, 3, 4, 3, 4, 4, 5];
+    chartInstance.data.datasets[1].data = [1, 0, 1, 1, 1, 2, 2, 1, 2, 2, 3, 2, 3, 3, 4];
     document.querySelector('.chart-title').textContent = 'Penelitian';
     document.querySelector('.chart-subtitle').textContent = 'Data riwayat usulan yang sudah Diterima dan pengumuman periode sudah berlalu.';
   } else if (type === 'pengabdian') {
     showToast('Fokus: Riwayat Pengabdian kepada Masyarakat (4 Didanai)');
-    chartInstance.data.datasets[0].data = [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0];
-    chartInstance.data.datasets[1].data = [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0];
+    chartInstance.data.datasets[0].data = [0, 1, 1, 1, 2, 1, 2, 2, 2, 3, 2, 3, 3, 4, 4];
+    chartInstance.data.datasets[1].data = [0, 1, 0, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 3, 4];
     document.querySelector('.chart-title').textContent = 'Pengabdian kepada Masyarakat';
     document.querySelector('.chart-subtitle').textContent = 'Data riwayat pengabdian yang telah selesai dan didanai RisetMu.';
   } else if (type === 'artikel') {
     showToast('Fokus: Pendampingan Artikel Ilmiah');
-    chartInstance.data.datasets[0].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    chartInstance.data.datasets[1].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    chartInstance.data.datasets[0].data = [0, 0, 1, 1, 1, 2, 1, 2, 2, 2, 3, 2, 3, 3, 3];
+    chartInstance.data.datasets[1].data = [0, 0, 0, 1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 3];
     document.querySelector('.chart-title').textContent = 'Pendampingan Artikel';
     document.querySelector('.chart-subtitle').textContent = 'Belum ada usulan pendampingan artikel pada periode ini.';
   } else if (type === 'proposal') {
     showToast('Fokus: Pendampingan Proposal');
-    chartInstance.data.datasets[0].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    chartInstance.data.datasets[1].data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    chartInstance.data.datasets[0].data = [0, 0, 0, 1, 1, 1, 2, 1, 2, 2, 2, 2, 3, 3, 3];
+    chartInstance.data.datasets[1].data = [0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2];
     document.querySelector('.chart-title').textContent = 'Pendampingan Proposal';
     document.querySelector('.chart-subtitle').textContent = 'Belum ada usulan pendampingan proposal pada periode ini.';
   }

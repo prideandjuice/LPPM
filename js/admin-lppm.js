@@ -425,3 +425,64 @@ function showToast(message, type = 'info') {
     setTimeout(() => toast.remove(), 250);
   }, 3200);
 }
+
+// Live Filter for Antrean Triage Table
+function filterTriageTable(query) {
+  const q = (query || '').toLowerCase().trim();
+  const rows = document.querySelectorAll('#antreanVerifikasiSection .ops-table tbody tr');
+  let visibleCount = 0;
+  rows.forEach(row => {
+    const text = row.innerText.toLowerCase();
+    if (!q || text.includes(q)) {
+      row.style.display = '';
+      visibleCount++;
+    } else {
+      row.style.display = 'none';
+    }
+  });
+
+  const countBadge = document.getElementById('triageCountBadge');
+  if (countBadge) {
+    if (q) {
+      countBadge.innerHTML = '<i class="fa-solid fa-filter" style="color: #0284c7;"></i> Ditemukan <strong>' + visibleCount + '</strong> usulan';
+    } else {
+      countBadge.innerHTML = '<i class="fa-solid fa-filter" style="color: #0284c7;"></i> Menampilkan <strong>' + rows.length + '</strong> usulan antrean';
+    }
+  }
+}
+
+// Scheme Filter for Triage Table
+function toggleTriageSchemeFilter() {
+  const menu = document.getElementById('triageSchemeMenu');
+  if (menu) {
+    menu.classList.toggle('show');
+  }
+}
+
+function filterByScheme(schemeName) {
+  const label = document.getElementById('selectedSchemeLabel');
+  const menu = document.getElementById('triageSchemeMenu');
+  if (menu) menu.classList.remove('show');
+  
+  if (label) {
+    label.innerText = schemeName === 'all' ? 'Semua Skema' : schemeName;
+  }
+  
+  const rows = document.querySelectorAll('#antreanVerifikasiSection .ops-table tbody tr');
+  let visibleCount = 0;
+  rows.forEach(row => {
+    const schemeElem = row.querySelector('.scheme-chip');
+    const text = schemeElem ? schemeElem.innerText.toLowerCase() : '';
+    if (schemeName === 'all' || text.includes(schemeName.toLowerCase())) {
+      row.style.display = '';
+      visibleCount++;
+    } else {
+      row.style.display = 'none';
+    }
+  });
+
+  const countBadge = document.getElementById('triageCountBadge');
+  if (countBadge) {
+    countBadge.innerHTML = '<i class="fa-solid fa-filter" style="color: #0284c7;"></i> Menampilkan <strong>' + visibleCount + '</strong> usulan';
+  }
+}

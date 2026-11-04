@@ -16,7 +16,7 @@
 
   <!-- Base & Bespoke Admin Workspace Stylesheets -->
   <link rel="stylesheet" href="css/style.css?v=28">
-  <link rel="stylesheet" href="css/admin-lppm.css?v=23">
+  <link rel="stylesheet" href="css/admin-lppm.css?v=24">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
 </head>
 <body style="background-color: #f8fafc;">
@@ -736,7 +736,7 @@
     <!-- 4. BOTTOM ANALYTICS GRID (ALOKASI DANA & MONEV LUARAN) -->
     <section class="bottom-analytics-grid">
       <!-- Card Left: Alokasi Anggaran Batch 10 -->
-      <div class="ops-panel" id="anggaranSection" style="margin-bottom: 0;">
+      <div class="ops-panel budget-analytics-panel" id="anggaranSection" style="margin-bottom: 0;">
         <div class="ops-panel-header">
           <div class="ops-panel-title-group">
             <h3>
@@ -745,33 +745,69 @@
             </h3>
             <p>Penyaluran dana dibanding pagu alokasi yang disetujui Rektorat.</p>
           </div>
-          <span style="font-weight: 800; font-size: 15px; color: #0284c7;">Rp 850.000.000</span>
+          <div class="pagu-header-badge">
+            <span class="pagu-badge-label">Total Pagu</span>
+            <span class="pagu-badge-val">Rp 850.000.000</span>
+          </div>
         </div>
 
-        <div class="budget-segmented-bar" title="52% Didanai, 33% Diusulkan, 15% Sisa" style="margin-top: 10px;">
-          <div class="seg-allocated" style="width: 52%;"></div>
-          <div class="seg-proposed" style="width: 33%;"></div>
-          <div class="seg-remaining" style="width: 15%;"></div>
+        <div class="budget-bar-wrapper">
+          <div class="budget-segmented-bar" title="52% Didanai, 33% Diusulkan, 15% Sisa">
+            <div class="seg-allocated" style="width: 52%;" title="Dialokasikan: Rp 650.000.000 (52%)"></div>
+            <div class="seg-proposed" style="width: 33%;" title="Diusulkan: Rp 420.000.000 (33%)"></div>
+            <div class="seg-remaining" style="width: 15%;" title="Sisa Pagu: Rp 180.000.000 (15%)"></div>
+          </div>
+          <div class="budget-legend-pills">
+            <span class="legend-pill allocated"><span class="dot"></span> Didanai 52%</span>
+            <span class="legend-pill proposed"><span class="dot"></span> Diusulkan 33%</span>
+            <span class="legend-pill remaining"><span class="dot"></span> Sisa 15%</span>
+          </div>
         </div>
 
-        <div class="budget-stats-list" style="margin-top: 18px;">
-          <div class="budget-stat-item">
-            <span class="budget-label allocated">Dialokasikan (18 Usulan Didanai)</span>
-            <span class="budget-val">Rp 650.000.000</span>
+        <div class="budget-stats-list">
+          <div class="budget-stat-item allocated">
+            <div class="stat-item-left">
+              <div class="stat-icon-dot allocated">
+                <i class="fa-solid fa-circle-check"></i>
+              </div>
+              <div class="stat-text-group">
+                <span class="budget-label allocated">Dialokasikan (18 Usulan Didanai)</span>
+                <span class="budget-sub">Realisasi Surat Keputusan Rektor</span>
+              </div>
+            </div>
+            <span class="budget-val allocated">Rp 650.000.000</span>
           </div>
-          <div class="budget-stat-item">
-            <span class="budget-label proposed">Diusulkan (Belum Diputuskan)</span>
-            <span class="budget-val">Rp 420.000.000</span>
+
+          <div class="budget-stat-item proposed">
+            <div class="stat-item-left">
+              <div class="stat-icon-dot proposed">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="stat-text-group">
+                <span class="budget-label proposed">Diusulkan (Belum Diputuskan)</span>
+                <span class="budget-sub">Antrean Triage &amp; Review LPPM</span>
+              </div>
+            </div>
+            <span class="budget-val proposed">Rp 420.000.000</span>
           </div>
-          <div class="budget-stat-item">
-            <span class="budget-label remaining">Sisa Alokasi Dana Batch 10</span>
-            <span class="budget-val">Rp 180.000.000</span>
+
+          <div class="budget-stat-item remaining">
+            <div class="stat-item-left">
+              <div class="stat-icon-dot remaining">
+                <i class="fa-solid fa-piggy-bank"></i>
+              </div>
+              <div class="stat-text-group">
+                <span class="budget-label remaining">Sisa Alokasi Dana Batch 10</span>
+                <span class="budget-sub">Cadangan Penyesuaian Anggaran</span>
+              </div>
+            </div>
+            <span class="budget-val remaining">Rp 180.000.000</span>
           </div>
         </div>
       </div>
 
       <!-- Card Right: Monev & Luaran Penelitian -->
-      <div class="ops-panel" id="pelaksanaanSection" style="margin-bottom: 0;">
+      <div class="ops-panel monev-analytics-panel" id="pelaksanaanSection" style="margin-bottom: 0;">
         <div class="ops-panel-header">
           <div class="ops-panel-title-group">
             <h3>
@@ -780,34 +816,62 @@
             </h3>
             <p>Kepatuhan laporan kemajuan dan realisasi target publikasi ilmiah.</p>
           </div>
-          <button type="button" class="btn-control-pill outline" style="padding: 4px 10px; font-size: 11px;" onclick="showToast('Blast notifikasi pengingat massal telah dikirim!', 'success')">
-            <i class="fa-solid fa-bullhorn"></i> Pengingat Massal
+          <button type="button" class="btn-control-pill outline btn-reminder-pulse" onclick="showToast('Blast notifikasi pengingat massal telah dikirim ke seluruh peneliti!', 'success')">
+            <i class="fa-solid fa-bullhorn" style="color: #0284c7;"></i>
+            <span>Pengingat Massal</span>
           </button>
         </div>
 
-        <div class="output-progress-list" style="margin-top: 10px;">
+        <div class="output-progress-list">
           <div class="output-progress-item">
             <div class="output-meta-row">
-              <span class="output-title">Laporan Kemajuan Terkumpul</span>
-              <span class="output-percent">68%</span>
+              <div class="output-title-wrap">
+                <i class="fa-regular fa-file-lines" style="color: #0284c7;"></i>
+                <span class="output-title">Laporan Kemajuan Terkumpul</span>
+              </div>
+              <span class="output-percent-badge blue">68% Selesai</span>
             </div>
-            <div class="output-bar-track"><div class="output-bar-fill" style="width: 68%;"></div></div>
+            <div class="output-bar-track">
+              <div class="output-bar-fill blue" style="width: 68%;"></div>
+            </div>
+            <div class="output-footer-meta">
+              <span>Target Pengumpulan: 15 Nov 2026</span>
+              <span>12 dari 18 Peneliti</span>
+            </div>
           </div>
 
           <div class="output-progress-item">
             <div class="output-meta-row">
-              <span class="output-title">Logbook Catatan Riset Mingguan</span>
-              <span class="output-percent">82%</span>
+              <div class="output-title-wrap">
+                <i class="fa-solid fa-book-bookmark" style="color: #059669;"></i>
+                <span class="output-title">Logbook Catatan Riset Mingguan</span>
+              </div>
+              <span class="output-percent-badge emerald">82% Aktif</span>
             </div>
-            <div class="output-bar-track"><div class="output-bar-fill" style="width: 82%;"></div></div>
+            <div class="output-bar-track">
+              <div class="output-bar-fill emerald" style="width: 82%;"></div>
+            </div>
+            <div class="output-footer-meta">
+              <span>Frekuensi: Mingguan (Siklus 8)</span>
+              <span>15 dari 18 Teratur Update</span>
+            </div>
           </div>
 
           <div class="output-progress-item">
             <div class="output-meta-row">
-              <span class="output-title">Target Luaran Publikasi &amp; HKI</span>
-              <span class="output-percent">45%</span>
+              <div class="output-title-wrap">
+                <i class="fa-solid fa-award" style="color: #d97706;"></i>
+                <span class="output-title">Target Luaran Publikasi &amp; HKI</span>
+              </div>
+              <span class="output-percent-badge amber">45% Draft/Submitted</span>
             </div>
-            <div class="output-bar-track"><div class="output-bar-fill" style="width: 45%;"></div></div>
+            <div class="output-bar-track">
+              <div class="output-bar-fill amber" style="width: 45%;"></div>
+            </div>
+            <div class="output-footer-meta">
+              <span>8 Scopus Draft &bull; 3 Pendaftaran HKI</span>
+              <span>Batas Akhir: Des 2026</span>
+            </div>
           </div>
         </div>
       </div>

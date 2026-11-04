@@ -220,6 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   showFilterUsulan(false);
   updatePimpinanCounters();
+  updatePimpinanPaginationUI();
 });
 
 // Dropdown Initializer
@@ -849,4 +850,105 @@ function showToast(message, type = 'info') {
     toast.style.transform = 'translateY(10px)';
     setTimeout(() => toast.remove(), 250);
   }, 3400);
+}
+
+
+// ==========================================================================
+// PAGINATION CONTROLLER FOR PIMPINAN UNIFIED CARD
+// ==========================================================================
+let currentPimpinanPage = 1;
+const totalPimpinanPages = 16;
+const itemsPerPagePimpinan = 3;
+const totalPimpinanItems = 48;
+
+function updatePimpinanPaginationUI() {
+  const rangeEl = document.getElementById('pimpinanPageRange');
+  const totalEl = document.getElementById('pimpinanTotalItems');
+  const prevBtn = document.getElementById('btnPagePrev');
+  const nextBtn = document.getElementById('btnPageNext');
+  const numbersGroup = document.getElementById('pimpinanPageNumbers');
+
+  const startItem = (currentPimpinanPage - 1) * itemsPerPagePimpinan + 1;
+  const endItem = Math.min(currentPimpinanPage * itemsPerPagePimpinan, totalPimpinanItems);
+
+  if (rangeEl) rangeEl.textContent = `${startItem} \u2013 ${endItem}`;
+  if (totalEl) totalEl.textContent = `${totalPimpinanItems}`;
+
+  if (prevBtn) {
+    if (currentPimpinanPage <= 1) {
+      prevBtn.disabled = true;
+      prevBtn.classList.add('disabled');
+    } else {
+      prevBtn.disabled = false;
+      prevBtn.classList.remove('disabled');
+    }
+  }
+
+  if (nextBtn) {
+    if (currentPimpinanPage >= totalPimpinanPages) {
+      nextBtn.disabled = true;
+      nextBtn.classList.add('disabled');
+    } else {
+      nextBtn.disabled = false;
+      nextBtn.classList.remove('disabled');
+    }
+  }
+
+  if (numbersGroup) {
+    let pages = [];
+    if (totalPimpinanPages <= 6) {
+      for (let i = 1; i <= totalPimpinanPages; i++) pages.push(i);
+    } else {
+      if (currentPimpinanPage <= 3) {
+        pages = [1, 2, 3, '...', totalPimpinanPages];
+      } else if (currentPimpinanPage >= totalPimpinanPages - 2) {
+        pages = [1, '...', totalPimpinanPages - 2, totalPimpinanPages - 1, totalPimpinanPages];
+      } else {
+        pages = [1, '...', currentPimpinanPage, '...', totalPimpinanPages];
+      }
+    }
+
+    numbersGroup.innerHTML = pages.map(p => {
+      if (p === '...') {
+        return '<span class="page-ellipsis">&hellip;</span>';
+      }
+      const isActive = p === currentPimpinanPage ? 'active' : '';
+      return `<button type="button" class="btn-page-num ${isActive}" onclick="goToPimpinanPage(${p})">${p}</button>`;
+    }).join('');
+  }
+}
+
+function goToPimpinanPage(page) {
+  if (page < 1 || page > totalPimpinanPages || page === currentPimpinanPage) return;
+  currentPimpinanPage = page;
+  updatePimpinanPaginationUI();
+
+  // Subtle opacity pulse on list to give smooth tactile feedback
+  const container = document.getElementById('pimpinanUsulanList');
+  if (container) {
+    container.style.opacity = '0.5';
+    container.style.transition = 'opacity 0.15s ease';
+    setTimeout(() => {
+      container.style.opacity = '1';
+    }, 150);
+  }
+
+  // Smooth scroll up to top of table if user scrolled down
+  const section = document.getElementById('tugasPengesahanSection');
+  if (section) {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < 0) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  showToast(`Menampilkan halaman ${page} dari ${totalPimpinanPages}`, 'info');
+}
+
+function changePimpinanPage(direction) {
+  if (direction === 'prev' && currentPimpinanPage > 1) {
+    goToPimpinanPage(currentPimpinanPage - 1);
+  } else if (direction === 'next' && currentPimpinanPage < totalPimpinanPages) {
+    goToPimpinanPage(currentPimpinanPage + 1);
+  }
 }
